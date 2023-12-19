@@ -103,6 +103,7 @@ func hit() -> void:
 	if Input.is_action_pressed("hit"):
 		$head/katana/AnimationPlayer.play("k1")
 		$head/katana2/AnimationPlayer.play("k2")
+		$head/GUN/AnimationPlayer.play("SPIN")
 	if Input.is_action_pressed("hit2"):
 		$head/katana2/AnimationPlayer.play("k2")
 
