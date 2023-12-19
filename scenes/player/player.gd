@@ -96,6 +96,10 @@ func handle_jump() -> void:
 	if Input.is_action_pressed("move_jump") and is_on_floor():
 		velocity.y += jump_velocity
 
+func hit() -> void:
+	if Input.is_action_pressed("hit"):
+		$head/basebLLBAT/baseballbat.play("hit")
+
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction: Vector2 = input_dir.normalized().rotated(-parts["head"].rotation.y)
