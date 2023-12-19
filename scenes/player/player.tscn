@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=10 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
 [ext_resource type="Texture2D" uid="uid://bubwl36108v2r" path="res://stuff/aimer things/crosshair001.png" id="2_jqke0"]
+[ext_resource type="PackedScene" uid="uid://qwykqo0kw6fj" path="res://stuff/low_poly_baseball_bat.glb" id="3_ourc4"]
 
 [sub_resource type="Animation" id="Animation_saxjg"]
 resource_name = "head_bob"
@@ -44,6 +45,9 @@ script = ExtResource("1_u1w3t")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="basebLLBAT" parent="head" instance=ExtResource("3_ourc4")]
+transform = Transform3D(0.001, 0, 0, 0, 0.000702911, 0.000711278, 0, -0.000711278, 0.000702911, 0.58, -0.515, -0.9)
 
 [node name="camera" type="Camera3D" parent="head"]
 

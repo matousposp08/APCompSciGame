@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwiu8nsyij4gn" path="res://scenes/player/player.tscn" id="1_tnv5a"]
 [ext_resource type="Script" path="res://stuff/scripts/world.gd" id="1_x87ln"]
-[ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/aimer things/texture_07.png" id="3_58qs6"]
+[ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_753nj"]
 
