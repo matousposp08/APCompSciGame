@@ -1,54 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=16 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
+[ext_resource type="PackedScene" uid="uid://bygf0i7uf535a" path="res://stuff/ImageToStl.com_katana+sword.glb" id="2_jiq32"]
 [ext_resource type="Texture2D" uid="uid://bubwl36108v2r" path="res://stuff/aimer things/crosshair001.png" id="2_jqke0"]
-[ext_resource type="PackedScene" uid="uid://qwykqo0kw6fj" path="res://stuff/low_poly_baseball_bat.glb" id="3_ourc4"]
 
-[sub_resource type="Animation" id="Animation_o5tmj"]
-resource_name = "hit"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.123918, 0, 0), Vector3(-1.92335, 0, 0), Vector3(-0.123918, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jiyla"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.123918, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.7, -0.515, -0.9)]
-}
-
-[sub_resource type="Animation" id="Animation_6bq62"]
-resource_name = "hit2"
+[sub_resource type="Animation" id="Animation_r5qus"]
+resource_name = "k1"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.7, -0.515, -0.9), Vector3(-0.511412, -0.515, -0.9), Vector3(0.791441, -0.515, -0.9), Vector3(0.7, -0.515, -0.9)]
+"values": [Vector3(0.8, -0.384, -0.781925), Vector3(-0.8, -0.384, -0.782), Vector3(0.804783, -0.384, -0.78197), Vector3(0.8, -0.384, -0.781925)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -71,14 +29,101 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.123918, 0, 0), Vector3(-1.46588, 1.24613, 0), Vector3(-1.38542, -1.21983, -0.210277), Vector3(-0.123918, 0, 0)]
+"values": [Vector3(0.00384826, 1.56978, 1.31336), Vector3(-0.00101313, 3.13774, -0.257434), Vector3(-0.150504, 0.72869, 0.160546), Vector3(0.00384826, 1.56978, 1.31336)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7l5m"]
+[sub_resource type="Animation" id="Animation_llvaf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8, -0.384, -0.781925)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00384826, 1.56978, 1.31336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2gt0b"]
 _data = {
-"RESET": SubResource("Animation_jiyla"),
-"hit": SubResource("Animation_o5tmj"),
-"hit2": SubResource("Animation_6bq62")
+"RESET": SubResource("Animation_llvaf"),
+"k1": SubResource("Animation_r5qus")
+}
+
+[sub_resource type="Animation" id="Animation_0emyg"]
+resource_name = "k2"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.8, -0.384, -0.783039), Vector3(0.88888, -0.384, -0.783039), Vector3(-0.67408, -0.384, -0.783039), Vector3(-0.8, -0.384, -0.783039)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00384826, 1.56978, 1.31336), Vector3(1.13367, 0.183774, -0.221178), Vector3(0.75706, 3.00197, 0.290334), Vector3(0.00384826, 1.56978, 1.31336)]
+}
+
+[sub_resource type="Animation" id="Animation_x81od"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.8, -0.384, -0.783039)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00384826, 1.56978, 1.31336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jabh"]
+_data = {
+"RESET": SubResource("Animation_x81od"),
+"k2": SubResource("Animation_0emyg")
 }
 
 [sub_resource type="Animation" id="Animation_saxjg"]
@@ -123,12 +168,20 @@ script = ExtResource("1_u1w3t")
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="basebLLBAT" parent="head" instance=ExtResource("3_ourc4")]
-transform = Transform3D(0.001, 0, 0, 0, 0.000992332, 0.000123601, 0, -0.000123601, 0.000992332, 0.7, -0.515, -0.9)
+[node name="katana" parent="head" instance=ExtResource("2_jiq32")]
+transform = Transform3D(0.000198969, 2.52039e-09, 0.0499996, 0.0483519, 0.0127301, -0.000192413, -0.01273, 0.0483523, 5.06554e-05, 0.8, -0.384, -0.781925)
 
-[node name="baseballbat" type="AnimationPlayer" parent="head/basebLLBAT"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head/katana"]
 libraries = {
-"": SubResource("AnimationLibrary_n7l5m")
+"": SubResource("AnimationLibrary_2gt0b")
+}
+
+[node name="katana2" parent="head" instance=ExtResource("2_jiq32")]
+transform = Transform3D(0.000198969, 2.52039e-09, 0.0499996, 0.0483519, 0.0127301, -0.000192413, -0.01273, 0.0483523, 5.06554e-05, -0.8, -0.384, -0.783039)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head/katana2"]
+libraries = {
+"": SubResource("AnimationLibrary_5jabh")
 }
 
 [node name="camera" type="Camera3D" parent="head"]

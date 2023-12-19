@@ -99,9 +99,10 @@ func handle_jump() -> void:
 
 func hit() -> void:
 	if Input.is_action_pressed("hit"):
-		$head/basebLLBAT/baseballbat.play("hit")
+		$head/katana/AnimationPlayer.play("k1")
+		$head/katana2/AnimationPlayer.play("k2")
 	if Input.is_action_pressed("hit2"):
-		$head/basebLLBAT/baseballbat.play("hit2")
+		$head/katana2/AnimationPlayer.play("k2")
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")

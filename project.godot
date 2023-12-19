@@ -14,6 +14,10 @@ config/name="APCompSciGame"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 game_pause={
