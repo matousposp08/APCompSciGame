@@ -34,6 +34,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
+	hit()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -70,7 +71,7 @@ func enter_normal_state(delta: float) -> void:
 	speed = base_speed
 	reset_transforms(delta)
 
-# Camera Logic
+
 func update_camera(delta: float) -> void:
 	match state:
 		"sprinting":
@@ -78,7 +79,7 @@ func update_camera(delta: float) -> void:
 		"normal":
 			parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[0], 10 * delta)
 
-# Animation Logic
+
 func apply_crouch_transform(delta: float) -> void:
 	parts["body"].scale.y = lerp(parts["body"].scale.y, crouch_player_y_scale, 10 * delta)
 	parts["collision"].scale.y = lerp(parts["collision"].scale.y, crouch_player_y_scale, 10 * delta)
@@ -87,7 +88,7 @@ func reset_transforms(delta: float) -> void:
 	parts["body"].scale.y = lerp(parts["body"].scale.y, base_player_y_scale, 10 * delta)
 	parts["collision"].scale.y = lerp(parts["collision"].scale.y, base_player_y_scale, 10 * delta)
 
-# Physics Logic
+
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -99,6 +100,8 @@ func handle_jump() -> void:
 func hit() -> void:
 	if Input.is_action_pressed("hit"):
 		$head/basebLLBAT/baseballbat.play("hit")
+	if Input.is_action_pressed("hit2"):
+		$head/basebLLBAT/baseballbat.play("hit2")
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -108,7 +111,7 @@ func move_character(delta: float) -> void:
 		velocity.z = lerp(velocity.z, direction.y * speed, accel * delta)
 	move_and_slide()
 
-# Input Handling
+
 func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 	if !world.paused:
 		parts["head"].rotation_degrees.y -= event.relative.x * sensitivity
