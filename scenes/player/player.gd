@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
 
+var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
 
 var speed: float = base_speed
 var state: String = "normal"  
@@ -35,6 +36,7 @@ func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
+	build()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -103,6 +105,17 @@ func hit() -> void:
 		$head/katana2/AnimationPlayer.play("k2")
 	if Input.is_action_pressed("hit2"):
 		$head/katana2/AnimationPlayer.play("k2")
+
+func build() -> void:
+	if Input.is_action_just_pressed("build"):
+		print("pluh")
+		if BLOCK:
+			print("bluh")
+			var block = BLOCK.instantiate()
+			get_tree().current_scene.add_child(block)
+			block.global_position = self.global_position
+			block.position.x += 5
+			block.position.z += 5
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
