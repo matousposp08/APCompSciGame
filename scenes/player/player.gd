@@ -107,6 +107,7 @@ func hit() -> void:
 	if Input.is_action_pressed("hit2"):
 		$head/katana2/AnimationPlayer.play("k2")
 
+
 func build() -> void:
 	if Input.is_action_just_pressed("build"):
 		print("pluh")
