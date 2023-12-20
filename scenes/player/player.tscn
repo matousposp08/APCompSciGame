@@ -1,282 +1,73 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=14 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
-[ext_resource type="PackedScene" uid="uid://cjwsqfhnknl4l" path="res://stuff/Scifi Pistol.glb" id="2_3kuma"]
-[ext_resource type="Texture2D" uid="uid://dd2aafl2t131l" path="res://Solid_orange.png" id="2_5diey"]
-[ext_resource type="PackedScene" uid="uid://bygf0i7uf535a" path="res://stuff/ImageToStl.com_katana+sword.glb" id="2_jiq32"]
-[ext_resource type="PackedScene" uid="uid://b02sanr4jowcg" path="res://stuff/low-poly_pss_silent_pistol.glb" id="3_p5yc8"]
+[ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://crowbar.glb" id="2_8d5nk"]
 [ext_resource type="Texture2D" uid="uid://c121wtswlrqas" path="res://stuff/aimer things/crosshair-icon-2048x2048-2clp4atl.png" id="5_cym7m"]
 
-[sub_resource type="Animation" id="Animation_vwdkl"]
+[sub_resource type="Animation" id="Animation_5n10e"]
+resource_name = "hit1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/crowbar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.74, -0.254, -0.851), Vector3(1.065, -0.254, -0.851), Vector3(-0.01625, -0.254, -0.851), Vector3(0.74, -0.254, -0.851)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/crowbar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.785398), Vector3(-0.83188, -0.290868, 0.552445), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bpp8w"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("head/crowbar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.6, -0.4, -0.534)]
+"values": [Vector3(0.74, -0.254, -0.851)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("head/crowbar:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.5764, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_2oy12"]
-resource_name = "shot"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.6, -0.4, -0.534), Vector3(0.6, -0.4, -0.534)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5764, 0), Vector3(-0.00396159, 1.57476, 0.78539), Vector3(0, 1.5764, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vef46"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32pe7"]
 _data = {
-"RESET": SubResource("Animation_vwdkl"),
-"shot": SubResource("Animation_2oy12")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51pcw"]
-albedo_texture = ExtResource("2_5diey")
-
-[sub_resource type="Animation" id="Animation_2bv14"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.7, -0.4, -0.988)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.56856, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.002, 0.002, 0.002)]
-}
-
-[sub_resource type="Animation" id="Animation_fcpqh"]
-resource_name = "SPIN"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.7, -0.4, -0.988), Vector3(0.7, -0.06, -0.8), Vector3(0.7, -0.4, -0.988)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.56856, 0), Vector3(0.00200552, 1.56981, 1.1145), Vector3(0, 1.56856, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_204tj"]
-_data = {
-"RESET": SubResource("Animation_2bv14"),
-"SPIN": SubResource("Animation_fcpqh")
-}
-
-[sub_resource type="Animation" id="Animation_llvaf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.8, -0.384, -0.781925)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.00384826, 1.56978, 1.31336)]
-}
-
-[sub_resource type="Animation" id="Animation_r5qus"]
-resource_name = "k1"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.8, -0.384, -0.781925), Vector3(-0.8, -0.384, -0.782), Vector3(0.804783, -0.384, -0.78197), Vector3(0.8, -0.384, -0.781925)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.00384826, 1.56978, 1.31336), Vector3(-0.00101313, 3.13774, -0.257434), Vector3(-0.150504, 0.72869, 0.160546), Vector3(0.00384826, 1.56978, 1.31336)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2gt0b"]
-_data = {
-"RESET": SubResource("Animation_llvaf"),
-"k1": SubResource("Animation_r5qus")
-}
-
-[sub_resource type="Animation" id="Animation_x81od"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.8, -0.384, -0.783039)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.00384826, 1.56978, 1.31336)]
-}
-
-[sub_resource type="Animation" id="Animation_0emyg"]
-resource_name = "k2"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.8, -0.384, -0.783039), Vector3(0.88888, -0.384, -0.783039), Vector3(-0.67408, -0.384, -0.783039), Vector3(-0.8, -0.384, -0.783039)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.00384826, 1.56978, 1.31336), Vector3(1.13367, 0.183774, -0.221178), Vector3(0.75706, 3.00197, 0.290334), Vector3(0.00384826, 1.56978, 1.31336)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jabh"]
-_data = {
-"RESET": SubResource("Animation_x81od"),
-"k2": SubResource("Animation_0emyg")
+"RESET": SubResource("Animation_bpp8w"),
+"hit1": SubResource("Animation_5n10e")
 }
 
 [sub_resource type="Animation" id="Animation_saxjg"]
 resource_name = "head_bob"
 length = 0.5
 loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.239392, 1, 0, -0.1, 0, 0.5, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_1m4wq"]
 resource_name = "reset"
@@ -288,8 +79,12 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0.00870516, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_3degh"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_36ogt"]
 _data = {
+"RESET": SubResource("Animation_3degh"),
 "head_bob": SubResource("Animation_saxjg"),
 "reset": SubResource("Animation_1m4wq")
 }
@@ -308,45 +103,13 @@ script = ExtResource("1_u1w3t")
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="gun" parent="head" instance=ExtResource("2_3kuma")]
-transform = Transform3D(-0.00560368, 0, 1.19998, 0, 1.2, 0, -0.999984, 0, -0.00672442, 0.6, -0.4, -0.534)
+[node name="crowbar" parent="head" instance=ExtResource("2_8d5nk")]
+transform = Transform3D(0.075, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.74, -0.254, -0.851)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="head/gun"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head/crowbar"]
+root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_vef46")
-}
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="head/gun"]
-transform = Transform3D(0.395034, 0.824172, 0.045139, -0.199565, 0.164121, -0.850242, -0.732472, 0.399774, 0.255996, 0.177, -0.108, -0.171)
-radius = 0.15
-height = 1.2
-material = SubResource("StandardMaterial3D_51pcw")
-
-[node name="GUN" parent="head" instance=ExtResource("3_p5yc8")]
-transform = Transform3D(4.47264e-06, 0, 0.00199999, 0, 0.002, 0, -0.00199999, 0, 4.47264e-06, 0.7, -0.4, -0.988)
-visible = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="head/GUN"]
-libraries = {
-"": SubResource("AnimationLibrary_204tj")
-}
-
-[node name="katana" parent="head" instance=ExtResource("2_jiq32")]
-transform = Transform3D(0.00019901, -1.5347e-07, 0.0499996, 0.0483519, 0.01273, -0.000192412, -0.0127299, 0.0483523, 5.08163e-05, 0.8, -0.384, -0.781925)
-visible = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="head/katana"]
-libraries = {
-"": SubResource("AnimationLibrary_2gt0b")
-}
-
-[node name="katana2" parent="head" instance=ExtResource("2_jiq32")]
-transform = Transform3D(0.00019901, -1.5347e-07, 0.0499996, 0.0483519, 0.01273, -0.000192412, -0.0127299, 0.0483523, 5.08163e-05, -0.8, -0.384, -0.783039)
-visible = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="head/katana2"]
-libraries = {
-"": SubResource("AnimationLibrary_5jabh")
+"": SubResource("AnimationLibrary_32pe7")
 }
 
 [node name="camera" type="Camera3D" parent="head"]
