@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqj4042s6ddx6"]
+
+[ext_resource type="Texture2D" uid="uid://drrt8de4b1p20" path="res://bg.png" id="1_u1kds"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="2_md2qa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
+bg_color = Color(1, 0.580392, 0.333333, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 8.0
+
+[node name="menu" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(576.5, 325.25)
+scale = Vector2(1.01667, 1.02276)
+texture = ExtResource("1_u1kds")
+
+[node name="wizard" type="Label" parent="."]
+offset_left = 402.0
+offset_top = 94.0
+offset_right = 762.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("2_md2qa")
+theme_override_font_sizes/font_size = 100
+text = "WIZARD"
+
+[node name="wizard2" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 205.0
+offset_right = 899.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("2_md2qa")
+theme_override_font_sizes/font_size = 150
+text = "FORTNITE"
+
+[node name="play" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 409.0
+offset_right = 480.0
+offset_bottom = 448.0
+theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
+theme_override_fonts/font = ExtResource("2_md2qa")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+text = "PLAY"
+
+[node name="options" type="Button" parent="."]
+offset_left = 655.0
+offset_top = 409.0
+offset_right = 766.0
+offset_bottom = 448.0
+theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
+theme_override_fonts/font = ExtResource("2_md2qa")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+text = "OPTIONS"
+
+[node name="online" type="Button" parent="."]
+offset_left = 524.0
+offset_top = 408.0
+offset_right = 617.0
+offset_bottom = 447.0
+theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
+theme_override_fonts/font = ExtResource("2_md2qa")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+text = "ONLINE"
