@@ -10,6 +10,8 @@ extends CharacterBody3D
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
 
+
+
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
 
 var speed: float = base_speed
@@ -28,6 +30,8 @@ var crouch_player_y_scale: float = 0.75
 	"collision": $collision
 }
 @onready var world: SceneTree = get_tree()
+var isMoving = false
+
 
 func _ready() -> void:
 	parts["camera"].current = true
@@ -37,6 +41,14 @@ func _process(delta: float) -> void:
 	update_camera(delta)
 	hit()
 	build()
+	if Input.is_action_pressed("move_forward"):
+		if not isMoving:
+			isMoving = true
+			$head/camera/camera_animation.play("head_bob")
+	else:
+		if isMoving:
+			isMoving = false
+			$head/camera/camera_animation.stop()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -102,8 +114,7 @@ func handle_jump() -> void:
 func hit() -> void:
 	if Input.is_action_pressed("hit"):
 		$head/crowbar/AnimationPlayer.play("hit1")
-
-
+	
 
 func build() -> void:
 	if Input.is_action_just_pressed("build"):
@@ -130,3 +141,6 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation_degrees.y -= event.relative.x * sensitivity
 		parts["head"].rotation_degrees.x -= event.relative.y * sensitivity
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		
+
+
