@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b02sanr4jowcg"
-path="res://.godot/imported/low-poly_pss_silent_pistol.glb-16e4696098c6354dd7d0b82530c60fcf.scn"
+uid="uid://cjwsqfhnknl4l"
+path="res://.godot/imported/Scifi Pistol.glb-046cf65cad1ed10883b78edd75ee20fd.scn"
 
 [deps]
 
-source_file="res://low-poly_pss_silent_pistol.glb"
-dest_files=["res://.godot/imported/low-poly_pss_silent_pistol.glb-16e4696098c6354dd7d0b82530c60fcf.scn"]
+source_file="res://stuff/Scifi Pistol.glb"
+dest_files=["res://.godot/imported/Scifi Pistol.glb-046cf65cad1ed10883b78edd75ee20fd.scn"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coquqajrdg2i"
-path="res://.godot/imported/bfrnc5n9d8x51.png-654b663c2d57719b84ed60ea0fd23adc.ctex"
+uid="uid://s4tegp5i8pui"
+path="res://.godot/imported/KovaaK-Crosshair.png-3e50e7dc00d743c9c11f96b9deaa8957.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bfrnc5n9d8x51.png"
-dest_files=["res://.godot/imported/bfrnc5n9d8x51.png-654b663c2d57719b84ed60ea0fd23adc.ctex"]
+source_file="res://stuff/aimer things/KovaaK-Crosshair.png"
+dest_files=["res://.godot/imported/KovaaK-Crosshair.png-3e50e7dc00d743c9c11f96b9deaa8957.ctex"]
 
 [params]
 

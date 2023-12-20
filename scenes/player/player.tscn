@@ -1,10 +1,38 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=26 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
-[ext_resource type="PackedScene" uid="uid://cjwsqfhnknl4l" path="res://Scifi Pistol.glb" id="2_5du0v"]
+[ext_resource type="PackedScene" uid="uid://cjwsqfhnknl4l" path="res://stuff/Scifi Pistol.glb" id="2_3kuma"]
+[ext_resource type="Texture2D" uid="uid://dd2aafl2t131l" path="res://Solid_orange.png" id="2_5diey"]
 [ext_resource type="PackedScene" uid="uid://bygf0i7uf535a" path="res://stuff/ImageToStl.com_katana+sword.glb" id="2_jiq32"]
-[ext_resource type="Texture2D" uid="uid://coquqajrdg2i" path="res://bfrnc5n9d8x51.png" id="4_poqod"]
-[ext_resource type="PackedScene" uid="uid://b02sanr4jowcg" path="res://low-poly_pss_silent_pistol.glb" id="4_vbl5y"]
+[ext_resource type="PackedScene" uid="uid://b02sanr4jowcg" path="res://stuff/low-poly_pss_silent_pistol.glb" id="3_p5yc8"]
+[ext_resource type="Texture2D" uid="uid://c121wtswlrqas" path="res://stuff/aimer things/crosshair-icon-2048x2048-2clp4atl.png" id="5_cym7m"]
+
+[sub_resource type="Animation" id="Animation_vwdkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, -0.4, -0.534)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5764, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_2oy12"]
 resource_name = "shot"
@@ -34,38 +62,14 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5764, 0), Vector3(-0.00396159, 1.57476, 0.78539), Vector3(0, 1.5764, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vwdkl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.6, -0.4, -0.534)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5764, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vef46"]
 _data = {
 "RESET": SubResource("Animation_vwdkl"),
 "shot": SubResource("Animation_2oy12")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51pcw"]
+albedo_texture = ExtResource("2_5diey")
 
 [sub_resource type="Animation" id="Animation_2bv14"]
 length = 0.001
@@ -304,15 +308,21 @@ script = ExtResource("1_u1w3t")
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="gun" parent="head" instance=ExtResource("2_5du0v")]
-transform = Transform3D(-0.00560249, 0, 1.19998, 0, 1.2, 0, -0.999984, 0, -0.00672299, 0.6, -0.4, -0.534)
+[node name="gun" parent="head" instance=ExtResource("2_3kuma")]
+transform = Transform3D(-0.00560368, 0, 1.19998, 0, 1.2, 0, -0.999984, 0, -0.00672442, 0.6, -0.4, -0.534)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="head/gun"]
 libraries = {
 "": SubResource("AnimationLibrary_vef46")
 }
 
-[node name="GUN" parent="head" instance=ExtResource("4_vbl5y")]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="head/gun"]
+transform = Transform3D(0.395034, 0.824172, 0.045139, -0.199565, 0.164121, -0.850242, -0.732472, 0.399774, 0.255996, 0.177, -0.108, -0.171)
+radius = 0.15
+height = 1.2
+material = SubResource("StandardMaterial3D_51pcw")
+
+[node name="GUN" parent="head" instance=ExtResource("3_p5yc8")]
 transform = Transform3D(4.47264e-06, 0, 0.00199999, 0, 0.002, 0, -0.00199999, 0, 4.47264e-06, 0.7, -0.4, -0.988)
 visible = false
 
@@ -352,9 +362,9 @@ shape = SubResource("CapsuleShape3D_phygr")
 [node name="hud_camera" type="Camera2D" parent="."]
 
 [node name="crosshair" type="Sprite2D" parent="hud_camera"]
-position = Vector2(5.96046e-08, -4.76837e-07)
-scale = Vector2(1, 1.02255)
-texture = ExtResource("4_poqod")
+position = Vector2(2, 2)
+scale = Vector2(0.0155352, 0.0146484)
+texture = ExtResource("5_cym7m")
 
 [node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3oyv7")
