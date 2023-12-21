@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dvgwqpnepwrot"
-path="res://.godot/imported/crowbar.glb-454a8d538f3facf42f087682f9d16f40.scn"
+path="res://.godot/imported/crowbar.glb-e4f24d663b22a5ed35cbdc5b956c2c75.scn"
 
 [deps]
 
-source_file="res://crowbar.glb"
-dest_files=["res://.godot/imported/crowbar.glb-454a8d538f3facf42f087682f9d16f40.scn"]
+source_file="res://scenes/crowbar.glb"
+dest_files=["res://.godot/imported/crowbar.glb-e4f24d663b22a5ed35cbdc5b956c2c75.scn"]
 
 [params]
 
