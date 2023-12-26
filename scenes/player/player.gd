@@ -11,8 +11,9 @@ extends CharacterBody3D
 @export var crouch_speed: float = 3.0
 
 
-
+var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
+var instance
 
 var speed: float = base_speed
 var state: String = "normal"  
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 	update_camera(delta)
 	hit()
 	build()
+	fireball()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -141,6 +143,12 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation_degrees.y -= event.relative.x * sensitivity
 		parts["head"].rotation_degrees.x -= event.relative.y * sensitivity
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
-		
+
+func fireball() -> void:
+	if Input.is_action_just_pressed("magic"):
+		instance = FIREBALL.instantiate()
+		instance.position = $head.global_position
+		instance.transform.basis = $head.global_transform.basis
+		get_parent().add_child(instance)
 
 

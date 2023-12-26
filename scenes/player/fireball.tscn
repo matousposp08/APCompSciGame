@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://colmv0gti4l0l"]
+
+[ext_resource type="Script" path="res://stuff/scripts/fireball.gd" id="1_odneo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3w83p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqg4a"]
+albedo_color = Color(1, 0.462745, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.52549, 0, 1)
+emission_energy_multiplier = 13.13
+
+[node name="fireball" type="Node3D"]
+script = ExtResource("1_odneo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3w83p")
+surface_material_override/0 = SubResource("StandardMaterial3D_rqg4a")
