@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqj4042s6ddx6"]
+[gd_scene load_steps=4 format=3 uid="uid://dqj4042s6ddx6"]
 
 [ext_resource type="Script" path="res://stuff/menu.gd" id="1_obsyv"]
-[ext_resource type="Texture2D" uid="uid://drrt8de4b1p20" path="res://bg.png" id="2_ufvwh"]
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="3_muiml"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="3_muiml"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
 bg_color = Color(1, 0.580392, 0.333333, 1)
@@ -17,11 +16,6 @@ expand_margin_bottom = 4.0
 
 [node name="menu" type="Node2D"]
 script = ExtResource("1_obsyv")
-
-[node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(576.5, 325.25)
-scale = Vector2(1.01667, 1.02276)
-texture = ExtResource("2_ufvwh")
 
 [node name="wizard" type="Label" parent="."]
 offset_left = 402.0
