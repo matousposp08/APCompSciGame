@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
-	build()
+	#build()
 	fireball()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
@@ -120,14 +120,21 @@ func hit() -> void:
 
 func build() -> void:
 	if Input.is_action_just_pressed("build"):
-		print("pluh")
 		if BLOCK:
-			print("bluh")
 			var block = BLOCK.instantiate()
 			get_tree().current_scene.add_child(block)
 			block.global_position = self.global_position
-			block.position.x += 5
-			block.position.z += 5
+			print($head.rotation_degrees.y)
+			if $head.rotation_degrees.y < 45 or $head.rotation_degrees.y > 314:
+				block.position.z -= 5
+			elif $head.rotation_degrees.y < 135 or $head.rotation_degrees.y > 44:
+				block.position.x -= 5
+				block.rotation.y =90
+			elif $head.rotation_degrees.y < 225 or $head.rotation_degrees.y > 134:
+				block.position.z += 5
+			elif $head.rotation_degrees.y < 315 or $head.rotation_degrees.y > 224:
+				block.position.x += 5
+				block.rotation.y =90
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -151,4 +158,6 @@ func fireball() -> void:
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 
-
+func _on_area_3d_area_entered(area):
+	if area.is_in_group("fireball"):
+		velocity = 8*(position - area.get_parent().position)
