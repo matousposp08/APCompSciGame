@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
+var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
 var instance
 
@@ -43,6 +44,7 @@ func _process(delta: float) -> void:
 	hit()
 	#build()
 	fireball()
+	#lightning()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -157,7 +159,15 @@ func fireball() -> void:
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
+		
+func lightning() -> void:
+	if Input.is_action_just_pressed("magic"):
+		instance = LIGHTNING.instantiate()
+		instance.position = $head.global_position
+		instance.transform.basis = $head.global_transform.basis
+		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("fireball"):
-		velocity = 8*(position - area.get_parent().position)
+		var x = position - area.get_parent().position
+		velocity = 15*(x/x.length())

@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://btgprbhrssphq"]
+
+[ext_resource type="Script" path="res://stuff/scripts/lightning.gd" id="1_nmcvp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45v1k"]
+albedo_color = Color(1, 1, 0.137255, 1)
+emission_enabled = true
+emission = Color(1, 0.886275, 0.478431, 1)
+emission_energy_multiplier = 9.07
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdanu"]
+material = SubResource("StandardMaterial3D_45v1k")
+size = Vector3(0.1, 0.1, 5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uwqn3"]
+direction = Vector3(2.08165e-12, 2.08165e-12, 1)
+spread = 41.747
+flatness = 0.53
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tk6yl"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.317647, 1)
+emission_energy_multiplier = 4.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_hg3yw"]
+material = SubResource("StandardMaterial3D_tk6yl")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjgky"]
+size = Vector3(0.1, 0.1, 5)
+
+[node name="lightning" type="Node3D"]
+script = ExtResource("1_nmcvp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jdanu")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.55606)
+amount = 50
+lifetime = 1.56
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_uwqn3")
+draw_pass_1 = SubResource("BoxMesh_hg3yw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_hjgky")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(2.08165e-12, 2.08165e-12, -1)

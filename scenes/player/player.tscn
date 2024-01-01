@@ -162,7 +162,7 @@ mesh = SubResource("CapsuleMesh_3oyv7")
 [node name="crouch_roof_detect" type="RayCast3D" parent="."]
 target_position = Vector3(0, 1, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_mibgw")
