@@ -1,2 +1,2 @@
 # APCompSciGame
- AP Computer Science Midyear Project (Semester 1)
+AP Computer Science Midyear Project (Semester 1)
