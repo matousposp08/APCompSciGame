@@ -36,9 +36,16 @@ func _physics_process(delta):
 
 
 func _on_area_3d_area_entered(area):
+	print(area)
 	if area.is_in_group("fireball"):
 		print(int(3*(abs(1/(position.x-area.get_parent().position.x))+abs(1/(position.y-area.get_parent().position.y))+abs(1/(position.z-area.get_parent().position.z))/3)))
 		health -= int(3*(abs(1/(position.x-area.get_parent().position.x))+abs(1/(position.y-area.get_parent().position.y))+abs(1/(position.z-area.get_parent().position.z))/3))
 		var x = position - area.get_parent().position
 		print(100*(x/x.length()))
 		velocity = 50*(x/x.length())
+	if area.is_in_group("crowbar"):
+		print("hit")
+		health -= 20
+		var x = position - area.get_parent().position
+		velocity = 30*(x/x.length())
+		
