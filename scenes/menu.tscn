@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqj4042s6ddx6"]
+[gd_scene load_steps=10 format=3 uid="uid://dqj4042s6ddx6"]
 
 [ext_resource type="Script" path="res://stuff/menu.gd" id="1_obsyv"]
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="3_muiml"]
@@ -14,14 +14,80 @@ expand_margin_top = 8.0
 expand_margin_right = 10.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qipv7"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44v0b"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekwt2"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_140ow"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt6ii"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogmue"]
+bg_color = Color(0, 0.478431, 0.788235, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 4.0
+
 [node name="menu" type="Node2D"]
 script = ExtResource("1_obsyv")
 
 [node name="wizard" type="Label" parent="."]
-offset_left = 402.0
-offset_top = 94.0
-offset_right = 762.0
-offset_bottom = 191.0
+offset_left = 278.0
+offset_top = 82.0
+offset_right = 887.0
+offset_bottom = 355.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
@@ -31,54 +97,47 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 100
-text = "WIZARD"
-
-[node name="wizard2" type="Label" parent="."]
-offset_left = 244.0
-offset_top = 205.0
-offset_right = 899.0
-offset_bottom = 350.0
-theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 0
-theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 150
-text = "FORTNITE"
+theme_override_font_sizes/font_size = 140
+text = "WIZARD
+FORTNITE"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="play" type="Button" parent="."]
-offset_left = 412.0
-offset_top = 409.0
-offset_right = 480.0
-offset_bottom = 448.0
+offset_left = 409.0
+offset_top = 397.0
+offset_right = 477.0
+offset_bottom = 436.0
 theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qipv7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_44v0b")
 text = "PLAY"
 
 [node name="options" type="Button" parent="."]
 offset_left = 655.0
-offset_top = 409.0
+offset_top = 400.0
 offset_right = 766.0
-offset_bottom = 448.0
+offset_bottom = 439.0
 theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekwt2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_140ow")
 text = "OPTIONS"
 
 [node name="online" type="Button" parent="."]
-offset_left = 524.0
-offset_top = 408.0
-offset_right = 617.0
-offset_bottom = 447.0
+offset_left = 519.0
+offset_top = 398.0
+offset_right = 612.0
+offset_bottom = 437.0
 theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kt6ii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ogmue")
 text = "ONLINE"
