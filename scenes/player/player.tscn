@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=16 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
@@ -64,6 +64,9 @@ _data = {
 "RESET": SubResource("Animation_bpp8w"),
 "hit1": SubResource("Animation_5n10e")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsqel"]
+size = Vector3(3, 18, 3)
 
 [sub_resource type="Animation" id="Animation_3degh"]
 length = 0.001
@@ -139,6 +142,12 @@ libraries = {
 "": SubResource("AnimationLibrary_32pe7")
 }
 
+[node name="Area3D" type="Area3D" parent="head/crowbar" groups=["crowbar"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/crowbar/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+shape = SubResource("BoxShape3D_bsqel")
+
 [node name="camera" type="Camera3D" parent="head"]
 
 [node name="camera_animation" type="AnimationPlayer" parent="head/camera"]
@@ -168,3 +177,5 @@ target_position = Vector3(0, 1, 0)
 shape = SubResource("CapsuleShape3D_mibgw")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+
+[editable path="head/crowbar"]
