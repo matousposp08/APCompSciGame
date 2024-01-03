@@ -9,7 +9,8 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
-
+var hits = false
+var x = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
@@ -36,6 +37,7 @@ var isMoving = false
 
 
 func _ready() -> void:
+	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
 
 func _process(delta: float) -> void:
@@ -116,8 +118,17 @@ func handle_jump() -> void:
 		velocity.y += jump_velocity
 
 func hit() -> void:
-	if Input.is_action_pressed("hit"):
+	x -= 1
+	if x <= 0:
+		hits = false
+		$head/crowbar/Area3D/CollisionShape3D.disabled = true
+		
+	if Input.is_action_pressed("hit") and not(hits):
+		hits = true
+		$head/crowbar/Area3D/CollisionShape3D.disabled = false
 		$head/crowbar/AnimationPlayer.play("hit1")
+		x = 60
+	
 	
 
 func build() -> void:

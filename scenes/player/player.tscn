@@ -147,6 +147,7 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/crowbar/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
 shape = SubResource("BoxShape3D_bsqel")
+disabled = true
 
 [node name="camera" type="Camera3D" parent="head"]
 
