@@ -1,8 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=12 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://stuff/scripts/world.gd" id="1_x87ln"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="2_wbrs8"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="4_6oxse"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqs7s"]
+bg_color = Color(0.682353, 0.780392, 1, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+shadow_color = Color(0.639216, 0.72549, 1, 0.6)
+shadow_size = 10
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iq0jy"]
 
@@ -30,6 +40,11 @@ albedo_texture = ExtResource("3_58qs6")
 [node name="world" type="Node"]
 script = ExtResource("1_x87ln")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.898039, 0.898039, 0.898039, 1)
+offset_right = 1159.0
+offset_bottom = 664.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Main Menu" type="PanelContainer" parent="CanvasLayer"]
@@ -39,9 +54,10 @@ anchor_bottom = 1.0
 offset_left = 330.0
 offset_top = 229.0
 offset_right = -330.0
-offset_bottom = -228.0
+offset_bottom = -244.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dqs7s")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main Menu"]
 layout_mode = 2
@@ -56,20 +72,32 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="CanvasLayer/Main Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Main Menu"
+theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
+theme_override_fonts/font = ExtResource("2_wbrs8")
+theme_override_font_sizes/font_size = 25
+text = "MAIN  MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Host" type="Button" parent="CanvasLayer/Main Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Host"
+theme_override_colors/font_color = Color(0.639216, 0.654902, 0.694118, 1)
+theme_override_fonts/font = ExtResource("2_wbrs8")
+theme_override_font_sizes/font_size = 17
+text = "HOST"
 
 [node name="Join" type="Button" parent="CanvasLayer/Main Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join"
+theme_override_colors/font_color = Color(0.639216, 0.654902, 0.694118, 1)
+theme_override_fonts/font = ExtResource("2_wbrs8")
+theme_override_font_sizes/font_size = 17
+text = "JOIN"
 
 [node name="AddressEntry" type="LineEdit" parent="CanvasLayer/Main Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_wbrs8")
+theme_override_font_sizes/font_size = 17
 placeholder_text = "Enter IP"
 alignment = 1
 
