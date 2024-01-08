@@ -43,12 +43,14 @@ func _on_host_pressed():
 	
 	add_player(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(add_player)
+	print("Host joined")
 
 func _on_join_pressed():
 	main_menu.hide()
 	
 	enet_peer.create_client("localhost", PORT)
 	multiplayer.multiplayer_peer = enet_peer
+	print("Client joined")
 
 func add_player(peer_id):
 	var player = player.instantiate()
