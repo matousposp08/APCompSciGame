@@ -152,9 +152,9 @@ func build() -> void:
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction: Vector2 = input_dir.normalized().rotated(-parts["head"].rotation.y)
-	if is_on_floor():
-		velocity.x = lerp(velocity.x, direction.x * speed, accel * delta)
-		velocity.z = lerp(velocity.z, direction.y * speed, accel * delta)
+	#if is_on_floor():
+	velocity.x = lerp(velocity.x, direction.x * speed, accel * delta)
+	velocity.z = lerp(velocity.z, direction.y * speed, accel * delta)
 	move_and_slide()
 
 
