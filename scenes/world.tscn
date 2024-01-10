@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=13 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://stuff/scripts/world.gd" id="1_x87ln"]
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="2_wbrs8"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="4_6oxse"]
+[ext_resource type="PackedScene" uid="uid://cadh5ixr1pkwi" path="res://scenes/ui.tscn" id="5_we7x6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqs7s"]
 bg_color = Color(0.682353, 0.780392, 1, 1)
@@ -167,6 +168,8 @@ material = SubResource("StandardMaterial3D_jxrtg")
 
 [node name="dummy" parent="." instance=ExtResource("4_6oxse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28543, 9.91838)
+
+[node name="UI" parent="." instance=ExtResource("5_we7x6")]
 
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
