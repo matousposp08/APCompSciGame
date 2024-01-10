@@ -6,7 +6,6 @@ const SPEED = 30
 @onready var particles = $GPUParticles3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	$Area3D/CollisionShape3D.disabled = false
 
 
@@ -17,9 +16,10 @@ func _process(delta):
 
 
 
+
 func _on_area_3d_area_entered(area):
 	print(area.get_groups())
-	if not(area.is_in_group("player")) or not(area.is_in_group("fireball")):
+	if not(area.is_in_group("player")) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true
 		mesh.visible = false
 		particles.emitting = true
@@ -27,11 +27,4 @@ func _on_area_3d_area_entered(area):
 		queue_free()
 
 
-func _on_area_3d_body_entered(body):
-	print(body.get_groups())
-	if not(body.is_in_group("player")):
-		$Area3D/CollisionShape3D.disabled = true
-		mesh.visible = false
-		particles.emitting = true
-		await get_tree().create_timer(1,0).timeout
-		queue_free()
+
