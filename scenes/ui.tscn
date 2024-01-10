@@ -34,17 +34,17 @@ corner_radius_bottom_left = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4v1s"]
 bg_color = Color(1, 1, 1, 0.537255)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gn67s"]
 bg_color = Color(0.988235, 0.592157, 1, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0d4i1")
 
-[node name="health" type="ProgressBar" parent="."]
+[node name="shield" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 92.0
 offset_top = 504.0
@@ -69,7 +69,7 @@ step = 1.0
 value = 50.0
 rounded = true
 
-[node name="shield" type="ProgressBar" parent="."]
+[node name="health" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 92.0
 offset_top = 544.0
@@ -85,10 +85,10 @@ rounded = true
 
 [node name="mana" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 566.0
-offset_top = 507.0
-offset_right = 636.0
-offset_bottom = 569.0
+offset_left = 92.0
+offset_top = 481.0
+offset_right = 540.0
+offset_bottom = 489.0
 theme_override_fonts/font = ExtResource("1_h37hw")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/background = SubResource("StyleBoxFlat_a4v1s")
@@ -96,7 +96,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gn67s")
 step = 1.0
 value = 55.0
 rounded = true
-fill_mode = 3
+show_percentage = false
 script = ExtResource("2_mgjc4")
 
 [node name="Timer" type="Timer" parent="."]
