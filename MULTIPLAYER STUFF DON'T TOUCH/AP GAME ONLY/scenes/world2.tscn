@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvbgf6drv86br"]
+
+[ext_resource type="Script" path="res://AP GAME ONLY/stuff/scripts/world.gd" id="1_x87ln"]
+[ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://AP GAME ONLY/stuff/texture_07.png" id="3_58qs6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g34t0"]
+albedo_color = Color(0.643137, 0.768627, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxrtg"]
+albedo_color = Color(0.643137, 0.768627, 1, 1)
+albedo_texture = ExtResource("3_58qs6")
+
+[node name="world" type="Node"]
+script = ExtResource("1_x87ln")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27577, 12.6845, -119.738)
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03188, 1.34385, -1.90551)
+use_collision = true
+size = Vector3(1, 0.3, 2)
+material = SubResource("StandardMaterial3D_g34t0")
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="map"]
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0086, 0, 0)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9517, 0, 0)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9517, 0, -14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0086, 0, -14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00864601, 0, -14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00864601, 0, 14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0086, 0, 14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9914, 0, 14)
+use_collision = true
+size = Vector3(12, 1, 14)
+material = SubResource("StandardMaterial3D_jxrtg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 260.0
+offset_right = -385.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter IP"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://AP GAME ONLY/scenes/player/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
