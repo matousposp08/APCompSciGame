@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://cadh5ixr1pkwi"]
+
+[ext_resource type="Script" path="res://stuff/scripts/ui.gd" id="1_0d4i1"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="1_h37hw"]
+[ext_resource type="Script" path="res://stuff/scripts/mana.gd" id="2_mgjc4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcejq"]
+bg_color = Color(1, 1, 1, 0.537255)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5v0w"]
+bg_color = Color(0.376471, 0.729412, 1, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nag10"]
+bg_color = Color(1, 1, 1, 0.537255)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb560"]
+bg_color = Color(0, 0.866667, 0.482353, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4v1s"]
+bg_color = Color(1, 1, 1, 0.537255)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gn67s"]
+bg_color = Color(0.988235, 0.592157, 1, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0d4i1")
+
+[node name="shield" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 504.0
+offset_right = 543.0
+offset_bottom = 531.0
+theme_override_fonts/font = ExtResource("1_h37hw")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/background = SubResource("StyleBoxFlat_jcejq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m5v0w")
+step = 1.0
+value = 50.0
+rounded = true
+
+[node name="health" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 544.0
+offset_right = 543.0
+offset_bottom = 571.0
+theme_override_fonts/font = ExtResource("1_h37hw")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/background = SubResource("StyleBoxFlat_nag10")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lb560")
+step = 1.0
+value = 70.0
+rounded = true
+
+[node name="mana" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 481.0
+offset_right = 540.0
+offset_bottom = 489.0
+theme_override_fonts/font = ExtResource("1_h37hw")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_a4v1s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gn67s")
+step = 1.0
+value = 55.0
+rounded = true
+show_percentage = false
+script = ExtResource("2_mgjc4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

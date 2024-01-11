@@ -45,8 +45,9 @@ mesh = SubResource("SphereMesh_3w83p")
 surface_material_override/0 = SubResource("StandardMaterial3D_rqg4a")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+collide_with_areas = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." groups=["fireball"]]
 material_override = SubResource("StandardMaterial3D_ajjge")
 emitting = false
 amount = 30
@@ -57,8 +58,11 @@ collision_base_size = 0.05
 process_material = SubResource("ParticleProcessMaterial_jih0p")
 draw_pass_1 = SubResource("BoxMesh_8v5hu")
 
-[node name="Area3D" type="Area3D" parent="." groups=["fireball"]]
+[node name="Area3D" type="Area3D" parent="." groups=["fireball", "player"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_oyfa0")
 disabled = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,7 +1,24 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqj4042s6ddx6"]
 
-[ext_resource type="Script" path="res://stuff/menu.gd" id="1_obsyv"]
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="3_muiml"]
+
+[sub_resource type="GDScript" id="GDScript_proe8"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_play_pressed():
+	get_tree().change_scene_to_file(\"res://scenes/world.tscn\")
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
 bg_color = Color(1, 0.580392, 0.333333, 1)
@@ -81,7 +98,7 @@ expand_margin_right = 10.0
 expand_margin_bottom = 4.0
 
 [node name="menu" type="Node2D"]
-script = ExtResource("1_obsyv")
+script = SubResource("GDScript_proe8")
 
 [node name="wizard" type="Label" parent="."]
 offset_left = 278.0
@@ -141,3 +158,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kt6ii")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ogmue")
 text = "ONLINE"
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
