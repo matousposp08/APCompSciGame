@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh23hublm776b"]
+
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="1_2hh11"]
+[ext_resource type="Script" path="res://scenes/control_menu.gd" id="1_eya5q"]
+[ext_resource type="Texture2D" uid="uid://ce2iinmabr034" path="res://round-orange.svg" id="2_pvp1e"]
+
+[node name="control menu" type="Node2D"]
+script = ExtResource("1_eya5q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -19.0
+offset_top = -5.0
+offset_right = 1152.0
+offset_bottom = 657.0
+color = Color(0.92549, 0.964706, 1, 1)
+
+[node name="wizard" type="Label" parent="."]
+offset_left = 226.0
+offset_top = 79.0
+offset_right = 897.0
+offset_bottom = 352.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("1_2hh11")
+theme_override_font_sizes/font_size = 140
+text = "CONTROLS"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Round-orange" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.776471)
+position = Vector2(24, 186)
+scale = Vector2(0.480132, 0.464912)
+texture = ExtResource("2_pvp1e")
+
+[node name="Round-orange2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.776471)
+position = Vector2(71, 526)
+scale = Vector2(0.773731, 0.754386)
+texture = ExtResource("2_pvp1e")
+
+[node name="Round-orange3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.776471)
+position = Vector2(1066, 416)
+texture = ExtResource("2_pvp1e")

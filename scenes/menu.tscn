@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqj4042s6ddx6"]
+[gd_scene load_steps=8 format=3 uid="uid://dqj4042s6ddx6"]
 
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="3_muiml"]
 
@@ -18,6 +18,12 @@ func _process(delta):
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file(\"res://scenes/world.tscn\")
+
+
+
+
+func _on_controls_pressed():
+	get_tree().change_scene_to_file(\"res://scenes/control_menu.tscn\")
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
@@ -75,28 +81,6 @@ expand_margin_top = 8.0
 expand_margin_right = 10.0
 expand_margin_bottom = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt6ii"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogmue"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
-
 [node name="menu" type="Node2D"]
 script = SubResource("GDScript_proe8")
 
@@ -121,9 +105,9 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="play" type="Button" parent="."]
-offset_left = 409.0
+offset_left = 480.0
 offset_top = 397.0
-offset_right = 477.0
+offset_right = 548.0
 offset_bottom = 436.0
 theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
@@ -133,30 +117,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qipv7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_44v0b")
 text = "PLAY"
 
-[node name="options" type="Button" parent="."]
-offset_left = 655.0
-offset_top = 400.0
-offset_right = 766.0
-offset_bottom = 439.0
+[node name="controls" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 397.0
+offset_right = 709.0
+offset_bottom = 436.0
 theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekwt2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_140ow")
-text = "OPTIONS"
-
-[node name="online" type="Button" parent="."]
-offset_left = 519.0
-offset_top = 398.0
-offset_right = 612.0
-offset_bottom = 437.0
-theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
-theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kt6ii")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ogmue")
-text = "ONLINE"
+text = "CONTROLS"
 
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="controls" to="." method="_on_controls_pressed"]
