@@ -179,6 +179,6 @@ func lightning() -> void:
 		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):
-	if area.is_in_group("fireball") :
+	if area.is_in_group("fireball") and not(area.is_in_group("player")):
 		var x = position - area.get_parent().position
 		velocity = 15*(x/x.length())

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="4_ekf4m"]
+[ext_resource type="PackedScene" uid="uid://cadh5ixr1pkwi" path="res://scenes/ui.tscn" id="4_ekf4m"]
 [ext_resource type="Texture2D" uid="uid://c121wtswlrqas" path="res://stuff/aimer things/crosshair-icon-2048x2048-2clp4atl.png" id="5_cym7m"]
 
 [sub_resource type="Animation" id="Animation_bpp8w"]
