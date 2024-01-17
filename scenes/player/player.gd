@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
+var magic = false
 var hits = false
 var x = 0
 
@@ -44,9 +45,9 @@ func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
-	#build()
 	#fireball()
 	lightning()
+	#build()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true

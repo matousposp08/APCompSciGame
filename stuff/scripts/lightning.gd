@@ -4,7 +4,6 @@ const SPEED = 200
 
 @onready var mesh = $MeshInstance3D
 @onready var ray = $RayCast3D
-@onready var particles = $GPUParticles3D
 var x = 100
 var SPARK : PackedScene = preload('res://scenes/player/spark.tscn')
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +31,7 @@ func spark() -> void:
 	instance.position = global_position
 	instance.transform.basis = global_transform.basis
 	instance.scale = Vector3(0.2,0.2,0.2)
+	instance.rotation.z = randf()
 	get_parent().add_child(instance)
 
 
