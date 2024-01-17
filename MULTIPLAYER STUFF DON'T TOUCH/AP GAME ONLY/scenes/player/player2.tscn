@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwiu8nsyij4gn"]
 
-[ext_resource type="Script" path="res://AP GAME ONLY/scenes/player/player.gd" id="1_u1w3t"]
-[ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/crowbar2.glb" id="2_jdq2p"]
+[ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/player/player2.gd" id="1_3m1b5"]
+[ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gy1a8"]
 
@@ -21,7 +21,7 @@ properties/2/replication_mode = 1
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
 collision_layer = 2
-script = ExtResource("1_u1w3t")
+script = ExtResource("1_3m1b5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_gy1a8")

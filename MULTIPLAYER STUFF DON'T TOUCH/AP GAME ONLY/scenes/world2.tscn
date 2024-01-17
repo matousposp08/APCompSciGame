@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvbgf6drv86br"]
 
-[ext_resource type="Script" path="res://AP GAME ONLY/stuff/scripts/world.gd" id="1_x87ln"]
-[ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://AP GAME ONLY/stuff/texture_07.png" id="3_58qs6"]
+[ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scripts/world2.gd" id="1_x87ln"]
+[ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g34t0"]
 albedo_color = Color(0.643137, 0.768627, 1, 1)
@@ -116,7 +116,7 @@ placeholder_text = "Enter IP"
 alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://AP GAME ONLY/scenes/player/player.tscn")
+_spawnable_scenes = PackedStringArray("res://MULTIPLAYER STUFF DON\'T TOUCH/AP GAME ONLY/scenes/player/player2.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
