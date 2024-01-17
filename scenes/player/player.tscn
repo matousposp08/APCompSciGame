@@ -10,26 +10,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/crowbar:position")
+tracks/0/path = NodePath("head/crowbar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector3(0.74, -0.254, -0.851)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/crowbar:rotation")
+tracks/1/path = NodePath("head/crowbar:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5n10e"]
@@ -38,26 +38,26 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/crowbar:position")
+tracks/0/path = NodePath("head/crowbar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.74, -0.254, -0.851), Vector3(0.399919, -0.254, -1.38148), Vector3(0.74, -0.254, -0.851)]
+"values": [Vector3(0.74, -0.254, -0.851), Vector3(1.065, -0.254, -0.851), Vector3(-0.01625, -0.254, -0.851), Vector3(0.711, -0.254, -0.851), Vector3(0.74, -0.254, -0.851)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/crowbar:rotation")
+tracks/1/path = NodePath("head/crowbar:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.506146, -2.18166, -2.83965), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.785398), Vector3(-0.83188, -0.290868, 0.552445), Vector3(-0.20797, -0.072717, 0.138111), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32pe7"]

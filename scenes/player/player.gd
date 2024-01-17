@@ -11,6 +11,7 @@ extends CharacterBody3D
 @export var crouch_speed: float = 3.0
 var magic = false
 var hits = false
+var mana = 100
 var x = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
@@ -166,14 +167,16 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
-	if Input.is_action_just_pressed("magic"):
+	if Input.is_action_just_pressed("magic") and mana >= 10:
+		mana -= 10
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
-	if Input.is_action_just_pressed("magic"):
+	if Input.is_action_just_pressed("magic") and mana >= 25:
+		mana -= 25;
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
