@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d21pqfbmjoi6v"]
+
+[ext_resource type="Script" path="res://scenes/player/damageNum.gd" id="1_t71xv"]
+
+[node name="damageNum" type="RichTextLabel"]
+offset_right = 30.0
+offset_bottom = 30.0
+scale = Vector2(10, 10)
+text = "20"
+script = ExtResource("1_t71xv")

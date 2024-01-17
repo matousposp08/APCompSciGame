@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
+var magic = false
 var hits = false
 var x = 0
 
@@ -44,9 +45,9 @@ func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
+	#fireball()
+	lightning()
 	#build()
-	fireball()
-	#lightning()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -176,6 +177,8 @@ func lightning() -> void:
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
+		instance.position.y -= 0.5
+		instance.rotation.z = randf()
 		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):
