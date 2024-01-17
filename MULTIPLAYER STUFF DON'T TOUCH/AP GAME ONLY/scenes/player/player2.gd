@@ -7,11 +7,14 @@ extends CharacterBody3D
 @onready var anim_player = $AnimationPlayer
 @onready var body = $body
 @onready var collision = $CollisionShape3D
+@onready var base_speed: float = 5.0
 
-var speed = 6.0
-var sprint_speed = 8.0
+var speed: float = base_speed
+var sprint_speed: float = 8.0
 var crouch_speed: float = 3.0
-const JUMP_VELOCITY = 10.0
+const JUMP_VELOCITY: float = 10.0
+var hits = false
+var x = 0
 
 var gravity = 20.0
 
@@ -32,6 +35,7 @@ func _ready():
 func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
+	hit()
 	
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
@@ -101,7 +105,7 @@ func enter_crouch_state(delta: float) -> void:
 	
 func enter_normal_state(delta: float) -> void:
 	state = "normal"
-	speed = 6.0
+	speed = base_speed
 	reset_transforms(delta)
 
 func update_camera(delta: float) -> void:
@@ -118,3 +122,16 @@ func apply_crouch_transform(delta: float) -> void:
 func reset_transforms(delta: float) -> void:
 	body.scale.y = lerp(body.scale.y, base_player_y_scale, 10 * delta)
 	collision.scale.y = lerp(collision.scale.y, base_player_y_scale, 10 * delta)
+
+func hit() -> void:
+	if not is_multiplayer_authority(): return
+	x -= 1
+	if x <= 0:
+		hits = false
+		$Camera3D/crowbar/Area3D/CollisionShape3D.disabled = true
+	if Input.is_action_pressed("hit") and not(hits):
+		print(Input.is_action_pressed("hit"))
+		hits = true
+		$Camera3D/crowbar/Area3D/CollisionShape3D.disabled = false
+		$Camera3D/crowbar/AnimationPlayer.play("hit1")
+		x = 60
