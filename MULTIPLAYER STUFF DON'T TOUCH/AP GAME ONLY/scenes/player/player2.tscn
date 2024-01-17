@@ -23,7 +23,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
 collision_layer = 2
 script = ExtResource("1_3m1b5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="crouch_roof_detect" type="RayCast3D" parent="."]
+target_position = Vector3(2.08165e-12, 1, 2.08165e-12)
+
+[node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_gy1a8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
