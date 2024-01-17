@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 	update_camera(delta)
 	hit()
 	#build()
-	fireball()
-	#lightning()
+	#fireball()
+	lightning()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -176,6 +176,8 @@ func lightning() -> void:
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
+		instance.position.y -= 0.5
+		instance.rotation.z = randf()
 		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):

@@ -46,3 +46,5 @@ func _on_area_3d_area_entered(area):
 		health -= 20
 		var x = position - area.get_parent().position
 		velocity = 30*(x/x.length())
+	if area.is_in_group("lightning"):
+		health -= 80
