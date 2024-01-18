@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xmqbuvxou6f7"]
+
+[ext_resource type="Texture2D" uid="uid://bso257ex1p0nt" path="res://scenes/player/playerimg/spark.webp" id="1_6ao88"]
+[ext_resource type="Script" path="res://scenes/player/spark.gd" id="2_sbfo7"]
+
+[node name="spark" type="Sprite3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("1_6ao88")
+script = ExtResource("2_sbfo7")

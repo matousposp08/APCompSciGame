@@ -9,7 +9,9 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
+var magic = false
 var hits = false
+var mana = 100
 var x = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
@@ -44,9 +46,9 @@ func _process(delta: float) -> void:
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
+	#fireball()
+	lightning()
 	#build()
-	fireball()
-	#lightning()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -165,17 +167,21 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
-	if Input.is_action_just_pressed("magic"):
+	if Input.is_action_just_pressed("magic") and mana >= 10:
+		mana -= 10
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
-	if Input.is_action_just_pressed("magic"):
+	if Input.is_action_just_pressed("magic") and mana >= 25:
+		mana -= 25;
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
+		instance.position.y -= 0.5
+		instance.rotation.z = randf()
 		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):
