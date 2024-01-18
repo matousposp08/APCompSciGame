@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://stuff/scripts/world.gd" id="1_x87ln"]
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="2_wbrs8"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="2_wbrs8"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="4_6oxse"]
 
@@ -14,18 +14,18 @@ corner_radius_bottom_left = 11
 shadow_color = Color(0.639216, 0.72549, 1, 0.6)
 shadow_size = 10
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iq0jy"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3fx6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6bxyf"]
-panorama = SubResource("CompressedTexture2D_iq0jy")
+panorama = SubResource("CompressedTexture2D_k3fx6")
 
-[sub_resource type="Sky" id="Sky_5b7eb"]
+[sub_resource type="Sky" id="Sky_p0hlb"]
 sky_material = SubResource("PanoramaSkyMaterial_6bxyf")
 
 [sub_resource type="Environment" id="Environment_xj5u1"]
 background_mode = 1
 background_color = Color(1, 0.933333, 0.945098, 1)
-sky = SubResource("Sky_5b7eb")
+sky = SubResource("Sky_p0hlb")
 ssao_enabled = true
 fog_light_energy = 0.1
 volumetric_fog_density = 0.02

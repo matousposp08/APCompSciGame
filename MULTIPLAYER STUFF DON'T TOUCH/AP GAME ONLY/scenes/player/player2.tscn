@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=10 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/player/player2.gd" id="1_3m1b5"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
@@ -6,6 +6,70 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gy1a8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tj4xq"]
+
+[sub_resource type="Animation" id="Animation_bpp8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/crowbar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/crowbar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_5n10e"]
+resource_name = "hit1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/crowbar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.74, -0.254, -0.851), Vector3(0.399919, -0.254, -1.38148), Vector3(0.74, -0.254, -0.851)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/crowbar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.506146, -2.18166, -2.83965), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32pe7"]
+_data = {
+"RESET": SubResource("Animation_bpp8w"),
+"hit1": SubResource("Animation_5n10e")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37ddx"]
+size = Vector3(3, 18, 3)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oum03"]
 properties/0/path = NodePath(".:position")
@@ -17,6 +81,12 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("Camera3D/crowbar:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Camera3D/crowbar:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
@@ -33,12 +103,28 @@ mesh = SubResource("CapsuleMesh_gy1a8")
 shape = SubResource("CapsuleShape3D_tj4xq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.378506, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468785, 0)
 
-[node name="Crowbar" parent="Camera3D" instance=ExtResource("2_jdq2p")]
-transform = Transform3D(0.156811, 0, 0, 0, 0.0685138, 0, 0, 0, 0.127723, 0.25944, -0.334148, -0.844865)
+[node name="crowbar" parent="Camera3D" instance=ExtResource("2_jdq2p")]
+transform = Transform3D(0.075, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/crowbar"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_32pe7")
+}
+
+[node name="Area3D" type="Area3D" parent="Camera3D/crowbar" groups=["crowbar"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/crowbar/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+shape = SubResource("BoxShape3D_37ddx")
+disabled = true
+
+[node name="camera_animation" type="AnimationPlayer" parent="Camera3D/crowbar"]
+root_node = NodePath("../../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_oum03")
+
+[editable path="Camera3D/crowbar"]

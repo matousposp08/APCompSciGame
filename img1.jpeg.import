@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce2iinmabr034"
-path="res://.godot/imported/round-orange.svg-fa044668e2bc41ed5ed6bffa16425d47.ctex"
+uid="uid://uqt6pvud45w4"
+path="res://.godot/imported/img1.jpeg-ea93e6d6ef97d94bcba5f163e03d0a19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://round-orange.svg"
-dest_files=["res://.godot/imported/round-orange.svg-fa044668e2bc41ed5ed6bffa16425d47.ctex"]
+source_file="res://img1.jpeg"
+dest_files=["res://.godot/imported/img1.jpeg-ea93e6d6ef97d94bcba5f163e03d0a19.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
