@@ -8,6 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$"Round-orange2".rotate(0.01)
-	$"Round-orange".rotate(0.01)
-	$"Round-orange3".rotate(0.01)
+	$Prup.rotate(0.01)
+	$Prup2.rotate(0.01)
+	$Prup3.rotate(0.01)
