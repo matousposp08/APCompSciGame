@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqj4042s6ddx6"]
+[gd_scene load_steps=6 format=3 uid="uid://dqj4042s6ddx6"]
 
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://stuff/GUMDROP.ttf" id="3_muiml"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="3_muiml"]
 
 [sub_resource type="GDScript" id="GDScript_proe8"]
 script/source = "extends Node2D
@@ -8,127 +8,96 @@ script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$start/AnimationPlayer.play(\"flickr\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed(\"move_jump\"):
+		get_tree().change_scene_to_file(\"res://scenes/choose.tscn\")
 
 
-func _on_play_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/world.tscn\")
-
-
-
-
-func _on_controls_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/control_menu.tscn\")
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
-bg_color = Color(1, 0.580392, 0.333333, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
+[sub_resource type="Animation" id="Animation_ayk5v"]
+resource_name = "flickr"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qipv7"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
+[sub_resource type="Animation" id="Animation_2ipei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44v0b"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekwt2"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_140ow"]
-bg_color = Color(0, 0.478431, 0.788235, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-expand_margin_left = 10.0
-expand_margin_top = 8.0
-expand_margin_right = 10.0
-expand_margin_bottom = 4.0
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umfyi"]
+_data = {
+"RESET": SubResource("Animation_2ipei"),
+"flickr": SubResource("Animation_ayk5v")
+}
 
 [node name="menu" type="Node2D"]
 script = SubResource("GDScript_proe8")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -19.0
+offset_top = -5.0
+offset_right = 1152.0
+offset_bottom = 657.0
+color = Color(0.92549, 0.964706, 1, 1)
+
 [node name="wizard" type="Label" parent="."]
-offset_left = 278.0
-offset_top = 82.0
-offset_right = 887.0
-offset_bottom = 355.0
+offset_left = 188.0
+offset_top = 110.0
+offset_right = 965.0
+offset_bottom = 457.0
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.682353, 0.780392, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.0745098, 0, 0.647059, 1)
+theme_override_colors/font_color = Color(0.564706, 0.698039, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.788235, 0.529412, 0.988235, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 0
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 140
+theme_override_font_sizes/font_size = 178
 text = "WIZARD
 FORTNITE"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="play" type="Button" parent="."]
-offset_left = 480.0
-offset_top = 397.0
-offset_right = 548.0
-offset_bottom = 436.0
-theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
+[node name="start" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 485.0
+offset_right = 807.0
+offset_bottom = 540.0
+theme_override_colors/font_color = Color(0.564706, 0.698039, 1, 1)
 theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qipv7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_44v0b")
-text = "PLAY"
+theme_override_font_sizes/font_size = 40
+text = "PRESS SPACE TO START..."
 
-[node name="controls" type="Button" parent="."]
-offset_left = 576.0
-offset_top = 397.0
-offset_right = 709.0
-offset_bottom = 436.0
-theme_override_colors/font_color = Color(1, 0.933333, 0.945098, 1)
-theme_override_fonts/font = ExtResource("3_muiml")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_fk63c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekwt2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_140ow")
-text = "CONTROLS"
-
-[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="controls" to="." method="_on_controls_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="start"]
+libraries = {
+"": SubResource("AnimationLibrary_umfyi")
+}

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqj4042s6ddx6"]
 
 [ext_resource type="Script" path="res://AP GAME ONLY/stuff/menu.gd" id="1_obsyv"]
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://AP GAME ONLY/stuff/GUMDROP.ttf" id="3_muiml"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="3_muiml"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk63c"]
 bg_color = Color(1, 0.580392, 0.333333, 1)

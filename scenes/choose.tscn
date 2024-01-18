@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpcs75cakafp6"]
+
+[ext_resource type="Texture2D" uid="uid://uqt6pvud45w4" path="res://img1.jpeg" id="1_7m668"]
+[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="1_ei06t"]
+[ext_resource type="Texture2D" uid="uid://b2geeqee2nibx" path="res://img2.jpg" id="2_nobrv"]
+
+[node name="choose" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 1152.0
+offset_bottom = 657.0
+color = Color(0.92549, 0.964706, 1, 1)
+
+[node name="Img1" type="Sprite2D" parent="."]
+position = Vector2(327, 331)
+scale = Vector2(1.07589, 1)
+texture = ExtResource("1_7m668")
+
+[node name="Img2" type="Sprite2D" parent="."]
+position = Vector2(826, 331)
+scale = Vector2(1.09132, 1.04382)
+texture = ExtResource("2_nobrv")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 84.0
+offset_top = 69.0
+offset_right = 568.0
+offset_bottom = 593.0
+color = Color(0.756863, 0.623529, 1, 0.631373)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 587.0
+offset_top = 70.0
+offset_right = 1066.0
+offset_bottom = 593.0
+color = Color(0.756863, 0.623529, 1, 0.631373)
+
+[node name="play" type="Label" parent="."]
+offset_left = 281.0
+offset_top = 307.0
+offset_right = 415.0
+offset_bottom = 365.0
+theme_override_colors/font_shadow_color = Color(0.788235, 0.529412, 0.988235, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("1_ei06t")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="play2" type="Label" parent="."]
+offset_left = 731.0
+offset_top = 304.0
+offset_right = 925.0
+offset_bottom = 362.0
+theme_override_colors/font_shadow_color = Color(0.788235, 0.529412, 0.988235, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("1_ei06t")
+theme_override_font_sizes/font_size = 40
+text = "CONTROLS"
