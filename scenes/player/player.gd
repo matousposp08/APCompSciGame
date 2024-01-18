@@ -178,30 +178,28 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
-<<<<<<< HEAD
 	if Input.is_action_just_pressed("hit") and magic and mode == 1:
-=======
+		instance = FIREBALL.instantiate()
+		instance.position = $head.global_position
+		instance.transform.basis = $head.global_transform.basis
+		get_parent().add_child(instance)
 	if Input.is_action_just_pressed("magic") and mana >= 10:
 		mana -= 10
->>>>>>> 0cad7d5b68cbe1f401367aed56144188bd38416c
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
-<<<<<<< HEAD
 	if Input.is_action_just_pressed("hit") and magic and mode == 0:
-=======
-	if Input.is_action_just_pressed("magic") and mana >= 25:
-		mana -= 25;
->>>>>>> 0cad7d5b68cbe1f401367aed56144188bd38416c
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		instance.position.y -= 0.5
 		instance.rotation.z = randf()
 		get_parent().add_child(instance)
+	if Input.is_action_just_pressed("magic") and mana >= 25:
+		mana -= 25;
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("fireball") and not(area.is_in_group("player")):

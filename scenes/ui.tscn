@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cadh5ixr1pkwi"]
 
 [ext_resource type="Script" path="res://stuff/scripts/ui.gd" id="1_0d4i1"]
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="1_h37hw"]
+[ext_resource type="FontFile" path="res://stuff/GUMDROP.ttf" id="1_h37hw"]
 [ext_resource type="Script" path="res://stuff/scripts/mana.gd" id="2_mgjc4"]
 [ext_resource type="Texture2D" uid="uid://03p4hyaxxe2v" path="res://scenes/player/playerimg/magicwheel.png" id="4_xwoht"]
 
