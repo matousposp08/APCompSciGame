@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
 var magic = false
+var mode = 0
 var hits = false
 var mana = 100
 var x = 0
@@ -43,10 +44,20 @@ func _ready() -> void:
 	parts["camera"].current = true
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("magic"):
+		if not(magic):
+			magic = true
+		else:
+			if mode == 1:
+				mode = 0
+			else:
+				mode = 1
+	if Input.is_action_just_pressed("melee"):
+		magic = false
 	handle_movement_input(delta)
 	update_camera(delta)
 	hit()
-	#fireball()
+	fireball()
 	lightning()
 	#build()
 	if Input.is_action_pressed("move_forward"):
@@ -125,7 +136,7 @@ func hit() -> void:
 		hits = false
 		$head/crowbar/Area3D/CollisionShape3D.disabled = true
 		
-	if Input.is_action_pressed("hit") and not(hits):
+	if Input.is_action_pressed("hit") and not(hits) and not(magic):
 		hits = true
 		$head/crowbar/Area3D/CollisionShape3D.disabled = false
 		$head/crowbar/AnimationPlayer.play("hit1")
@@ -167,16 +178,24 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
+<<<<<<< HEAD
+	if Input.is_action_just_pressed("hit") and magic and mode == 1:
+=======
 	if Input.is_action_just_pressed("magic") and mana >= 10:
 		mana -= 10
+>>>>>>> 0cad7d5b68cbe1f401367aed56144188bd38416c
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
+<<<<<<< HEAD
+	if Input.is_action_just_pressed("hit") and magic and mode == 0:
+=======
 	if Input.is_action_just_pressed("magic") and mana >= 25:
 		mana -= 25;
+>>>>>>> 0cad7d5b68cbe1f401367aed56144188bd38416c
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
