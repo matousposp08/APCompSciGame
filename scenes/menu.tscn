@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqj4042s6ddx6"]
+[gd_scene load_steps=7 format=3 uid="uid://dqj4042s6ddx6"]
 
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="3_muiml"]
 
@@ -56,6 +56,12 @@ _data = {
 "flickr": SubResource("Animation_ayk5v")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kx27j"]
+lifetime_randomness = 0.81
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+color = Color(1, 0, 1, 1)
+
 [node name="menu" type="Node2D"]
 script = SubResource("GDScript_proe8")
 
@@ -101,3 +107,7 @@ text = "PRESS SPACE TO START..."
 libraries = {
 "": SubResource("AnimationLibrary_umfyi")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(557, 41)
+process_material = SubResource("ParticleProcessMaterial_kx27j")

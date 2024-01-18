@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpcs75cakafp6"]
+[gd_scene load_steps=6 format=3 uid="uid://bpcs75cakafp6"]
 
 [ext_resource type="Texture2D" uid="uid://uqt6pvud45w4" path="res://img1.jpeg" id="1_7m668"]
 [ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="1_ei06t"]
 [ext_resource type="Texture2D" uid="uid://b2geeqee2nibx" path="res://img2.jpg" id="2_nobrv"]
+[ext_resource type="Texture2D" uid="uid://cs086gqv03wel" path="res://playbutton.png" id="4_xmws1"]
+[ext_resource type="Texture2D" uid="uid://dt4oc6j80x3lu" path="res://controlbutton.png" id="5_jvla3"]
 
 [node name="choose" type="Node2D"]
 
@@ -14,16 +16,19 @@ offset_bottom = 657.0
 color = Color(0.92549, 0.964706, 1, 1)
 
 [node name="Img1" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(327, 331)
 scale = Vector2(1.07589, 1)
 texture = ExtResource("1_7m668")
 
 [node name="Img2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(826, 331)
 scale = Vector2(1.09132, 1.04382)
 texture = ExtResource("2_nobrv")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 offset_left = 84.0
 offset_top = 69.0
 offset_right = 568.0
@@ -31,6 +36,7 @@ offset_bottom = 593.0
 color = Color(0.756863, 0.623529, 1, 0.631373)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
+visible = false
 offset_left = 587.0
 offset_top = 70.0
 offset_right = 1066.0
@@ -38,6 +44,7 @@ offset_bottom = 593.0
 color = Color(0.756863, 0.623529, 1, 0.631373)
 
 [node name="play" type="Label" parent="."]
+visible = false
 offset_left = 281.0
 offset_top = 307.0
 offset_right = 415.0
@@ -51,6 +58,7 @@ theme_override_font_sizes/font_size = 40
 text = "PLAY"
 
 [node name="play2" type="Label" parent="."]
+visible = false
 offset_left = 731.0
 offset_top = 304.0
 offset_right = 925.0
@@ -62,3 +70,13 @@ theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("1_ei06t")
 theme_override_font_sizes/font_size = 40
 text = "CONTROLS"
+
+[node name="Playbutton" type="Sprite2D" parent="."]
+position = Vector2(333, 332.375)
+scale = Vector2(1.14474, 1.19699)
+texture = ExtResource("4_xmws1")
+
+[node name="Controlbutton" type="Sprite2D" parent="."]
+position = Vector2(789, 332)
+scale = Vector2(1.15426, 1.20146)
+texture = ExtResource("5_jvla3")
