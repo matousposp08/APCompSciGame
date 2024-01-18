@@ -4,6 +4,7 @@ var x = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$mana.value=get_parent().mana
+	$mana.value=get_parent().mana
 	$shield.value=0
 	$health.value=100
 	x = 0
