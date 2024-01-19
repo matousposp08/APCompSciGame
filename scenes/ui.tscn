@@ -105,7 +105,8 @@ wait_time = 0.1
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1051, 536)
+visible = false
+position = Vector2(641, 526)
 rotation = 6.28319
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_xwoht")

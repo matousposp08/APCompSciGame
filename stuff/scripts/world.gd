@@ -3,6 +3,7 @@ extends Node
 @onready var main_menu = $"CanvasLayer/Main Menu"
 @onready var address_entry = $"CanvasLayer/Main Menu/MarginContainer/VBoxContainer/AddressEntry"
 
+
 const player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -37,7 +38,7 @@ func _process(_delta):
 
 func _on_host_pressed():
 	main_menu.hide()
-	
+	$bg.hide()
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	
@@ -47,7 +48,7 @@ func _on_host_pressed():
 
 func _on_join_pressed():
 	main_menu.hide()
-	
+	$bg.hide()
 	enet_peer.create_client("10.100.216.107", PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	print("Client joined")

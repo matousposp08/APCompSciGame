@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpcs75cakafp6"]
+[gd_scene load_steps=8 format=3 uid="uid://bpcs75cakafp6"]
 
 [ext_resource type="Texture2D" uid="uid://uqt6pvud45w4" path="res://img1.jpeg" id="1_7m668"]
-[ext_resource type="FontFile" uid="uid://bi0yv6fjngijh" path="res://GUMDROP.ttf" id="1_ei06t"]
+[ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://GUMDROP.ttf" id="1_ei06t"]
 [ext_resource type="Texture2D" uid="uid://b2geeqee2nibx" path="res://img2.jpg" id="2_nobrv"]
 [ext_resource type="Texture2D" uid="uid://cs086gqv03wel" path="res://playbutton.png" id="4_xmws1"]
 [ext_resource type="Texture2D" uid="uid://dt4oc6j80x3lu" path="res://controlbutton.png" id="5_jvla3"]
+[ext_resource type="Script" path="res://scenes/play3.gd" id="5_yg5gx"]
+[ext_resource type="Script" path="res://scenes/control.gd" id="7_fuvri"]
 
 [node name="choose" type="Node2D"]
 
@@ -71,12 +73,20 @@ theme_override_fonts/font = ExtResource("1_ei06t")
 theme_override_font_sizes/font_size = 40
 text = "CONTROLS"
 
-[node name="Playbutton" type="Sprite2D" parent="."]
-position = Vector2(333, 332.375)
-scale = Vector2(1.14474, 1.19699)
-texture = ExtResource("4_xmws1")
+[node name="play3" type="TextureButton" parent="."]
+offset_left = 108.0
+offset_top = 83.0
+offset_right = 562.0
+offset_bottom = 579.0
+texture_normal = ExtResource("4_xmws1")
+stretch_mode = 0
+script = ExtResource("5_yg5gx")
 
-[node name="Controlbutton" type="Sprite2D" parent="."]
-position = Vector2(789, 332)
-scale = Vector2(1.15426, 1.20146)
-texture = ExtResource("5_jvla3")
+[node name="control" type="TextureButton" parent="."]
+offset_left = 572.0
+offset_top = 83.0
+offset_right = 1005.0
+offset_bottom = 581.0
+texture_normal = ExtResource("5_jvla3")
+stretch_mode = 0
+script = ExtResource("7_fuvri")
