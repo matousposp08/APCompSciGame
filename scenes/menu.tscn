@@ -73,9 +73,9 @@ offset_bottom = 657.0
 color = Color(0.92549, 0.964706, 1, 1)
 
 [node name="wizard" type="Label" parent="."]
-offset_left = 188.0
+offset_left = 177.0
 offset_top = 110.0
-offset_right = 965.0
+offset_right = 1005.0
 offset_bottom = 457.0
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
@@ -88,8 +88,8 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("3_muiml")
 theme_override_font_sizes/font_size = 178
-text = "WIZARD
-FORTNITE"
+text = "FIZARD
+WORTNITE"
 horizontal_alignment = 1
 uppercase = true
 
