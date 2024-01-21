@@ -1,14 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpcs75cakafp6"]
+[gd_scene load_steps=11 format=3 uid="uid://bpcs75cakafp6"]
 
 [ext_resource type="Texture2D" uid="uid://uqt6pvud45w4" path="res://img1.jpeg" id="1_7m668"]
+[ext_resource type="Script" path="res://scenes/choose.gd" id="1_ao8ub"]
 [ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://GUMDROP.ttf" id="1_ei06t"]
+[ext_resource type="Script" path="res://scenes/1.gd" id="2_mgacq"]
 [ext_resource type="Texture2D" uid="uid://b2geeqee2nibx" path="res://img2.jpg" id="2_nobrv"]
+[ext_resource type="Script" path="res://scenes/2.gd" id="3_lcsj5"]
 [ext_resource type="Texture2D" uid="uid://cs086gqv03wel" path="res://playbutton.png" id="4_xmws1"]
 [ext_resource type="Texture2D" uid="uid://dt4oc6j80x3lu" path="res://controlbutton.png" id="5_jvla3"]
 [ext_resource type="Script" path="res://scenes/play3.gd" id="5_yg5gx"]
 [ext_resource type="Script" path="res://scenes/control.gd" id="7_fuvri"]
 
 [node name="choose" type="Node2D"]
+script = ExtResource("1_ao8ub")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1.0
@@ -16,6 +20,22 @@ offset_top = -5.0
 offset_right = 1152.0
 offset_bottom = 657.0
 color = Color(0.92549, 0.964706, 1, 1)
+
+[node name="1" type="ColorRect" parent="."]
+offset_left = 97.0
+offset_top = 72.0
+offset_right = 573.0
+offset_bottom = 589.0
+color = Color(1, 0.690196, 0.980392, 0.666667)
+script = ExtResource("2_mgacq")
+
+[node name="2" type="ColorRect" parent="."]
+offset_left = 586.0
+offset_top = 72.0
+offset_right = 1046.0
+offset_bottom = 589.0
+color = Color(1, 0.690196, 0.980392, 0.666667)
+script = ExtResource("3_lcsj5")
 
 [node name="Img1" type="Sprite2D" parent="."]
 visible = false
@@ -83,10 +103,15 @@ stretch_mode = 0
 script = ExtResource("5_yg5gx")
 
 [node name="control" type="TextureButton" parent="."]
-offset_left = 572.0
+offset_left = 600.0
 offset_top = 83.0
-offset_right = 1005.0
-offset_bottom = 581.0
+offset_right = 1033.0
+offset_bottom = 577.0
 texture_normal = ExtResource("5_jvla3")
 stretch_mode = 0
 script = ExtResource("7_fuvri")
+
+[connection signal="hovr" from="play3" to="1" method="_on_play_3_hovr"]
+[connection signal="nothovr" from="play3" to="1" method="_on_play_3_nothovr"]
+[connection signal="hovr1" from="control" to="2" method="_on_control_hovr_1"]
+[connection signal="nothovr1" from="control" to="2" method="_on_control_nothovr_1"]
