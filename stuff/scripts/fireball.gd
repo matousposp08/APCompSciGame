@@ -15,13 +15,9 @@ func _process(delta):
 
 
 func _on_area_3d_area_entered(area):
-	print(area.get_groups())
 	if not(area.is_in_group("player")) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true
 		mesh.visible = false
 		particles.emitting = true
 		await get_tree().create_timer(1,0).timeout
 		queue_free()
-
-
-

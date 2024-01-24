@@ -17,6 +17,7 @@ var x = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
+var ICE : PackedScene = preload('res://scenes/player/ice.tscn')
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
 var instance
 
@@ -48,10 +49,10 @@ func _process(delta: float) -> void:
 		if not(magic):
 			magic = true
 		else:
-			if mode == 1:
+			if mode == 2:
 				mode = 0
 			else:
-				mode = 1
+				mode += 1
 	if Input.is_action_just_pressed("melee"):
 		magic = false
 	handle_movement_input(delta)
@@ -59,6 +60,7 @@ func _process(delta: float) -> void:
 	hit()
 	fireball()
 	lightning()
+	ice()
 	#build()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
@@ -150,7 +152,6 @@ func build() -> void:
 			var block = BLOCK.instantiate()
 			get_tree().current_scene.add_child(block)
 			block.global_position = self.global_position
-			print($head.rotation_degrees.y)
 			if $head.rotation_degrees.y < 45 or $head.rotation_degrees.y > 314:
 				block.position.z -= 5
 			elif $head.rotation_degrees.y < 135 or $head.rotation_degrees.y > 44:
@@ -178,30 +179,31 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
-	if Input.is_action_just_pressed("hit") and magic and mode == 1:
-		instance = FIREBALL.instantiate()
-		instance.position = $head.global_position
-		instance.transform.basis = $head.global_transform.basis
-		get_parent().add_child(instance)
-	if Input.is_action_just_pressed("magic") and mana >= 10:
-		mana -= 10
+	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
-	if Input.is_action_just_pressed("hit") and magic and mode == 0:
+	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
 		instance.position.y -= 0.5
 		instance.rotation.z = randf()
 		get_parent().add_child(instance)
-	if Input.is_action_just_pressed("magic") and mana >= 25:
-		mana -= 25;
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("fireball") and not(area.is_in_group("player")):
 		var x = position - area.get_parent().position
 		velocity = 15*(x/x.length())
+
+func ice() -> void:
+	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
+		instance = ICE.instantiate()
+		instance.position = $head.global_position
+		instance.transform.basis = $head.global_transform.basis
+		instance.position.y -= 0.5
+		instance.rotation.z = randf()
+		get_parent().add_child(instance)

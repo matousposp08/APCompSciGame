@@ -36,7 +36,6 @@ func _physics_process(delta):
 
 
 func _on_area_3d_area_entered(area):
-	print(area)
 	if area.is_in_group("fireball"):
 		var knockbackForce = 50
 		var knockbackDirection = (position - area.get_parent().position).normalized()
@@ -47,5 +46,5 @@ func _on_area_3d_area_entered(area):
 		var x = position - area.get_parent().position
 		velocity = 30*(x/x.length())
 	if area.is_in_group("lightning"):
-		health -= 80
+		health -= 70
 	#get_parent().get_node("player").$camera.unproject_position(position)

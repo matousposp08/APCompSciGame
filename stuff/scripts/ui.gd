@@ -17,7 +17,6 @@ func _process(delta):
 	if x > 0:
 		$mana.value-=1
 		x -= 1
-		$Sprite2D.rotation += 0.314
 	$mana.value=get_parent().mana
 
 func _on_timer_timeout():
