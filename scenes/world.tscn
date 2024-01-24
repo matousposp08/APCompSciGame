@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="4_6oxse"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqs7s"]
-bg_color = Color(0.682353, 0.780392, 1, 1)
+bg_color = Color(0.905882, 0.803922, 0.996078, 1)
 corner_radius_top_left = 11
 corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
-shadow_color = Color(0.639216, 0.72549, 1, 0.6)
+shadow_color = Color(0.788235, 0.529412, 0.988235, 0.486275)
 shadow_size = 10
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3fx6"]
