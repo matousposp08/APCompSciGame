@@ -8,6 +8,8 @@ var health = 100
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@rpc func rpc_update_health(new_health: int):
+	health = new_health
 
 func _physics_process(delta):
 	

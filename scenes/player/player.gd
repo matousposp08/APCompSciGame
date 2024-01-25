@@ -249,7 +249,7 @@ func ice() -> void:
 		instance = ICE.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
-		get_parent().add_child(instance)
+		get_parent().addm_child(instance)
 
 func num(pos, num) -> void:
 	if not is_multiplayer_authority(): return
