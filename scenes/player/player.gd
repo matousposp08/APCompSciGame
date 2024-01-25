@@ -215,25 +215,48 @@ func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 		parts["head"].rotation_degrees.x -= event.relative.y * sensitivity
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-func fireball() -> void:
+func spawn_fireball():
+	var instance = FIREBALL.instantiate()
+	instance.position = $head.global_position
+	instance.transform.basis = $head.global_transform.basis
+	get_parent().add_child(instance)
+	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
+
+@rpc func rpc_spawn_fireball(position, basis):
+	var instance = FIREBALL.instantiate()
+	instance.position = position
+	instance.transform.basis = basis
+	get_parent().add_child(instance)
+
+func fireball():
 	if not is_multiplayer_authority(): return
-	
+
 	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
-		instance = FIREBALL.instantiate()
-		instance.position = $head.global_position
-		instance.transform.basis = $head.global_transform.basis
-		get_parent().add_child(instance)
+		spawn_fireball()
 		
+func spawn_lightning(position, basis, rotation):
+	var instance = LIGHTNING.instantiate()
+	instance.position = position
+	instance.transform.basis = basis
+	instance.rotation.z = rotation
+	get_parent().add_child(instance)
+	rpc("rpc_spawn_lightning", position, basis, rotation)
+
+@rpc func rpc_spawn_lightning(position, basis, rotation):
+	var instance = LIGHTNING.instantiate()
+	instance.position = position
+	instance.transform.basis = basis
+	instance.rotation.z = rotation
+	get_parent().add_child(instance)
+
 func lightning() -> void:
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
-		instance = LIGHTNING.instantiate()
-		instance.position = $head.global_position
-		instance.transform.basis = $head.global_transform.basis
-		instance.position.y -= 0.5
-		instance.rotation.z = randf()
-		get_parent().add_child(instance)
+		var position = $head.global_position
+		var basis = $head.global_transform.basis
+		var rotation = randf()
+		spawn_lightning(position, basis, rotation)
 
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
@@ -242,14 +265,22 @@ func _on_area_3d_area_entered(area):
 		var x = position - area.get_parent().position
 		velocity = 15*(x/x.length())
 
+func spawn_ice(position, basis):
+	var instance = ICE.instantiate()
+	instance.position = position
+	instance.transform.basis = basis
+	get_parent().add_child(instance)
+	rpc("rpc_spawn_ice", position, basis)
+
+@rpc func rpc_spawn_ice(position, basis):
+	spawn_ice(position, basis)
+
 func ice() -> void:
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
-		instance = ICE.instantiate()
-		instance.position = $head.global_position
-		instance.transform.basis = $head.global_transform.basis
-		get_parent().addm_child(instance)
+		spawn_ice($head.global_position, $head.global_transform.basis)
+
 
 func num(pos, num) -> void:
 	if not is_multiplayer_authority(): return
