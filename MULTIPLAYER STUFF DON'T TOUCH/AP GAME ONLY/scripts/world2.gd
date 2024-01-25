@@ -4,7 +4,7 @@ extends Node
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/LineEdit
 
 
-const Player = preload("res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/player/player2.tscn")
+const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 

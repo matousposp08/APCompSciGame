@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=18 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
@@ -128,6 +128,20 @@ material = SubResource("StandardMaterial3D_3iwsb")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mibgw"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b3cqf"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("head:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("head:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
 script = ExtResource("1_u1w3t")
@@ -184,6 +198,9 @@ offset_left = -581.0
 offset_top = -327.0
 offset_right = -581.0
 offset_bottom = -327.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_b3cqf")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 

@@ -129,7 +129,7 @@ placeholder_text = "Enter IP"
 alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://MULTIPLAYER STUFF DON\'T TOUCH/AP GAME ONLY/scenes/player/player2.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn")
 spawn_path = NodePath("..")
 
 [node name="sun" type="DirectionalLight3D" parent="."]

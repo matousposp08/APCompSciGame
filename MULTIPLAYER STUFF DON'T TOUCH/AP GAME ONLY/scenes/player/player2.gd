@@ -27,7 +27,7 @@ var base_player_y_scale: float = 1.0
 var crouch_player_y_scale: float = 0.75
 
 @onready var camera = $Camera3D
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player = $Camera3D/camera_animation
 @onready var body = $body
 @onready var collision = $CollisionShape3D
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=12 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/player/player2.gd" id="1_3m1b5"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
-[ext_resource type="Texture2D" uid="uid://c121wtswlrqas" path="res://stuff/aimer things/crosshair-icon-2048x2048-2clp4atl.png" id="3_wjfmp"]
 [ext_resource type="PackedScene" uid="uid://cadh5ixr1pkwi" path="res://scenes/ui.tscn" id="4_sxxw4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gy1a8"]
@@ -125,8 +124,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
 shape = SubResource("BoxShape3D_37ddx")
 disabled = true
 
-[node name="camera_animation" type="AnimationPlayer" parent="Camera3D/crowbar"]
-root_node = NodePath("../../..")
+[node name="camera_animation" type="AnimationPlayer" parent="Camera3D"]
+root_node = NodePath("../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_oum03")
@@ -139,13 +138,5 @@ offset_left = -581.0
 offset_top = -327.0
 offset_right = -581.0
 offset_bottom = -327.0
-
-[node name="hud_camera" type="Camera2D" parent="."]
-ignore_rotation = false
-
-[node name="crosshair" type="Sprite2D" parent="hud_camera"]
-position = Vector2(2, 2)
-scale = Vector2(0.0155352, 0.0146484)
-texture = ExtResource("3_wjfmp")
 
 [editable path="Camera3D/crowbar"]

@@ -40,12 +40,18 @@ var crouch_player_y_scale: float = 0.75
 @onready var world: SceneTree = get_tree()
 var isMoving = false
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	if not is_multiplayer_authority(): return
+	
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
 
 func _process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("magic"):
 		if not(magic):
 			magic = true
@@ -73,16 +79,22 @@ func _process(delta: float) -> void:
 			$head/camera/camera_animation.stop()
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	apply_gravity(delta)
 	handle_jump()
 	move_character(delta)
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if event is InputEventMouseMotion:
 		handle_mouse_movement(event)
 
 
 func handle_movement_input(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
 		if !$crouch_roof_detect.is_colliding(): 
 			enter_sprint_state(delta)
@@ -93,22 +105,30 @@ func handle_movement_input(delta: float) -> void:
 			enter_normal_state(delta)
 
 func enter_sprint_state(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	state = "sprinting"
 	speed = sprint_speed
 	parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[1], 10 * delta)
 
 func enter_crouch_state(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	state = "crouching"
 	speed = crouch_speed
 	apply_crouch_transform(delta)
 
 func enter_normal_state(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	state = "normal"
 	speed = base_speed
 	reset_transforms(delta)
 
 
 func update_camera(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	match state:
 		"sprinting":
 			parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[1], 10 * delta)
@@ -117,23 +137,33 @@ func update_camera(delta: float) -> void:
 
 
 func apply_crouch_transform(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	parts["body"].scale.y = lerp(parts["body"].scale.y, crouch_player_y_scale, 10 * delta)
 	parts["collision"].scale.y = lerp(parts["collision"].scale.y, crouch_player_y_scale, 10 * delta)
 
 func reset_transforms(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	parts["body"].scale.y = lerp(parts["body"].scale.y, base_player_y_scale, 10 * delta)
 	parts["collision"].scale.y = lerp(parts["collision"].scale.y, base_player_y_scale, 10 * delta)
 
 
 func apply_gravity(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 func handle_jump() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_pressed("move_jump") and is_on_floor():
 		velocity.y += jump_velocity
 
 func hit() -> void:
+	if not is_multiplayer_authority(): return
+	
 	x -= 1
 	if x <= 0:
 		hits = false
@@ -148,6 +178,8 @@ func hit() -> void:
 	
 
 func build() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("build"):
 		if BLOCK:
 			var block = BLOCK.instantiate()
@@ -165,6 +197,8 @@ func build() -> void:
 				block.rotation.y =90
 
 func move_character(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction: Vector2 = input_dir.normalized().rotated(-parts["head"].rotation.y)
 	#if is_on_floor():
@@ -174,12 +208,16 @@ func move_character(delta: float) -> void:
 
 
 func handle_mouse_movement(event: InputEventMouseMotion) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if !world.paused:
 		parts["head"].rotation_degrees.y -= event.relative.x * sensitivity
 		parts["head"].rotation_degrees.x -= event.relative.y * sensitivity
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func fireball() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
 		instance = FIREBALL.instantiate()
 		instance.position = $head.global_position
@@ -187,6 +225,8 @@ func fireball() -> void:
 		get_parent().add_child(instance)
 		
 func lightning() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
 		instance = LIGHTNING.instantiate()
 		instance.position = $head.global_position
@@ -196,11 +236,15 @@ func lightning() -> void:
 		get_parent().add_child(instance)
 
 func _on_area_3d_area_entered(area):
+	if not is_multiplayer_authority(): return
+	
 	if area.is_in_group("fireball") and not(area.is_in_group("player")):
 		var x = position - area.get_parent().position
 		velocity = 15*(x/x.length())
 
 func ice() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
 		instance = ICE.instantiate()
 		instance.position = $head.global_position
@@ -208,4 +252,6 @@ func ice() -> void:
 		get_parent().add_child(instance)
 
 func num(pos, num) -> void:
+	if not is_multiplayer_authority(): return
+	
 	get_node("UI/damageNum").damage(pos,num)
