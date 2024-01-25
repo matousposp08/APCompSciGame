@@ -1,6 +1,7 @@
 extends Control
 
 var x = 0
+var instance
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$mana.value=get_parent().mana

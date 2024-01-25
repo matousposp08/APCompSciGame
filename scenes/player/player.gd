@@ -19,6 +19,7 @@ var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
 var ICE : PackedScene = preload('res://scenes/player/ice.tscn')
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
+var NUM: PackedScene = preload('res://scenes/player/damage_num.tscn')
 var instance
 
 var speed: float = base_speed
@@ -204,6 +205,7 @@ func ice() -> void:
 		instance = ICE.instantiate()
 		instance.position = $head.global_position
 		instance.transform.basis = $head.global_transform.basis
-		instance.position.y -= 0.5
-		instance.rotation.z = randf()
 		get_parent().add_child(instance)
+
+func num(pos, num) -> void:
+	get_node("UI/damageNum").damage(pos,num)

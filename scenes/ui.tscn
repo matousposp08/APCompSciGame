@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cadh5ixr1pkwi"]
+[gd_scene load_steps=10 format=3 uid="uid://cadh5ixr1pkwi"]
 
 [ext_resource type="Script" path="res://stuff/scripts/ui.gd" id="1_0d4i1"]
 [ext_resource type="Script" path="res://stuff/scripts/mana.gd" id="2_mgjc4"]
+[ext_resource type="PackedScene" uid="uid://d21pqfbmjoi6v" path="res://scenes/player/damage_num.tscn" id="3_hat6k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcejq"]
 bg_color = Color(1, 1, 1, 0.537255)
@@ -98,5 +99,8 @@ script = ExtResource("2_mgjc4")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="damageNum" parent="." instance=ExtResource("3_hat6k")]
+layout_mode = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

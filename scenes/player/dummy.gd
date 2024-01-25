@@ -36,15 +36,27 @@ func _physics_process(delta):
 
 
 func _on_area_3d_area_entered(area):
+	print(area)
 	if area.is_in_group("fireball"):
+		health -= 45
+		print(get_parent().get_node("1/head/camera").unproject_position(position))
+		get_parent().get_node("1").num(get_parent().get_node("1/head/camera").unproject_position(position),45)
 		var knockbackForce = 50
 		var knockbackDirection = (position - area.get_parent().position).normalized()
+		area.queue_free()
 		velocity = knockbackDirection * knockbackForce
 	if area.is_in_group("crowbar"):
+		get_parent().get_node("1").num(get_parent().get_node("1/head/camera").unproject_position(position),20)
 		print("hit")
 		health -= 20
 		var x = position - area.get_parent().position
 		velocity = 30*(x/x.length())
 	if area.is_in_group("lightning"):
+		get_parent().get_node("1").num(get_parent().get_node("1/head/camera").unproject_position(position),70)
 		health -= 70
-	#get_parent().get_node("player").$camera.unproject_position(position)
+		area.queue_free()
+	if area.is_in_group("ice"):
+		get_parent().get_node("1").num(get_parent().get_node("1/head/camera").unproject_position(position),35)
+		health -= 35
+		area.queue_free()
+	print(get_parent().get_node("1/head/camera"))
