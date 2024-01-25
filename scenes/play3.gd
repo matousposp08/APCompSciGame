@@ -17,7 +17,7 @@ func _on_button_hover_off():
 
 
 func button_pressed():
-	get_tree().change_scene_to_file("res://scenes/world.tscn")
+	get_tree().change_scene_to_file("res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/world2.tscn")
 
 func _process(delta):
 	pass

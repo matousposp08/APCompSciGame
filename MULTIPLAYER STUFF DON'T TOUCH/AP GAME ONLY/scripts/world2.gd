@@ -25,17 +25,28 @@ func _on_host_button_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	
-	add_player(multiplayer.get_unique_id())
+
+	var player_id = multiplayer.get_unique_id()
+	add_player(player_id)
+	set_player_initial_position(player_id)
 
 func _on_join_button_pressed():
-	if(address_entry.text == ""):
+	if address_entry.text == "":
 		enet_peer.create_client("localhost", PORT)
 	main_menu.hide()
-	
+
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
+	var player_id = multiplayer.get_unique_id()
+	add_player(player_id)
+	set_player_initial_position(player_id)
+
+func set_player_initial_position(player_id):
+	# Set the initial position to (0, 0, 0) for the player with the given ID
+	var player = get_node_or_null(str(player_id))
+	if player:
+		player.global_transform.origin = Vector3(0, 2, 0)
 #func upnp_setup():
 	#var upnp = UPNP.new()
 	#assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
