@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d21pqfbmjoi6v"]
 
-[ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://GUMDROP.ttf" id="1_k6ehh"]
+[ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://stuff/GUMDROP.ttf" id="1_k6ehh"]
 [ext_resource type="Script" path="res://scenes/player/damageNum.gd" id="1_t71xv"]
 
 [node name="damageNum" type="RichTextLabel"]

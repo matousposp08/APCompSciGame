@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://c8xahfocj4wou"
-path="res://.godot/imported/GUMDROP.ttf-f6dbffbd5a364d60288a21de38ed9503.fontdata"
+path="res://.godot/imported/GUMDROP.ttf-37615fe656e7318f4b4741bbd3e6b5f9.fontdata"
 
 [deps]
 
-source_file="res://GUMDROP.ttf"
-dest_files=["res://.godot/imported/GUMDROP.ttf-f6dbffbd5a364d60288a21de38ed9503.fontdata"]
+source_file="res://stuff/GUMDROP.ttf"
+dest_files=["res://.godot/imported/GUMDROP.ttf-37615fe656e7318f4b4741bbd3e6b5f9.fontdata"]
 
 [params]
 

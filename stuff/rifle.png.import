@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs086gqv03wel"
-path="res://.godot/imported/playbutton.png-d43157120006c8e3e29b6bd9537d7623.ctex"
+uid="uid://bd08jhpttx3lb"
+path="res://.godot/imported/rifle.png-b0d2fde8d0772ed855a53c91bc92c660.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://playbutton.png"
-dest_files=["res://.godot/imported/playbutton.png-d43157120006c8e3e29b6bd9537d7623.ctex"]
+source_file="res://stuff/rifle.png"
+dest_files=["res://.godot/imported/rifle.png-b0d2fde8d0772ed855a53c91bc92c660.ctex"]
 
 [params]
 

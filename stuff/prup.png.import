@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2geeqee2nibx"
-path="res://.godot/imported/img2.jpg-6129813888d6655ab3a6e1ca36eb47ce.ctex"
+uid="uid://cuwy1cyg3wcin"
+path="res://.godot/imported/prup.png-4366e8485998409f5a0198e1bfde21b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img2.jpg"
-dest_files=["res://.godot/imported/img2.jpg-6129813888d6655ab3a6e1ca36eb47ce.ctex"]
+source_file="res://stuff/prup.png"
+dest_files=["res://.godot/imported/prup.png-4366e8485998409f5a0198e1bfde21b9.ctex"]
 
 [params]
 

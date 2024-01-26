@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://whod4wewetrt"
-path="res://.godot/imported/crowbar.png-c87951230d12016fd6d84f1a76144a91.ctex"
+uid="uid://b3x12maxv8jty"
+path="res://.godot/imported/bat.png-15d5016d14ec891e50e96abd0a152f9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://crowbar.png"
-dest_files=["res://.godot/imported/crowbar.png-c87951230d12016fd6d84f1a76144a91.ctex"]
+source_file="res://stuff/bat.png"
+dest_files=["res://.godot/imported/bat.png-15d5016d14ec891e50e96abd0a152f9a.ctex"]
 
 [params]
 

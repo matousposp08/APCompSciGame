@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh23hublm776b"]
 
-[ext_resource type="FontFile" uid="uid://bmjrlbc5pilfv" path="res://GUMDROP.ttf" id="1_2hh11"]
+[ext_resource type="FontFile" path="res://GUMDROP.ttf" id="1_2hh11"]
 [ext_resource type="Script" path="res://scenes/control_menu.gd" id="1_eya5q"]
-[ext_resource type="Texture2D" uid="uid://cuwy1cyg3wcin" path="res://prup.png" id="3_xfrwd"]
+[ext_resource type="Texture2D" uid="uid://cuwy1cyg3wcin" path="res://stuff/prup.png" id="3_xfrwd"]
 [ext_resource type="Script" path="res://scenes/HSlider.gd" id="4_pqork"]
 
 [node name="control menu" type="Node2D"]
