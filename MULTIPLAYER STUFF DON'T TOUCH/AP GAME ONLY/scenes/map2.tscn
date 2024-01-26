@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://j7lcmu0iuydm"]
+
+[node name="Map" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.97294, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=13 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://stuff/scripts/world.gd" id="1_x87ln"]
 [ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://stuff/GUMDROP.ttf" id="2_wbrs8"]
@@ -36,6 +36,14 @@ albedo_color = Color(0.643137, 0.768627, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxrtg"]
 albedo_color = Color(0.643137, 0.768627, 1, 1)
 albedo_texture = ExtResource("3_58qs6")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t6x60"]
+properties/0/path = NodePath("dummy:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("dummy:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="world" type="Node"]
 script = ExtResource("1_x87ln")
@@ -178,6 +186,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28543, 9.91838)
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn")
 spawn_path = NodePath("..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t6x60")
 
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

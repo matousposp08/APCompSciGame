@@ -156,6 +156,7 @@ properties/7/replication_mode = 1
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
+collision_layer = 2
 script = ExtResource("1_u1w3t")
 
 [node name="head" type="Node3D" parent="."]
