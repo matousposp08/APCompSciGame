@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=11 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scripts/world2.gd" id="1_x87ln"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="3_6ryqq"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
+[ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="3_ik7bt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g34t0"]
 albedo_color = Color(0.643137, 0.768627, 1, 1)
@@ -93,6 +94,11 @@ material = SubResource("StandardMaterial3D_jxrtg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1158.0
+offset_bottom = 660.0
+color = Color(0.45098, 0.72549, 0.827451, 1)
+
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,27 +112,39 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Main Menu"
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 38
+text = "WIZARD FORTNITE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Host"
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 18
+text = "HOST"
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join"
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 18
+text = "JOIN"
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Enter IP"
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 18
+placeholder_text = "ENTER IP"
 alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
