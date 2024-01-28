@@ -8,6 +8,16 @@ const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
+func _ready() -> void:
+	$PMenu.hide()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("game_pause"):
+		if $PMenu.visible:
+			$PMenu.hide()
+		else:
+			$PMenu.show()
+	
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
@@ -20,6 +30,7 @@ func remove_player(peer_id):
 
 func _on_host_button_pressed():
 	main_menu.hide()
+	
 	$CanvasLayer/ColorRect.hide()
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
