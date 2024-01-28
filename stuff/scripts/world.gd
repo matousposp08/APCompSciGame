@@ -24,6 +24,8 @@ func remove_player(peer_id):
 		player.queue_free()
 
 func _on_host_pressed():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	
 	main_menu.hide()
 	$bg.hide()
 	enet_peer.create_server(PORT)
@@ -34,6 +36,8 @@ func _on_host_pressed():
 	print("Host joined")
 
 func _on_join_pressed():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	
 	$bg.hide()
 	if(address_entry.text == ""):
 		enet_peer.create_client("localhost", PORT)
