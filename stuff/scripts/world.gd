@@ -30,10 +30,13 @@ func _on_host_pressed():
 	$bg.hide()
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
+	multiplayer.peer_connected.connect(add_player)
 	
 	add_player(multiplayer.get_unique_id())
-	multiplayer.peer_connected.connect(add_player)
+	
 	print("Host joined")
+	
+	upnp_setup()
 
 func _on_join_pressed():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
@@ -67,6 +70,18 @@ func _process(_delta):
 		else:
 			unpause_game()
 
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Discover Failed! Error %s" % discover_result)
 
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \
+		"UPNP Invalid Gateway!")
 
-
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Port Mapping Failed! Error %s" % map_result)
+	
+	print("Success! Join Address: %s" % upnp.query_external_address())
