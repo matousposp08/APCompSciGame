@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://1p70rsrcrd1f"]
+[gd_scene load_steps=8 format=3 uid="uid://1p70rsrcrd1f"]
 
 [ext_resource type="Script" path="res://scenes/player/ice.gd" id="1_vxcy2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uixom"]
 inherit_velocity_ratio = 50.0
 direction = Vector3(2.08165e-12, 2.08165e-12, -1)
-spread = 5.0
+spread = 10.0
 initial_velocity_min = 40.0
 initial_velocity_max = 50.0
 color = Color(0, 0.670588, 1, 1)
@@ -22,6 +22,14 @@ size = Vector3(1, 1, 11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gqsa0"]
 size = Vector3(1, 1, 11)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nhf0w"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="ice" type="Node3D"]
 script = ExtResource("1_vxcy2")
@@ -48,3 +56,6 @@ shape = SubResource("BoxShape3D_e2yje")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 visible = false
 mesh = SubResource("BoxMesh_gqsa0")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nhf0w")
