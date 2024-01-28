@@ -115,3 +115,7 @@ script = ExtResource("3_t0fik")
 
 [node name="ImageToStl_com_katana+sword" parent="." instance=ExtResource("6_1ws0y")]
 transform = Transform3D(0.000273141, 0.0499895, 0.0009869, 0, 0.000986915, -0.0499903, -0.0499993, 0.000273087, 5.39133e-06, 2.78005, 1.50312, -1.35566)
+
+[node name="Map-2" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map-2"]
