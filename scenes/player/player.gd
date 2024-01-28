@@ -42,6 +42,7 @@ var isMoving = false
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): return
