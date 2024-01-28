@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c8xahfocj4wou" path="res://stuff/GUMDROP.ttf" id="2_u8aq2"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_8umdh"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="4_qkoyb"]
-[ext_resource type="PackedScene" path="res://scenes/whomps_fortress.tscn" id="5_3hqrj"]
+[ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="5_3hqrj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqs7s"]
 bg_color = Color(0.905882, 0.803922, 0.996078, 1)
