@@ -32,11 +32,11 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	
-	add_player(multiplayer.get_unique_id())
-	
 	print("Host joined")
 	
 	upnp_setup()
+	
+	add_player(multiplayer.get_unique_id())
 
 func _on_join_pressed():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
@@ -44,11 +44,12 @@ func _on_join_pressed():
 	$bg.hide()
 	if(address_entry.text == ""):
 		enet_peer.create_client("localhost", PORT)
-	main_menu.hide()
 	
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
-
+	
+	main_menu.hide()
+	
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -72,16 +73,20 @@ func _process(_delta):
 
 func upnp_setup():
 	var upnp = UPNP.new()
+	print("Works 1")
 	
 	var discover_result = upnp.discover()
 	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
 		"UPNP Discover Failed! Error %s" % discover_result)
+	print("Works 2")
 
 	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \
 		"UPNP Invalid Gateway!")
+	print("Works 3")
 
 	var map_result = upnp.add_port_mapping(PORT)
 	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \
 		"UPNP Port Mapping Failed! Error %s" % map_result)
+	print("Works 4")
 	
 	print("Success! Join Address: %s" % upnp.query_external_address())

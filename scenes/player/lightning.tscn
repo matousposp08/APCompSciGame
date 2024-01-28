@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://btgprbhrssphq"]
+[gd_scene load_steps=6 format=3 uid="uid://btgprbhrssphq"]
 
 [ext_resource type="Script" path="res://stuff/scripts/lightning.gd" id="1_nmcvp"]
 
@@ -15,6 +15,14 @@ size = Vector3(0.1, 0.1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hjgky"]
 size = Vector3(0.1, 0.1, 5)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vmei"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="lightning" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -1)
 script = ExtResource("1_nmcvp")
@@ -29,5 +37,8 @@ shape = SubResource("BoxShape3D_hjgky")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(2.08165e-12, 2.08165e-12, -1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6vmei")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
