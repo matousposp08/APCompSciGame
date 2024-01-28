@@ -59,8 +59,10 @@ func _on_join_button_pressed():
 func set_player_initial_position(player_id):
 	# Set the initial position to (0, 0, 0) for the player with the given ID
 	var player = get_node_or_null(str(player_id))
+	var crowbar = $Camera3D/crowbar
 	if player:
 		player.global_transform.origin = Vector3(0, 2, 0)
+		crowbar.gloal_transform.origin = Vector3(0, 2, 0.5)
 		
 func upnp_setup():
 	var upnp = UPNP.new()
