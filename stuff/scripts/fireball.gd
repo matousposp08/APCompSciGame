@@ -2,11 +2,13 @@ extends Node3D
 
 const SPEED = 30
 var x
+var from = ""
 
 @onready var mesh = $MeshInstance3D
 @onready var particles = $GPUParticles3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Area3D.add_to_group(from)
 	$Area3D/CollisionShape3D.disabled = false
 	x = 120
 
@@ -20,7 +22,7 @@ func _process(delta):
 
 
 func _on_area_3d_area_entered(area):
-	if not(area.is_in_group("player")) and not(area.is_in_group("fireball")):
+	if not(area.is_in_group(from)) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true
 		mesh.visible = false
 		particles.emitting = true

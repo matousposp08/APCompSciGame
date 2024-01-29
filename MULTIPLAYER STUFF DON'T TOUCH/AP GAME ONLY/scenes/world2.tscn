@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=15 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scripts/world2.gd" id="1_x87ln"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="3_6ryqq"]
 [ext_resource type="Texture2D" uid="uid://j7e5sqa0ey4q" path="res://stuff/texture_07.png" id="3_58qs6"]
 [ext_resource type="PackedScene" uid="uid://dubowrogt5yfl" path="res://p_menu.tscn" id="3_buys0"]
 [ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="3_ik7bt"]
+[ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="6_eyog1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g34t0"]
 albedo_color = Color(0.643137, 0.768627, 1, 1)
@@ -179,6 +180,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72145, 13.9274)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_paqmt")
+
+[node name="Whomps_Fortress" parent="." instance=ExtResource("6_eyog1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -4.32739, -24.9008)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

@@ -3,6 +3,8 @@ extends Node
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/LineEdit
 
+var ps = 0
+
 
 const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
@@ -19,9 +21,16 @@ func _process(delta: float) -> void:
 			$PMenu.show()
 	
 func add_player(peer_id):
+	ps += 1
 	var player = Player.instantiate()
+	print(ps)
+	player.from = str(ps)
 	player.name = str(peer_id)
 	add_child(player)
+	player.add_to_group(str(ps))
+	player.get_node('Area3D').add_to_group(str(ps))
+	player.get_node('head/crowbar').add_to_group(str(ps))
+	player.get_node('head/crowbar/Area3D').add_to_group(str(ps))
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
@@ -42,9 +51,9 @@ func _on_host_button_pressed():
 	print("host joined")
 	set_player_initial_position(player_id)
 	
-	#upnp_setup()
+	#wupnp_setup()
 
-func _on_join_button_pressed():
+func _on_join_button_pressed(): 
 	if address_entry.text == "":
 		enet_peer.create_client("localhost", PORT)
 	main_menu.hide()

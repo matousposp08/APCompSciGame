@@ -6,9 +6,11 @@ const SPEED = 200
 @onready var ray = $RayCast3D
 var x = 100
 var SPARK : PackedScene = preload('res://scenes/player/spark.tscn')
+var from = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area3D/CollisionShape3D.disabled = false
+	$Area3D.add_to_group(from)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,6 +39,6 @@ func spark() -> void:
 
 func _on_area_3d_area_entered(area):
 	print(area.get_groups())
-	if not(area.is_in_group("player")) and not(area.is_in_group("lightning")):
+	if not(area.is_in_group(from) and not(area.is_in_group("lightning"))):
 		$Area3D/CollisionShape3D.disabled = true
 		queue_free()

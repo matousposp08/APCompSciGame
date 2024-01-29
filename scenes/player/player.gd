@@ -9,6 +9,9 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
+var from
+var health = 100
+var shield = 100
 var magic = false
 var mode = 0
 var hits = false
@@ -25,7 +28,7 @@ var instance
 var speed: float = base_speed
 var state: String = "normal"  
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var camera_fov_extents: Array[float] = [75.0, 85.0] 
+var camera_fov_extents: Array[float] = [75.0, 85.0,40.0]
 var base_player_y_scale: float = 1.0
 var crouch_player_y_scale: float = 0.75
 
@@ -131,7 +134,6 @@ func enter_normal_state(delta: float) -> void:
 	speed = base_speed
 	reset_transforms(delta)
 
-
 func update_camera(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
@@ -140,6 +142,8 @@ func update_camera(delta: float) -> void:
 			parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[1], 10 * delta)
 		"normal":
 			parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[0], 10 * delta)
+		"crouching":
+			parts["camera"].fov = lerp(parts["camera"].fov, camera_fov_extents[2], 10 * delta)
 
 
 func apply_crouch_transform(delta: float) -> void:
@@ -226,6 +230,7 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
+	instance.from = from
 	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
 
 @rpc func rpc_spawn_fireball(position, basis):
@@ -247,6 +252,7 @@ func spawn_lightning(position, basis, rotation):
 	instance.transform.basis = basis
 	instance.rotation.z = rotation
 	get_parent().add_child(instance)
+	instance.from = from
 	rpc("rpc_spawn_lightning", position, basis, rotation)
 
 @rpc func rpc_spawn_lightning(position, basis, rotation):
@@ -254,7 +260,7 @@ func spawn_lightning(position, basis, rotation):
 	instance.position = position
 	instance.transform.basis = basis
 	instance.rotation.z = rotation
-	get_parent().add_child(instance)
+	add_child(instance)
 
 func lightning() -> void:
 	if not is_multiplayer_authority(): return
@@ -265,18 +271,53 @@ func lightning() -> void:
 		var rotation = randf()
 		spawn_lightning(position, basis, rotation)
 		mana -= 40
-
-func _on_area_3d_area_entered(area):
-	if not is_multiplayer_authority(): return
 	
-	if area.is_in_group("fireball") and not(area.is_in_group("player")):
-		var x = position - area.get_parent().position
-		velocity = 15*(x/x.length())
+func _on_area_3d_area_entered(area):
+	print(get_tree())
+	if not is_multiplayer_authority(): return
+
+	print(area.get_groups())
+	var other
+	var other2
+	if not(area.is_in_group('crowbar')):
+		other = str(area.get_parent().from)
+		other2 = str(area.get_parent().name)
+	else:
+		other = str(area.get_parent().get_parent().get_parent().from)
+		other2 = str(area.get_parent().name)
+	
+	print(other)
+	print(other2)
+	print(from)
+	if not(other == from):
+		if area.is_in_group("fireball") and not(area.is_in_group(from)):
+			health -= 45
+			#print(get_parent().get_node(other2+"/head/camera").unproject_position(position))
+			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),45)
+			var knockbackForce = 50
+			var knockbackDirection = (position - area.get_parent().position).normalized()
+			area.queue_free()
+			velocity = knockbackDirection * knockbackForce
+		if area.is_in_group("crowbar") and not(area.is_in_group(from)):
+			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
+			print("hit")
+			health -= 20
+			var x = position - area.get_parent().position
+			velocity = 30*(x/x.length())
+		if area.is_in_group("lightning") and not(area.is_in_group(from)):
+			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
+			health -= 70
+			area.queue_free()
+		if area.is_in_group("ice") and not(area.is_in_group(from)):
+			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
+			health -= 35
+			area.queue_free()
 
 func spawn_ice(position, basis):
 	var instance = ICE.instantiate()
 	instance.position = position
 	instance.transform.basis = basis
+	instance.from = from
 	get_parent().add_child(instance)
 	rpc("rpc_spawn_ice", position, basis)
 
