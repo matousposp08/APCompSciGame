@@ -102,7 +102,7 @@ func _input(event: InputEvent) -> void:
 func handle_movement_input(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if position.y <= -5:
-		position = Vector3(0,5,0)
+		position = Vector3(randi_range(-10, 10),5,randi_range(-10, 10))
 	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
 		if !$crouch_roof_detect.is_colliding(): 

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://orxew7sk4yne"]
+
+[node name="label" type="Node3D"]
+
+[node name="Username" type="Label3D" parent="."]

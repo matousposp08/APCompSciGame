@@ -69,7 +69,7 @@ func set_player_initial_position(player_id):
 	# Set the initial position to (0, 0, 0) for the player with the given ID
 	var player = get_node_or_null(str(player_id))
 	if player:
-		player.global_transform.origin = Vector3(0, 2, 0)
+		player.global_transform.origin = Vector3(randi_range(-10, 10), 2, randi_range(-10, 10))
 		
 func upnp_setup():
 	var upnp = UPNP.new()
