@@ -4,7 +4,7 @@ const SPEED = 200
 
 @onready var mesh = $MeshInstance3D
 @onready var ray = $RayCast3D
-var x = 100
+var x = 500
 var SPARK : PackedScene = preload('res://scenes/player/spark.tscn')
 var from = ""
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +17,7 @@ func _ready():
 func _process(delta):
 	x -= 1
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
+	
 	spark()
 	#if ray.is_colliding():
 	#	$Area3D/CollisionShape3D.disablexd = false

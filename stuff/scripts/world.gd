@@ -67,6 +67,7 @@ func _process(_delta):
 	if Input.is_action_just_released("game_pause"):
 		paused = !paused
 		if paused:
+			
 			pause_game()
 		else:
 			unpause_game()

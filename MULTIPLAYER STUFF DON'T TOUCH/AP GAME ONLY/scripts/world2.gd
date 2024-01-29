@@ -16,8 +16,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("game_pause"):
 		if $PMenu.visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			$PMenu.hide()
 		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			$PMenu.show()
 	
 func add_player(peer_id):
