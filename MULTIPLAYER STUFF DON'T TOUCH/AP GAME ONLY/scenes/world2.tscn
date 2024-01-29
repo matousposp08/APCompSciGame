@@ -189,7 +189,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72145, 13.9274)
 replication_config = SubResource("SceneReplicationConfig_paqmt")
 
 [node name="Whomps_Fortress" parent="." instance=ExtResource("6_eyog1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -4.32739, -24.9008)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -4.32739, -24.9008)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
