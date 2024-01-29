@@ -42,7 +42,7 @@ func _on_host_button_pressed():
 	print("host joined")
 	set_player_initial_position(player_id)
 	
-	upnp_setup()
+	#upnp_setup()
 
 func _on_join_button_pressed():
 	if address_entry.text == "":

@@ -34,7 +34,7 @@ func _on_host_pressed():
 	
 	print("Host joined")
 	
-	upnp_setup()
+	#upnp_setup()
 	
 	add_player(multiplayer.get_unique_id())
 
