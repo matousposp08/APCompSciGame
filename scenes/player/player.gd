@@ -35,8 +35,10 @@ var crouch_player_y_scale: float = 0.75
 	"camera": $head/camera,
 	"camera_animation": $head/camera/camera_animation,
 	"body": $body,
-	"collision": $collision
+	"collision": $collision,
+	"crowbar": $head/crowbar
 }
+
 @onready var world: SceneTree = get_tree()
 var isMoving = false
 
