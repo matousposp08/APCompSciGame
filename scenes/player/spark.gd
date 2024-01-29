@@ -10,6 +10,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	x -= 1
-	rotation.z += 0.5
-	if x < 1:
+	#rotation.z += 0.5
+	if x < 0:
 		queue_free()

@@ -78,6 +78,7 @@ func _process(delta: float) -> void:
 		if isMoving:
 			isMoving = false
 			$head/camera/camera_animation.stop()
+	mana = mana + 0.5 if mana < 100 else 100
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
@@ -236,6 +237,7 @@ func fireball():
 
 	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
 		spawn_fireball()
+		mana -= 30
 		
 func spawn_lightning(position, basis, rotation):
 	var instance = LIGHTNING.instantiate()
@@ -260,6 +262,7 @@ func lightning() -> void:
 		var basis = $head.global_transform.basis
 		var rotation = randf()
 		spawn_lightning(position, basis, rotation)
+		mana -= 40
 
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
@@ -283,6 +286,7 @@ func ice() -> void:
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
 		spawn_ice($head.global_position, $head.global_transform.basis)
+		mana -= 15
 
 
 func num(pos, num) -> void:
