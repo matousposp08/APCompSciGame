@@ -51,7 +51,7 @@ func _enter_tree():
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): return
-	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
 
