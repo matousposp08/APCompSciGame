@@ -155,6 +155,13 @@ theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 18
 text = "JOIN"
 
+[node name="Username" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 18
+placeholder_text = "ENTER USERNAME"
+alignment = 1
+
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ik7bt")

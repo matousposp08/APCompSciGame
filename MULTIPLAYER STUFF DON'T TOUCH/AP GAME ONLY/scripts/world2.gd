@@ -2,7 +2,7 @@ extends Node
 
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/LineEdit
-
+@onready var username = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Username
 
 const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	
 func add_player(peer_id):
 	var player = Player.instantiate()
-	player.name = str(peer_id)
+	player.name = str(username)
 	add_child(player)
 
 func remove_player(peer_id):
