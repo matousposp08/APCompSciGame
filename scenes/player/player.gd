@@ -237,7 +237,9 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
+	print(from)
 	instance.get_node("Area3D").add_to_group(from)
+	instance.from = from
 	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
 
 @rpc func rpc_spawn_fireball(position, basis):
@@ -280,7 +282,6 @@ func lightning() -> void:
 		mana -= 40
 	
 func _on_area_3d_area_entered(area):
-	print(get_tree())
 	if not is_multiplayer_authority(): return
 
 	#print(area.get_groups())
@@ -293,8 +294,8 @@ func _on_area_3d_area_entered(area):
 		other = str(area.get_parent().get_parent().get_parent().from)
 		other2 = str(area.get_parent().get_parent().get_parent().name)
 	
-	print(other)
-	print(other2)
+	#print(other)
+	#print(other2)
 	#print(from)
 	if not(other == from):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):

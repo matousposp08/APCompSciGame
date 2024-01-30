@@ -8,7 +8,6 @@ var from = ""
 @onready var particles = $GPUParticles3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Area3D.add_to_group(from)
 	$Area3D/CollisionShape3D.disabled = false
 	x = 120
 
@@ -22,6 +21,9 @@ func _process(delta):
 
 
 func _on_area_3d_area_entered(area):
+	print(area.get_groups())
+	
+	print(not(area.is_in_group(from)))
 	if not(area.is_in_group(from)) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true
 		mesh.visible = false
