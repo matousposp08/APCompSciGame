@@ -123,7 +123,6 @@ spawn_path = NodePath("..")
 replication_config = SubResource("SceneReplicationConfig_t6x60")
 
 [node name="Whomps_Fortress" parent="." instance=ExtResource("5_3hqrj")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main Menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

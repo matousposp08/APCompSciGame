@@ -126,8 +126,7 @@ albedo_color = Color(0.917647, 0.529412, 0.168627, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3oyv7"]
 material = SubResource("StandardMaterial3D_3iwsb")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7rlqb"]
-size = Vector3(0.7, 1.8, 0.7)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mibgw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b3cqf"]
 properties/0/path = NodePath(".:position")
@@ -160,6 +159,12 @@ properties/8/replication_mode = 1
 properties/9/path = NodePath("Username:position")
 properties/9/spawn = true
 properties/9/replication_mode = 1
+properties/10/path = NodePath("Username:billboard")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Username:text")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
@@ -211,7 +216,7 @@ target_position = Vector3(0, 1, 0)
 [node name="Area3D" type="Area3D" parent="." groups=["player"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_7rlqb")
+shape = SubResource("CapsuleShape3D_mibgw")
 
 [node name="UI" parent="." instance=ExtResource("4_ekf4m")]
 offset_left = -581.0
