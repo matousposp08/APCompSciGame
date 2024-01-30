@@ -260,8 +260,11 @@ func spawn_lightning(position, basis, rotation):
 	instance.position = position
 	instance.transform.basis = basis
 	instance.rotation.z = rotation
-	get_parent().add_child(instance)
 	instance.from = from
+	instance.add_to_group(from)
+	instance.position.y -= 0.3
+	instance.get_node("Area3D").add_to_group(from)
+	get_parent().add_child(instance)
 	rpc("rpc_spawn_lightning", position, basis, rotation)
 
 @rpc func rpc_spawn_lightning(position, basis, rotation):
@@ -326,6 +329,7 @@ func spawn_ice(position, basis):
 	instance.from = from
 	instance.position = position
 	instance.transform.basis = basis
+	instance.get_node("Area3D")
 	get_parent().add_child(instance)
 	rpc("rpc_spawn_ice", position, basis)
 
