@@ -170,6 +170,9 @@ func handle_jump() -> void:
 	
 	if Input.is_action_pressed("move_jump") and is_on_floor():
 		velocity.y += jump_velocity
+		
+	elif Input.is_action_pressed("move_jump") and is_on_wall_only():
+		velocity.y += 0.5
 
 func hit() -> void:
 	if not is_multiplayer_authority(): return
