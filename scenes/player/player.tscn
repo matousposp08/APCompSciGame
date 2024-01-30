@@ -126,7 +126,8 @@ albedo_color = Color(0.917647, 0.529412, 0.168627, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3oyv7"]
 material = SubResource("StandardMaterial3D_3iwsb")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mibgw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7rlqb"]
+size = Vector3(0.7, 1.8, 0.7)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ltt8p"]
 properties/0/path = NodePath(".:position")
@@ -204,7 +205,7 @@ target_position = Vector3(0, 1, 0)
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("CapsuleShape3D_mibgw")
+shape = SubResource("BoxShape3D_7rlqb")
 
 [node name="UI" parent="." instance=ExtResource("4_ekf4m")]
 offset_left = -581.0

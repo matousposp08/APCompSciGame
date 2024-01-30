@@ -62,6 +62,9 @@ func _process(delta: float) -> void:
 	print(from)
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart"):
+		shield = 100
+		mana = 100
+		health = 100
 		global_transform.origin = Vector3(randi_range(-39, 16), 28, randi_range(-59, 14))
 		velocity.y = 0
 	#if mouse:
@@ -93,7 +96,8 @@ func _process(delta: float) -> void:
 		if isMoving:
 			isMoving = false
 			$head/camera/camera_animation.stop()
-	mana = mana + 0.5 if mana < 100 else 100
+	if mana < 100:
+		mana += 0.01
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
@@ -309,7 +313,7 @@ func _on_area_3d_area_entered(area):
 	#print(from)
 	if not(other == from):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):
-			health -= 45
+			applyDamage(45)
 			#print(get_parent().get_node(other2+"/head/camera").unproject_position(position))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),45)
 			var knockbackForce = 50
@@ -319,16 +323,16 @@ func _on_area_3d_area_entered(area):
 		if area.is_in_group("crowbar") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
 			print("hit")
-			health -= 20
+			applyDamage(20)
 			var x = position - area.get_parent().position
 			velocity = 30*(x/x.length())
 		if area.is_in_group("lightning") and not(area.is_in_group(from)):
+			applyDamage(70)
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
-			health -= 70
 			area.queue_free()
 		if area.is_in_group("ice") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
-			health -= 35
+			applyDamage(35)
 			area.queue_free()
 
 func spawn_ice(position, basis):
@@ -352,7 +356,15 @@ func ice() -> void:
 		spawn_ice($head.global_position, $head.global_transform.basis)
 		mana -= 15
 
-
+func applyDamage(damage) -> void:
+	var q = damage
+	if shield < damage:
+		shield = 0
+		q -= shield
+		health -= q
+	else:
+		shield -= damage
+	
 func num(pos, num) -> void:
 	if not is_multiplayer_authority(): return
 	
