@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart"):
 		global_transform.origin = Vector3(randi_range(-39, 16), 28, randi_range(-59, 14))
+		velocity.y = 0
 	#if mouse:
 	#	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	#else:
