@@ -129,20 +129,20 @@ material = SubResource("StandardMaterial3D_3iwsb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_7rlqb"]
 size = Vector3(0.7, 1.8, 0.7)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ltt8p"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b3cqf"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("head/camera:rotation")
+properties/2/path = NodePath("head/crowbar:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("head/crowbar:position")
+properties/3/path = NodePath("head/crowbar:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("head/crowbar:rotation")
+properties/4/path = NodePath("head/camera:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 properties/5/path = NodePath("head/camera:position")
@@ -154,6 +154,12 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath("head:rotation")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath("Username:rotation")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Username:position")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
@@ -202,7 +208,7 @@ mesh = SubResource("CapsuleMesh_3oyv7")
 [node name="crouch_roof_detect" type="RayCast3D" parent="."]
 target_position = Vector3(0, 1, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_7rlqb")
@@ -214,7 +220,11 @@ offset_right = -581.0
 offset_bottom = -327.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_ltt8p")
+replication_config = SubResource("SceneReplicationConfig_b3cqf")
+
+[node name="Username" type="Label3D" parent="."]
+transform = Transform3D(-0.999743, 0, -0.0226874, 0, 1, 0, 0.0226874, 0, -0.999743, 0, 1.2276, 0)
+text = "asdfsa"
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 

@@ -48,6 +48,8 @@ var isMoving = false
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	$Username.billboard = true
+	$Username.text = get_parent().get_node("CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Username").text
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): 
@@ -57,6 +59,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
+	$Username.billboard = true
 
 func _process(delta: float) -> void:
 	print(from)
@@ -67,7 +70,7 @@ func _process(delta: float) -> void:
 		health = 100
 		global_transform.origin = Vector3(randi_range(-39, 16), 28, randi_range(-59, 14))
 		velocity.y = 0
-	#if mouse:
+	#if mo`:
 	#	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	#else:
 	#	pass
