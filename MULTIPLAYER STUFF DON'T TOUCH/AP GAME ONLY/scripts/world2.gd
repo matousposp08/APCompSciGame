@@ -14,6 +14,7 @@ func _ready() -> void:
 	$PMenu.hide()
 
 func _process(delta: float) -> void:
+	print(ps)
 	if Input.is_action_just_pressed("game_pause"):
 		if $PMenu.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -25,9 +26,11 @@ func _process(delta: float) -> void:
 func add_player(peer_id):
 	ps += 1
 	var player = Player.instantiate()
-	print(ps)
+	#print(ps)
 	player.from = str(ps)
 	player.name = str(peer_id)
+	print(player.from)
+	#print(player.name)
 	add_child(player)
 	player.add_to_group(str(ps))
 	player.get_node('Area3D').add_to_group(str(ps))
@@ -37,7 +40,7 @@ func add_player(peer_id):
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
-		ps -= 1
+		#ps -= 1
 		player.queue_free()
 
 func _on_host_button_pressed():

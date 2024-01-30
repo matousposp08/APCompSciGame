@@ -9,7 +9,7 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
-var from
+var from = ""
 var health = 100
 var shield = 100
 var magic = false
@@ -50,7 +50,10 @@ func _enter_tree():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 
 func _ready() -> void:
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): 
+		$UI.visible = false
+		return
+	print(from)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
@@ -238,7 +241,7 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
-	print(from)
+	#print(from)
 	instance.get_node("Area3D").add_to_group(from)
 	instance.from = from
 	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
@@ -261,6 +264,7 @@ func spawn_lightning(position, basis, rotation):
 	instance.position = position
 	instance.transform.basis = basis
 	instance.rotation.z = rotation
+	#print(from)
 	instance.from = from
 	instance.add_to_group(from)
 	instance.position.y -= 0.3
@@ -288,7 +292,7 @@ func lightning() -> void:
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
 
-	#print(area.get_groups())
+	print(area.get_groups())
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):
@@ -330,7 +334,9 @@ func spawn_ice(position, basis):
 	instance.from = from
 	instance.position = position
 	instance.transform.basis = basis
-	instance.get_node("Area3D")
+	print(from)
+	instance.get_node("Area3D").add_to_group(from)
+	instance.add_to_group(from)
 	get_parent().add_child(instance)
 	rpc("rpc_spawn_ice", position, basis)
 
