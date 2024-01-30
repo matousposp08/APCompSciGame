@@ -38,7 +38,6 @@ func spark() -> void:
 
 
 func _on_area_3d_area_entered(area):
-	print(from)
 	if not(area.is_in_group(from) and not(area.is_in_group("lightning"))):
 		$Area3D/CollisionShape3D.disabled = true
 		queue_free()

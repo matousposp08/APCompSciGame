@@ -59,6 +59,7 @@ func _ready() -> void:
 	parts["camera"].current = true
 
 func _process(delta: float) -> void:
+	print(from)
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart"):
 		global_transform.origin = Vector3(randi_range(-39, 16), 28, randi_range(-59, 14))
@@ -292,7 +293,7 @@ func lightning() -> void:
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
 
-	print(area.get_groups())
+	#print(area.get_groups())
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):

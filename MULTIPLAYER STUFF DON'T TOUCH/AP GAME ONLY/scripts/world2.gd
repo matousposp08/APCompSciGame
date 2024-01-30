@@ -14,7 +14,6 @@ func _ready() -> void:
 	$PMenu.hide()
 
 func _process(delta: float) -> void:
-	print(ps)
 	if Input.is_action_just_pressed("game_pause"):
 		if $PMenu.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -25,17 +24,19 @@ func _process(delta: float) -> void:
 	
 func add_player(peer_id):
 	ps += 1
+	$Label.text = str(ps)
 	var player = Player.instantiate()
 	#print(ps)
-	player.from = str(ps)
+	player.from = $Label.text
 	player.name = str(peer_id)
 	print(player.from)
+	print($Label.text)
 	#print(player.name)
 	add_child(player)
-	player.add_to_group(str(ps))
-	player.get_node('Area3D').add_to_group(str(ps))
-	player.get_node('head/crowbar').add_to_group(str(ps))
-	player.get_node('head/crowbar/Area3D').add_to_group(str(ps))
+	player.add_to_group($Label.text)
+	player.get_node('Area3D').add_to_group($Label.text)
+	player.get_node('head/crowbar').add_to_group($Label.text)
+	player.get_node('head/crowbar/Area3D').add_to_group($Label.text)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))

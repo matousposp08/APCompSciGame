@@ -9,7 +9,7 @@ var from = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area3D/CollisionShape3D.disabled = false
-	x = 120
+	x = 480
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
