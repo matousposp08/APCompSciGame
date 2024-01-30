@@ -18,7 +18,6 @@ func _process(delta):
 		x -= 1
 	$shield.value = get_parent().shield
 	$health.value = get_parent().health
-	print(get_parent().health)
 	$mana.value=get_parent().mana
 
 #func _on_timer_timeout():

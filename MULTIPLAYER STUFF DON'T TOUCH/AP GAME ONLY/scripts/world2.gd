@@ -37,6 +37,7 @@ func add_player(peer_id):
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
+		ps -= 1
 		player.queue_free()
 
 func _on_host_button_pressed():
