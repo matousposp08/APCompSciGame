@@ -49,7 +49,13 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	$Username.billboard = true
-	$Username.text = get_parent().get_node("CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Username").text
+	var username = get_parent().get_node("CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Username").text
+	if(username != ""):
+		if not is_multiplayer_authority(): return
+		$Username.text = username
+	else:
+		if not is_multiplayer_authority(): return
+		$Username.text = "guest"
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): 
