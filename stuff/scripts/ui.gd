@@ -15,12 +15,11 @@ func _process(delta):
 	if get_parent().magic and Input.is_action_just_pressed("magic"):
 		x = 10
 	if x > 0:
-		$mana.value-=1
 		x -= 1
 	$shield.value = get_parent().shield
 	$health.value = get_parent().health
 	$mana.value=get_parent().mana
 
-func _on_timer_timeout():
-	$mana.value+=0.5
-	$shield.value+=0.5
+#func _on_timer_timeout():
+#	$mana.value+=0.5
+#	$shield.value+=0.5

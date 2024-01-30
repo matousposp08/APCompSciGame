@@ -24,7 +24,7 @@ var ICE : PackedScene = preload('res://scenes/player/ice.tscn')
 var BLOCK: PackedScene = preload('res://scenes/player/vertical_block.tscn')
 var NUM: PackedScene = preload('res://scenes/player/damage_num.tscn')
 var instance
-
+var pause = false
 var speed: float = base_speed
 var state: String = "normal"  
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -58,6 +58,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
+	#if mouse:
+	#	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	#else:
+	#	pass
 	if Input.is_action_just_pressed("magic"):
 		if not(magic):
 			magic = true
@@ -276,7 +280,7 @@ func _on_area_3d_area_entered(area):
 	print(get_tree())
 	if not is_multiplayer_authority(): return
 
-	print(area.get_groups())
+	#print(area.get_groups())
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):
@@ -284,11 +288,11 @@ func _on_area_3d_area_entered(area):
 		other2 = str(area.get_parent().name)
 	else:
 		other = str(area.get_parent().get_parent().get_parent().from)
-		other2 = str(area.get_parent().name)
+		other2 = str(area.get_parent().get_parent().get_parent().name)
 	
 	print(other)
 	print(other2)
-	print(from)
+	#print(from)
 	if not(other == from):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):
 			health -= 45
