@@ -45,6 +45,7 @@ func remove_player(peer_id):
 		player.queue_free()
 
 func _on_host_button_pressed():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	main_menu.hide()
 	
 	$CanvasLayer/ColorRect.hide()
@@ -58,9 +59,10 @@ func _on_host_button_pressed():
 	print("host joined")
 	set_player_initial_position(player_id)
 	
-	#wupnp_setup()
+	#upnp_setup()
 
 func _on_join_button_pressed(): 
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	if address_entry.text == "":
 		enet_peer.create_client("localhost", PORT)
 	main_menu.hide()
