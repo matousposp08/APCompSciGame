@@ -6,7 +6,6 @@ var from = ""
 func _ready():
 	x = 20
 	$GPUParticles3D.emitting = true
-	$Area3D.add_to_group(from)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

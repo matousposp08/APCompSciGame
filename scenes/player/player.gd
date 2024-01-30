@@ -237,7 +237,7 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
-	instance.from = from
+	instance.get_node("Area3D").add_to_group(from)
 	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
 
 @rpc func rpc_spawn_fireball(position, basis):
@@ -322,9 +322,9 @@ func _on_area_3d_area_entered(area):
 
 func spawn_ice(position, basis):
 	var instance = ICE.instantiate()
+	instance.from = from
 	instance.position = position
 	instance.transform.basis = basis
-	instance.from = from
 	get_parent().add_child(instance)
 	rpc("rpc_spawn_ice", position, basis)
 
