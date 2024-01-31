@@ -4,21 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="3_6ryqq"]
 [ext_resource type="PackedScene" uid="uid://dubowrogt5yfl" path="res://p_menu.tscn" id="3_buys0"]
 [ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="3_ik7bt"]
+[ext_resource type="Texture2D" uid="uid://coac5mmytqx8h" path="res://stuff/tumblr_ney5ngkF8e1rrftcdo3_400.jpg" id="4_qqr6p"]
 [ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="6_eyog1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fap4j"]
 bg_color = Color(0, 0.729412, 0.945098, 0)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iq0jy"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_iarwl"]
-panorama = SubResource("CompressedTexture2D_iq0jy")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_im74r"]
+panorama = ExtResource("4_qqr6p")
 
 [sub_resource type="Sky" id="Sky_5b7eb"]
-sky_material = SubResource("PanoramaSkyMaterial_iarwl")
+sky_material = SubResource("PanoramaSkyMaterial_im74r")
 
 [sub_resource type="Environment" id="Environment_51n28"]
-background_mode = 1
+background_mode = 2
 background_color = Color(1, 0.933333, 0.945098, 1)
 sky = SubResource("Sky_5b7eb")
 ssao_enabled = true
