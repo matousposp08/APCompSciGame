@@ -13,6 +13,8 @@ config_version=5
 config/name="APCompSciGame"
 run/main_scene="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scenes/world2.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.407843, 0.227451, 0.454902, 1)
+boot_splash/image="res://OIG2.png"
 
 [display]
 
