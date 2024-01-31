@@ -54,9 +54,11 @@ func _enter_tree():
 	if(username != ""):
 		if not is_multiplayer_authority(): return
 		$Username.text = username
+		$Username.billboard = true
 	else:
 		if not is_multiplayer_authority(): return
 		$Username.text = "guest"+str(get_parent().ps)
+		$Username.billboard = true
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): 
