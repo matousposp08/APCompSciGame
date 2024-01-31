@@ -72,7 +72,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	iframes -= 1
 	if not is_multiplayer_authority(): return
-	if Input.is_action_just_pressed("restart"):
+	if Input.is_action_just_pressed("restart") or health <= 0:
 		shield = 100
 		mana = 100
 		health = 100
