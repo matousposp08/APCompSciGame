@@ -308,7 +308,6 @@ func lightning() -> void:
 	
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
-	#print(area.get_groups())
 	print(str(area) + " " + str(get_node("head/crowbar/Area3D")))
 	var other
 	var other2
@@ -320,10 +319,10 @@ func _on_area_3d_area_entered(area):
 		print(area.get_groups())
 		other = str(area.get_parent().get_parent().get_parent().from)
 		other2 = str(area.get_parent().get_parent().get_parent().name)
-	#print(str(area)+ " " + str($head/crowbar/Area3D))
-	print(name + " " + area.get_parent().get_parent().name)
+	print(name + " " + area.get_parent().get_parent().get_parent().name)
 	print(area.is_in_group("crowbar") and not(area == $head/crowbar/Area3D))
-	if area.is_in_group("crowbar") and not(name == area.get_parent().get_parent().get_parent().name) and not(area == $head/crowbar/Area3D):
+	print(area.get_parent().get_parent().get_parent().name + " " + name)
+	if area.is_in_group("crowbar") and not(name == area.get_parent().get_parent().get_parent().name):
 		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
 		print("hit")
 		var x = position - area.get_parent().position
