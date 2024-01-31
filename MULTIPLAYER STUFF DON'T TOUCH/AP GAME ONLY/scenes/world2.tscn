@@ -47,8 +47,8 @@ script = ExtResource("1_x87ln")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 7.0
+offset_left = -36.0
+offset_top = -33.0
 offset_right = 1174.0
 offset_bottom = 667.0
 color = Color(0.701961, 0.329412, 1, 1)
