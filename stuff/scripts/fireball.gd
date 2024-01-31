@@ -22,7 +22,7 @@ func _process(delta):
 
 func _on_area_3d_area_entered(area):
 	print(area.get_groups())
-	
+	print(from)
 	print(not(area.is_in_group(from)))
 	if not(area.is_in_group(from)) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true

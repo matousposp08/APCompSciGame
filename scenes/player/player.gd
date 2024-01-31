@@ -197,7 +197,7 @@ func handle_jump() -> void:
 		velocity.y += 0.5
 
 func hit() -> void:
-	#if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): return
 	
 	x -= 1
 	if x <= 0:
@@ -260,14 +260,15 @@ func spawn_fireball():
 	instance.from = from
 	rpc("rpc_spawn_fireball", instance.position, instance.transform.basis)
 
-@rpc func rpc_spawn_fireball(position, basis):
+@rpc func rpc_spawn_fireball(pos, bas):
 	var instance = FIREBALL.instantiate()
-	instance.position = position
-	instance.transform.basis = basis
+	instance.position = pos
+	instance.transform.basis = bas
+	print(str(position) + " " + str(instance.position))
 	get_parent().add_child(instance)
 
 func fireball():
-	#if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): return
 
 	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
 		spawn_fireball()
@@ -278,8 +279,9 @@ func spawn_lightning(position, basis, rotation):
 	var instance = LIGHTNING.instantiate()
 	instance.position = position
 	instance.transform.basis = basis
-	instance.rotation.z = rotation
+	instance.rotation.z = rotation.z
 	#print(from)
+	instance.from = from
 	instance.add_to_group(from)
 	instance.position.y -= 0.3
 	instance.get_node("Area3D").add_to_group(from)
@@ -290,17 +292,17 @@ func spawn_lightning(position, basis, rotation):
 	var instance = LIGHTNING.instantiate()
 	instance.position = position
 	instance.transform.basis = basis
-	instance.rotation.z = rotation
+	instance.rotation.z = rotation.z
 	add_child(instance)
 
 func lightning() -> void:
 	#if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
-		var position = $head.global_position
-		var basis = $head.global_transform.basis
-		var rotation = randf()
-		spawn_lightning(position, basis, rotation)
+		var pos = global_position
+		var bas = $head.global_transform.basis
+		#var rotation = randf()
+		spawn_lightning(position, bas, rotation)
 		mana -= 40
 	
 func _on_area_3d_area_entered(area):
@@ -358,7 +360,7 @@ func spawn_ice(position, basis):
 	spawn_ice(position, basis)
 
 func ice() -> void:
-	#if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
 		spawn_ice($head.global_position, $head.global_transform.basis)
