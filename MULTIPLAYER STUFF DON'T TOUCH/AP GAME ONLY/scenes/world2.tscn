@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=14 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scripts/world2.gd" id="1_x87ln"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="3_6ryqq"]
 [ext_resource type="PackedScene" uid="uid://dubowrogt5yfl" path="res://p_menu.tscn" id="3_buys0"]
 [ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="3_ik7bt"]
+[ext_resource type="Texture2D" uid="uid://b12h0qn8mjntv" path="res://OIG2.png" id="3_vmalc"]
 [ext_resource type="Texture2D" uid="uid://coac5mmytqx8h" path="res://stuff/tumblr_ney5ngkF8e1rrftcdo3_400.jpg" id="4_qqr6p"]
 [ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="6_eyog1"]
 
@@ -46,18 +47,26 @@ script = ExtResource("1_x87ln")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1158.0
-offset_bottom = 660.0
-color = Color(0.494118, 0.792157, 1, 1)
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 1174.0
+offset_bottom = 667.0
+color = Color(0.701961, 0.329412, 1, 1)
+
+[node name="Oig2" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.0901961)
+position = Vector2(598, 498)
+scale = Vector2(1.15332, 1)
+texture = ExtResource("3_vmalc")
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 385.0
-offset_top = 260.0
-offset_right = -385.0
-offset_bottom = -260.0
+offset_left = 342.0
+offset_top = 216.795
+offset_right = -342.0
+offset_bottom = -182.205
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fap4j")
@@ -74,6 +83,11 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.952941, 0.337255, 1)
+theme_override_colors/font_shadow_color = Color(0.266667, 0, 0.427451, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 43
 text = "WIZARD FORTNITE"
@@ -82,18 +96,21 @@ vertical_alignment = 1
 
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.952941, 0.337255, 0.733333)
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 18
 text = "HOST"
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.952941, 0.337255, 0.733333)
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 18
 text = "JOIN"
 
 [node name="Username" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.952941, 0.337255, 0.733333)
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 18
 placeholder_text = "ENTER USERNAME"
@@ -101,6 +118,7 @@ alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.952941, 0.337255, 0.733333)
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 18
 placeholder_text = "ENTER IP"

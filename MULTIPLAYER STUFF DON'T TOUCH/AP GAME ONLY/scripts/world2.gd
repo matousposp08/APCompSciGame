@@ -51,6 +51,7 @@ func _on_host_button_pressed():
 	main_menu.hide()
 	
 	$CanvasLayer/ColorRect.hide()
+	$CanvasLayer/Oig2.hide()
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
@@ -70,6 +71,7 @@ func _on_join_button_pressed():
 		enet_peer.create_client("localhost", PORT)
 	main_menu.hide()
 	$CanvasLayer/ColorRect.hide()
+	$CanvasLayer/Oig2
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	
