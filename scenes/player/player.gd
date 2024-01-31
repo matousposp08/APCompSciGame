@@ -299,6 +299,7 @@ func lightning() -> void:
 	#if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
+		print(global_position)
 		var pos = global_position
 		var bas = $head.global_transform.basis
 		#var rotation = randf()
@@ -307,20 +308,28 @@ func lightning() -> void:
 	
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
-	
-	print(get_groups())
+	#print(area.get_groups())
+	print(str(area) + " " + str(get_node("head/crowbar/Area3D")))
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):
 		other = str(area.get_parent().from)
 		other2 = str(area.get_parent().name)
 	else:
+		print("yes")
+		print(area.get_groups())
 		other = str(area.get_parent().get_parent().get_parent().from)
 		other2 = str(area.get_parent().get_parent().get_parent().name)
-	
-	#print(other)
-	#print(other2)
-	#print(from)
+	#print(str(area)+ " " + str($head/crowbar/Area3D))
+	print(name + " " + area.get_parent().get_parent().name)
+	print(area.is_in_group("crowbar") and not(area == $head/crowbar/Area3D))
+	if area.is_in_group("crowbar") and not(name == area.get_parent().get_parent().get_parent().name) and not(area == $head/crowbar/Area3D):
+		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
+		print("hit")
+		var x = position - area.get_parent().position
+		applyDamage(20)
+		velocity = 30*(x/x.length())
+	print(name + " " + area.get_parent().get_parent().get_parent().name)
 	if not(other == from):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):
 			applyDamage(45)
@@ -330,12 +339,6 @@ func _on_area_3d_area_entered(area):
 			var knockbackDirection = (position - area.get_parent().position).normalized()
 			area.queue_free()
 			velocity = knockbackDirection * knockbackForce
-		if area.is_in_group("crowbar") and not(area.is_in_group(from)):
-			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
-			print("hit")
-			var x = position - area.get_parent().position
-			applyDamage(20)
-			velocity = 30*(x/x.length())
 		if area.is_in_group("lightning") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
 			area.queue_free()

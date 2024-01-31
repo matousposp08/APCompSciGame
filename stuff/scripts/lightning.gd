@@ -9,6 +9,7 @@ var SPARK : PackedScene = preload('res://scenes/player/spark.tscn')
 var from = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(position)
 	$Area3D/CollisionShape3D.disabled = false
 
 
