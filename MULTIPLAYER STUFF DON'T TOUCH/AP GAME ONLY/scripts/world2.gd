@@ -39,6 +39,7 @@ func add_player(peer_id):
 	player.get_node('head/crowbar').add_to_group($Label.text)
 	player.get_node('head/crowbar/Area3D').add_to_group("crowbar"+player.get_node("Username").text)
 	print(player.get_node("Username").text+": " + str(peer_id))
+	$CanvasLayer/Oig2.position = Vector2(1000000000000000,1000000000000)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
