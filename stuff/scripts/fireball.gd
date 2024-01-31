@@ -8,7 +8,7 @@ var from = ""
 @onready var particles = $GPUParticles3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Area3D/CollisionShape3D.disabled = false
+	$Area3D/CollisionShape3D.disabled = true
 	x = 480
 
 
@@ -16,6 +16,8 @@ func _ready():
 func _process(delta):
 	x -= 1
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
+	if x < 470:
+		$Area3D/CollisionShape3D.disabled = false
 	if x < 0:
 		queue_free()
 

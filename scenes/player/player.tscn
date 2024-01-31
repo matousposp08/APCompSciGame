@@ -154,6 +154,18 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath("head:rotation")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath("Username:billboard")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Username:position")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Username:rotation")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Username:text")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48503, 0)
@@ -222,3 +234,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 
 [editable path="head/crowbar"]
+[editable path="UI"]

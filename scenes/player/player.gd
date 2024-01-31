@@ -17,6 +17,7 @@ var mode = 0
 var hits = false
 var mana = 100
 var x = 0
+var iframes = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
@@ -55,10 +56,11 @@ func _enter_tree():
 		$Username.text = username
 	else:
 		if not is_multiplayer_authority(): return
-		$Username.text = "guest"
+		$Username.text = "guest"+str(get_parent().ps)
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): 
+		print("no ui")
 		$UI.visible = false
 		return
 	print(from)
@@ -68,6 +70,7 @@ func _ready() -> void:
 	$Username.billboard = true
 
 func _process(delta: float) -> void:
+	iframes -= 1
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart"):
 		shield = 100
@@ -307,7 +310,9 @@ func lightning() -> void:
 		mana -= 40
 	
 func _on_area_3d_area_entered(area):
-	if not is_multiplayer_authority(): return
+	if iframes > 0:
+		return
+	#if not is_multiplayer_authority(): return
 	print(str(area) + " " + str(get_node("head/crowbar/Area3D")))
 	var other
 	var other2
@@ -319,16 +324,23 @@ func _on_area_3d_area_entered(area):
 		print(area.get_groups())
 		other = str(area.get_parent().get_parent().get_parent().from)
 		other2 = str(area.get_parent().get_parent().get_parent().name)
-	print(name + " " + area.get_parent().get_parent().get_parent().name)
-	print(area.is_in_group("crowbar") and not(area == $head/crowbar/Area3D))
-	print(area.get_parent().get_parent().get_parent().name + " " + name)
-	if area.is_in_group("crowbar") and not(name == area.get_parent().get_parent().get_parent().name):
+	if area.is_in_group("crowbar"):
+		var myName = $Username.text
+		var oName = area.get_parent().get_parent().get_parent().get_node("Username").text
+		print($Username.text + " " + myName + " "+ oName)
+		print(hits)
 		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
-		print("hit")
-		var x = position - area.get_parent().position
-		applyDamage(20)
-		velocity = 30*(x/x.length())
-	print(name + " " + area.get_parent().get_parent().get_parent().name)
+		if not(hits):
+			print("hit")
+			var x = position - area.get_parent().position
+			applyDamage(20)
+			print(health)
+			velocity = 10*(x/x.length())
+			iframes = 20
+			return
+	else:
+		print(area.get_parent().name)
+	#print(name + " " + area.get_parent().get_parent().get_parent().name)
 	if not(other == from):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):
 			applyDamage(45)
@@ -336,16 +348,19 @@ func _on_area_3d_area_entered(area):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),45)
 			var knockbackForce = 50
 			var knockbackDirection = (position - area.get_parent().position).normalized()
-			area.queue_free()
+			iframes = 20
+			#area.queue_free()
 			velocity = knockbackDirection * knockbackForce
 		if area.is_in_group("lightning") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
 			area.queue_free()
 			applyDamage(70)
+			iframes = 20
 		if area.is_in_group("ice") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
 			area.queue_free()
 			applyDamage(35)
+			iframes = 20
 
 func spawn_ice(position, basis):
 	var instance = ICE.instantiate()
@@ -367,15 +382,14 @@ func ice() -> void:
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
 		spawn_ice($head.global_position, $head.global_transform.basis)
 		mana -= 15
-		
 
 func applyDamage(damage) -> void:
 	var q = damage
 	if shield < damage:
-		shield = 0
 		q -= shield
 		health -= q
-	else:
+		shield = 0
+	else: 
 		shield -= damage
 	
 func num(pos, num) -> void:

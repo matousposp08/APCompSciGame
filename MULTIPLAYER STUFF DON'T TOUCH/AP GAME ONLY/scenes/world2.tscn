@@ -128,6 +128,7 @@ replication_config = SubResource("SceneReplicationConfig_paqmt")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -4.32739, 16.4185)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "abcde"

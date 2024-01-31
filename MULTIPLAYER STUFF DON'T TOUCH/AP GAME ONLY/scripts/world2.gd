@@ -3,7 +3,7 @@ extends Node
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/LineEdit
 
-var ps = 0
+var ps = 1
 
 
 const Player = preload("res://scenes/player/player.tscn")
@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 			$PMenu.show()
 	
 func add_player(peer_id):
-	ps += 1
 	$Label.text = str(ps)
 	var player = Player.instantiate()
 	#print(ps)
@@ -34,11 +33,12 @@ func add_player(peer_id):
 	add_child(player)
 	player.add_to_group($Label.text)
 	#print(str(ps) + " " + player.from + " " + $Label.text + str(player.is_multiplayer_authority()))
-	print("Peer ID:" + str(peer_id) + " " + "f")
+	print("Peer ID:" + str(peer_id))
 	if not player.is_multiplayer_authority(): return
 	player.get_node('Area3D').add_to_group($Label.text)
 	player.get_node('head/crowbar').add_to_group($Label.text)
-	player.get_node('head/crowbar/Area3D').add_to_group($Label.text)
+	player.get_node('head/crowbar/Area3D').add_to_group("crowbar"+player.get_node("Username").text)
+	print(player.get_node("Username").text+": " + str(peer_id))
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
@@ -56,6 +56,7 @@ func _on_host_button_pressed():
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 
+	ps = 1
 	var player_id = multiplayer.get_unique_id()
 	add_player(multiplayer.get_unique_id())
 	print("host joined")
@@ -71,8 +72,10 @@ func _on_join_button_pressed():
 	$CanvasLayer/ColorRect.hide()
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
-
+	
+	ps += 1
 	var player_id = multiplayer.get_unique_id()
+	print(player_id)
 	add_player(player_id)
 	set_player_initial_position(player_id)
 
