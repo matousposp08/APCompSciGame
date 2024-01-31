@@ -68,7 +68,6 @@ func _ready() -> void:
 	$Username.billboard = true
 
 func _process(delta: float) -> void:
-	print(from)
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart"):
 		shield = 100
@@ -106,7 +105,7 @@ func _process(delta: float) -> void:
 			isMoving = false
 			$head/camera/camera_animation.stop()
 	if mana < 100:
-		mana += 0.01
+		mana += 1
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
@@ -198,7 +197,7 @@ func handle_jump() -> void:
 		velocity.y += 0.5
 
 func hit() -> void:
-	if not is_multiplayer_authority(): return
+	#if not is_multiplayer_authority(): return
 	
 	x -= 1
 	if x <= 0:
@@ -268,19 +267,19 @@ func spawn_fireball():
 	get_parent().add_child(instance)
 
 func fireball():
-	if not is_multiplayer_authority(): return
+	#if not is_multiplayer_authority(): return
 
 	if Input.is_action_just_pressed("hit") and magic and mode == 1 and mana >= 30:
 		spawn_fireball()
 		mana -= 30
 		
 func spawn_lightning(position, basis, rotation):
+	if not is_multiplayer_authority(): return
 	var instance = LIGHTNING.instantiate()
 	instance.position = position
 	instance.transform.basis = basis
 	instance.rotation.z = rotation
 	#print(from)
-	instance.from = from
 	instance.add_to_group(from)
 	instance.position.y -= 0.3
 	instance.get_node("Area3D").add_to_group(from)
@@ -295,7 +294,7 @@ func spawn_lightning(position, basis, rotation):
 	add_child(instance)
 
 func lightning() -> void:
-	if not is_multiplayer_authority(): return
+	#if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 0 and mana >= 40:
 		var position = $head.global_position
@@ -306,8 +305,8 @@ func lightning() -> void:
 	
 func _on_area_3d_area_entered(area):
 	if not is_multiplayer_authority(): return
-
-	#print(area.get_groups())
+	
+	print(get_groups())
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):
@@ -332,17 +331,17 @@ func _on_area_3d_area_entered(area):
 		if area.is_in_group("crowbar") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
 			print("hit")
-			applyDamage(20)
 			var x = position - area.get_parent().position
+			applyDamage(20)
 			velocity = 30*(x/x.length())
 		if area.is_in_group("lightning") and not(area.is_in_group(from)):
-			applyDamage(70)
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
 			area.queue_free()
+			applyDamage(70)
 		if area.is_in_group("ice") and not(area.is_in_group(from)):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
-			applyDamage(35)
 			area.queue_free()
+			applyDamage(35)
 
 func spawn_ice(position, basis):
 	var instance = ICE.instantiate()
@@ -359,11 +358,12 @@ func spawn_ice(position, basis):
 	spawn_ice(position, basis)
 
 func ice() -> void:
-	if not is_multiplayer_authority(): return
+	#if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("hit") and magic and mode == 2 and mana >= 15:
 		spawn_ice($head.global_position, $head.global_transform.basis)
 		mana -= 15
+		
 
 func applyDamage(damage) -> void:
 	var q = damage

@@ -29,11 +29,13 @@ func add_player(peer_id):
 	#print(ps)
 	player.from = $Label.text
 	player.name = str(peer_id)
-	print(player.from)
+	#print(player.from)
 	print($Label.text)
 	#print(player.name)
 	add_child(player)
 	player.add_to_group($Label.text)
+	print(str(ps) + " " + player.from + " " + $Label.text + str(player.is_multiplayer_authority()))
+	if not player.is_multiplayer_authority(): return
 	player.get_node('Area3D').add_to_group($Label.text)
 	player.get_node('head/crowbar').add_to_group($Label.text)
 	player.get_node('head/crowbar/Area3D').add_to_group($Label.text)
