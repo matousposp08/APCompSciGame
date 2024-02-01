@@ -105,6 +105,7 @@ func start():
 	health = 100
 	global_transform.origin = spawn_locations.pick_random()
 	velocity = Vector3(0,0,0)
+	
 
 func _process(delta: float) -> void:
 	if name == "1" and Input.is_action_just_pressed("options"):
@@ -317,13 +318,13 @@ func handle_controller_camera_movement() -> void:
 	if not is_multiplayer_authority(): return
 	
 	var input_dir: Vector2 = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
-	if input_dir.y < -0.10 and $head.rotation.x < 1.5:
+	if input_dir.y < 0 and $head.rotation.x < 1.5:
 		$head.rotation.x += abs(input_dir.y) / controller_sensitivity
-	if input_dir.y > 0.10 and $head.rotation.x > -1.5:
+	if input_dir.y > 0 and $head.rotation.x > -1.5:
 		$head.rotation.x -= abs(input_dir.y) / controller_sensitivity
-	if input_dir.x < -0.10:
+	if input_dir.x < 0:
 		$head.rotation.y += abs(input_dir.x) / controller_sensitivity
-	if input_dir.x > 0.10:
+	if input_dir.x > 0:
 		$head.rotation.y -= abs(input_dir.x) / controller_sensitivity
 	'''
 	if !world.paused:
@@ -410,7 +411,7 @@ func _on_area_3d_area_entered(area):
 	print(not(str(get_parent().areas.get(area)) == $Username.text))
 	#attacker = str(get_parent().areas.get(area))
 	#attacker = str(area.get_parent().get_parent().get_parent().get_node("Username").text)
-	if not(str(get_parent().areas.get(area)) == $Username.text):
+	if not(str(get_parent().areas.get(area)) == name):
 		if area.is_in_group("fireball"):
 			attacker = str(get_parent().areas.get(area))
 			applyDamage(45)

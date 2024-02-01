@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://u1hxbwsjrma"]
+
+[ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="1_w1kfh"]
+[ext_resource type="AudioStream" uid="uid://dgdaeudxukcsu" path="res://results.mp3" id="2_jsyiy"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1218.0
+offset_bottom = 700.0
+color = Color(0.494118, 0.792157, 1, 0.415686)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 168.0
+offset_right = 1213.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_w1kfh")
+theme_override_font_sizes/font_size = 70
+text = "WINNER"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jsyiy")

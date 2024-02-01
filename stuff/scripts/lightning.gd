@@ -23,7 +23,7 @@ func _process(delta):
 	#	mesh.visible = false
 	#	await get_tree().create_timer(1,0).timeout
 	#	queue_free()
-	if x < 495:
+	if x < 498:
 		$Area3D/CollisionShape3D.disabled = false
 	if x < 0:
 		queue_free()

@@ -36,7 +36,6 @@ func _on_button_3_pressed():
 func _on_button_4_pressed():
 	mode = 0
 
-
 func _on_button_5_pressed():
 	if game:
 		get_parent().get_parent().game = false

@@ -11,6 +11,7 @@ var grav =  9.8
 
 var players = []
 var score = {}
+var time = false
 
 const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
@@ -27,7 +28,9 @@ func add_score(attacker, dead, method):
 func game_start(mode, timer):
 	game = true
 	if timer:
-		pass
+		time = true
+		$Timer.wait_time = 120
+		$Timer.start()
 	if mode == 0:
 		grav = 9.8
 	if mode == 1:
@@ -37,7 +40,16 @@ func game_start(mode, timer):
 	for x in players:
 		get_node(x).start()
 
+func game_end():
+	$results.visible = true
+	$results/AudioStreamPlayer.play()
+
 func _process(delta: float) -> void:
+	if time:
+		$Label.text = str($Timer.time_left)
+		$Label.visible = true
+	else:
+		$Label.visible = false
 	if Input.is_action_just_pressed("game_pause"):
 		pause = not(pause)
 		if $PMenu.visible:
