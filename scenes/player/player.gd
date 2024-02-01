@@ -33,6 +33,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_fov_extents: Array[float] = [75.0, 85.0,40.0]
 var base_player_y_scale: float = 1.0
 var crouch_player_y_scale: float = 0.75
+var controller_sensitivity = 30
 
 const spawn_locations = [
 	Vector3(4.121731, -1.038562, 12.91191), \
@@ -288,13 +289,13 @@ func handle_controller_camera_movement() -> void:
 	
 	var input_dir: Vector2 = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	if input_dir.y < -0.10 and $head.rotation.x < 1.5:
-		$head.rotation.x += abs(input_dir.y)/30
+		$head.rotation.x += abs(input_dir.y) / controller_sensitivity
 	if input_dir.y > 0.10 and $head.rotation.x > -1.5:
-		$head.rotation.x -= abs(input_dir.y)/30
+		$head.rotation.x -= abs(input_dir.y) / controller_sensitivity
 	if input_dir.x < -0.10:
-		$head.rotation.y += abs(input_dir.x)/30
+		$head.rotation.y += abs(input_dir.x) / controller_sensitivity
 	if input_dir.x > 0.10:
-		$head.rotation.y -= abs(input_dir.x)/30
+		$head.rotation.y -= abs(input_dir.x) / controller_sensitivity
 	'''
 	if !world.paused:
 		parts["head"].rotation_degrees.y -= input_dir
