@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cadh5ixr1pkwi"]
+[gd_scene load_steps=16 format=3 uid="uid://cadh5ixr1pkwi"]
 
 [ext_resource type="Script" path="res://stuff/scripts/ui.gd" id="1_0d4i1"]
 [ext_resource type="Script" path="res://stuff/scripts/mana.gd" id="2_mgjc4"]
 [ext_resource type="PackedScene" uid="uid://d21pqfbmjoi6v" path="res://scenes/player/damage_num.tscn" id="3_hat6k"]
+[ext_resource type="Texture2D" uid="uid://drpxkm7rke6fa" path="res://scenes/player/playerimg/Untitled_design-removebg-preview.png" id="4_tuyb8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcejq"]
 bg_color = Color(1, 1, 1, 0.537255)
@@ -45,6 +46,57 @@ corner_radius_top_left = 11
 corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqaxt"]
+atlas = ExtResource("4_tuyb8")
+region = Rect2(250, 250, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcmfa"]
+atlas = ExtResource("4_tuyb8")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p17j"]
+atlas = ExtResource("4_tuyb8")
+region = Rect2(0, 250, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj57i"]
+atlas = ExtResource("4_tuyb8")
+region = Rect2(250, 0, 250, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxv0u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqaxt")
+}],
+"loop": true,
+"name": &"crowbar",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcmfa")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p17j")
+}],
+"loop": true,
+"name": &"ice",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj57i")
+}],
+"loop": true,
+"name": &"lightning",
+"speed": 0.0
+}]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -106,5 +158,10 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 30.0
 offset_bottom = 30.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1026, 526)
+sprite_frames = SubResource("SpriteFrames_oxv0u")
+animation = &"crowbar"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -144,7 +144,6 @@ func _process(delta: float) -> void:
 		
 	if velocity.y > 35:
 		velocity.y = max_velocity
-	print(velocity.y)
 		
 	#Shield Regen:
 	shieldCount += 1
@@ -358,7 +357,10 @@ func spawn_lightning(position, basis, rotation):
 
 @rpc func rpc_spawn_lightning(position, basis, rotation):
 	var instance = LIGHTNING.instantiate()
-	instance.position = position
+	if is_multiplayer_authority():
+		instance.global_position = position
+	else:
+		instance.position = Vector3(0,0,0)
 	instance.transform.basis = basis
 	instance.rotation.z = rotation.z
 	add_child(instance)
@@ -379,15 +381,14 @@ func _on_area_3d_area_entered(area):
 		return
 	if not is_multiplayer_authority(): 
 		return
-	else:
-		if area.is_in_group("crowbar"):
-			var oppressor = area.get_parent().get_parent().get_parent()
-			print(oppressor.name)
-			oppressor.attacker = $Username.text
-			print("hit")
-			oppressor.applyDamage(20)
-			print(health)
-			oppressor.iframes = 20
+	if area.is_in_group("crowbar"):
+		var oppressor = area.get_parent().get_parent().get_parent()
+		print(oppressor.name + " df")
+		oppressor.attacker = $Username.text
+		print("hit")
+		oppressor.applyDamage(20)
+		print(health)
+		oppressor.iframes = 20
 	print(str(get_parent().areas.get(area)) + " " + $Username.text)
 	print(not(str(get_parent().areas.get(area)) == $Username.text))
 	#attacker = str(get_parent().areas.get(area))
@@ -401,20 +402,22 @@ func _on_area_3d_area_entered(area):
 			var knockbackForce = 50
 			var knockbackDirection = (position - area.get_parent().position).normalized()
 			iframes = 20
-			#area.queue_free()
+			area.get_parent().destroy()
 			velocity = knockbackDirection * knockbackForce
 		if area.is_in_group("lightning"):
 			attacker = str(get_parent().areas.get(area))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
-			area.queue_free()
+			area.get_parent().destroy()
 			applyDamage(70)
 			iframes = 20
+			area.get_parent().queue_free()
 		if area.is_in_group("ice"):
 			attacker = str(get_parent().areas.get(area))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
 			area.queue_free()
 			applyDamage(35)
 			iframes = 20
+			area.get_parent().queue_free()
 		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
 
 func spawn_ice(position, basis):

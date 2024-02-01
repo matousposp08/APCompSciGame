@@ -9,8 +9,7 @@ var SPARK : PackedScene = preload('res://scenes/player/spark.tscn')
 var from = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(position)
-	$Area3D/CollisionShape3D.disabled = false
+	$Area3D/CollisionShape3D.disabled = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +23,8 @@ func _process(delta):
 	#	mesh.visible = false
 	#	await get_tree().create_timer(1,0).timeout
 	#	queue_free()
+	if x < 495:
+		$Area3D/CollisionShape3D.disabled = false
 	if x < 0:
 		queue_free()
 
@@ -31,16 +32,23 @@ func _process(delta):
 
 func spark() -> void:
 	var instance = SPARK.instantiate()
-	instance.position = global_position
+	instance.position = position
 	instance.transform.basis = global_transform.basis
 	instance.scale = Vector3(0.2,0.2,0.2)
 	instance.rotation.z = randf()
 	get_parent().add_child(instance)
 
-
 func _on_area_3d_area_entered(area):
 	print(area)
+	'''
 	if not(area.is_in_group(from) and not(area.is_in_group("lightning"))):
 		print(from)
 		$Area3D/CollisionShape3D.disabled = true
 		queue_free()
+	'''
+
+func destroy():
+	queue_free()
+
+func _on_area_3d_body_entered(body):
+	destroy()

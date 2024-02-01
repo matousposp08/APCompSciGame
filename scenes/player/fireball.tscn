@@ -34,7 +34,6 @@ turbulence_initial_displacement_max = 3.3
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oyfa0"]
-radius = 2.369
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y0pke"]
 properties/0/path = NodePath(".:position")
@@ -76,3 +75,4 @@ disabled = true
 replication_config = SubResource("SceneReplicationConfig_y0pke")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

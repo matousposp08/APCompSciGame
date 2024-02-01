@@ -21,14 +21,27 @@ func _process(delta):
 	if x < 0:
 		queue_free()
 
+func destroy():
+	$Area3D/CollisionShape3D.disabled = true
+	mesh.visible = false
+	particles.emitting = true
+	await get_tree().create_timer(1,0).timeout
+	queue_free()
 
 func _on_area_3d_area_entered(area):
 	print(area.get_groups())
 	print(from)
 	print(not(area.is_in_group(from)))
+	'''
 	if not(area.is_in_group(from)) and not(area.is_in_group("fireball")):
 		$Area3D/CollisionShape3D.disabled = true
 		mesh.visible = false
 		particles.emitting = true
 		await get_tree().create_timer(1,0).timeout
 		queue_free()
+	'''
+
+
+func _on_area_3d_body_entered(body):
+	print(body.name)
+	destroy()
