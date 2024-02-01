@@ -12,6 +12,7 @@ extends CharacterBody3D
 var from = ""
 var health = 100
 var shield = 100
+var shieldCount = 0
 var magic = false
 var mode = 0
 var hits = false
@@ -40,7 +41,6 @@ const spawn_locations = [
 	Vector3(16.24989, -0.870576, 11.39177), \
 	Vector3(16.42706, -0.878557, -19.82363), \
 	Vector3(16.02861, -0.878562, -26.86526), \
-	Vector3(7.222768, 5.265378, -60.38696), \
 	Vector3(7.222768, 5.265378, -60.38696), \
 	Vector3(-6.01243, 17.14531, -29.05025), \
 	Vector3(-5.615685, 17.14533, -8.284218), \
@@ -140,6 +140,16 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("record_position"):
 		print(position)
+		
+	#Shield Regen:
+	shieldCount += 1
+	if shieldCount >= 60:
+		
+		print("loq")
+		if shield < 100:
+			shield += 2
+		shieldCount = 0
+	shield = 100 if shield > 100 else shield
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
