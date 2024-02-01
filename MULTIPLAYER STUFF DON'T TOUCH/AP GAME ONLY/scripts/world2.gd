@@ -53,7 +53,7 @@ func game_start(mode, timer):
 
 func game_end():
 	end = true
-	$results/Label.text = "Winner: " + get_node($Label2.text+"/Username").text
+	$results/Label.text = "MATCH OVER"
 	$Label.visible = false
 	$results.visible = true
 	$results/AudioStreamPlayer.play()
