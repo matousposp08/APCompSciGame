@@ -356,7 +356,7 @@ func _on_area_3d_area_entered(area):
 			area.queue_free()
 			applyDamage(70)
 			iframes = 20
-		if area.is_in_group("ice") and not(area.is_in_group(from)):
+		if area.is_in_group("ice"):
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
 			area.queue_free()
 			applyDamage(35)
