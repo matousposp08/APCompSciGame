@@ -39,6 +39,7 @@ func _on_button_4_pressed():
 func _on_button_5_pressed():
 	if game:
 		get_parent().get_parent().game = false
+		get_parent().get_parent().game_end()
 
 func _on_check_button_toggled(toggled_on):
 	timer = toggled_on

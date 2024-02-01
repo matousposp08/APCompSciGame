@@ -138,13 +138,14 @@ func _process(delta: float) -> void:
 				mode += 1
 	if Input.is_action_just_pressed("melee"):
 		magic = false
-	handle_movement_input(delta)
-	handle_controller_camera_movement()
-	update_camera(delta)
-	hit()
-	fireball()
-	lightning()
-	ice()
+	if not(get_parent().end):
+		handle_movement_input(delta)
+		handle_controller_camera_movement()
+		update_camera(delta)
+		hit()
+		fireball()
+		lightning()
+		ice()
 	#build()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
@@ -173,10 +174,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
-	
-	apply_gravity(delta)
-	handle_jump()
-	move_character(delta)
+	if not(get_parent().end):
+		apply_gravity(delta)
+		handle_jump()
+		move_character(delta)
 
 func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return

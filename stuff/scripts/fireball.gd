@@ -16,7 +16,7 @@ func _ready():
 func _process(delta):
 	x -= 1
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
-	if x < 470:
+	if x < 478:
 		$Area3D/CollisionShape3D.disabled = false
 	if x < 0:
 		queue_free()

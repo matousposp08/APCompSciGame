@@ -6,6 +6,7 @@ extends Node
 var ps = 1
 var areas = {}
 var game = false
+var end = false
 var pause = false
 var grav =  9.8
 
@@ -29,7 +30,7 @@ func game_start(mode, timer):
 	game = true
 	if timer:
 		time = true
-		$Timer.wait_time = 120
+		$Timer.wait_time = 10
 		$Timer.start()
 	if mode == 0:
 		grav = 9.8
@@ -41,6 +42,7 @@ func game_start(mode, timer):
 		get_node(x).start()
 
 func game_end():
+	end = true
 	$results.visible = true
 	$results/AudioStreamPlayer.play()
 
@@ -145,3 +147,7 @@ func upnp_setup():
 		"UPNP Port Mapping Failed! Error %s" % map_result)
 	
 	print("Success! Join Address: %s" % upnp.query_external_address())
+
+
+func _on_timer_timeout():
+	game_end()
