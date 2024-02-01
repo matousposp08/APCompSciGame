@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://yfdqrpnnyf1y"]
+
+[ext_resource type="Script" path="res://scenes/game_options.gd" id="1_4xhvw"]
+[ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="1_l24yu"]
+
+[node name="GameOptions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4xhvw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 700.0
+color = Color(1, 0.894118, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 299.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "GAME OPTIONS"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 68.0
+offset_right = 215.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "TIMER"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 406.0
+offset_right = 270.0
+offset_bottom = 452.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "NORMAL"
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 178.0
+offset_right = 270.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "END"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 245.0
+offset_right = 146.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "MODES"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 295.0
+offset_right = 269.0
+offset_bottom = 341.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "LOW-GRAVITY"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 350.0
+offset_right = 270.0
+offset_bottom = 396.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "BLACKOUT"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 113.0
+offset_right = 269.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(0.364706, 0.443137, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l24yu")
+theme_override_font_sizes/font_size = 30
+text = "START"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

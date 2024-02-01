@@ -31,7 +31,7 @@ var instance
 var pause = false
 var speed: float = base_speed
 var state: String = "normal"  
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity: float = 9.8
 var camera_fov_extents: Array[float] = [75.0, 85.0,40.0]
 var base_player_y_scale: float = 1.0
 var crouch_player_y_scale: float = 0.75
@@ -86,6 +86,7 @@ func _enter_tree():
 		$Username.billboard = true
 
 func _ready() -> void:
+	$GameOptions.visible = false
 	if not is_multiplayer_authority(): 
 		print("no ui")
 		$UI.visible = false
@@ -97,7 +98,23 @@ func _ready() -> void:
 	$Username.billboard = true
 	global_transform.origin = spawn_locations.pick_random()
 
+func start():
+	gravity = get_parent().grav
+	shield = 100
+	mana = 100
+	health = 100
+	global_transform.origin = spawn_locations.pick_random()
+	velocity = Vector3(0,0,0)
+
 func _process(delta: float) -> void:
+	if name == "1" and Input.is_action_just_pressed("options"):
+		$GameOptions.visible = not($GameOptions.visible)
+	if $GameOptions.visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		if not(get_parent().pause):
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	iframes -= 1
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart") or health <= 0:
@@ -320,7 +337,7 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
-	get_parent().areas[instance.get_node("Area3D")] = $Username.text
+	get_parent().areas[instance.get_node("Area3D")] = name
 	#print(from)
 	instance.get_node("Area3D").add_to_group(from)
 	instance.from = from
@@ -347,7 +364,7 @@ func spawn_lightning(position, basis, rotation):
 	instance.transform.basis = basis
 	instance.rotation.z = rotation.z
 	#print(from)
-	get_parent().areas[instance.get_node("Area3D")] = $Username.text
+	get_parent().areas[instance.get_node("Area3D")] = name
 	instance.from = from
 	instance.add_to_group(from)
 	instance.position.y -= 0.3
@@ -397,6 +414,8 @@ func _on_area_3d_area_entered(area):
 		if area.is_in_group("fireball"):
 			attacker = str(get_parent().areas.get(area))
 			applyDamage(45)
+			#if health <= 0:
+			#	get_parent().add_score(attacker.name, name,"fireball")
 			#print(get_parent().get_node(other2+"/head/camera").unproject_position(position))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),45)
 			var knockbackForce = 50
@@ -425,7 +444,7 @@ func spawn_ice(position, basis):
 	instance.from = from
 	instance.position = position
 	instance.transform.basis = basis
-	get_parent().areas[instance.get_node("Area3D")] = $Username.text
+	get_parent().areas[instance.get_node("Area3D")] = name
 	instance.get_node("Area3D").add_to_group(from)
 	instance.add_to_group(from)
 	get_parent().add_child(instance)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cadh5ixr1pkwi"]
+[gd_scene load_steps=17 format=3 uid="uid://cadh5ixr1pkwi"]
 
 [ext_resource type="Script" path="res://stuff/scripts/ui.gd" id="1_0d4i1"]
 [ext_resource type="Script" path="res://stuff/scripts/mana.gd" id="2_mgjc4"]
 [ext_resource type="PackedScene" uid="uid://d21pqfbmjoi6v" path="res://scenes/player/damage_num.tscn" id="3_hat6k"]
 [ext_resource type="Texture2D" uid="uid://drpxkm7rke6fa" path="res://scenes/player/playerimg/Untitled_design-removebg-preview.png" id="4_tuyb8"]
+[ext_resource type="FontFile" uid="uid://dit0qnvk46pnq" path="res://LeagueSpartan-Bold.otf" id="5_o7pmf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcejq"]
 bg_color = Color(1, 1, 1, 0.537255)
@@ -163,5 +164,16 @@ offset_bottom = 30.0
 position = Vector2(1026, 526)
 sprite_frames = SubResource("SpriteFrames_oxv0u")
 animation = &"crowbar"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 19.0
+offset_right = 126.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_o7pmf")
+theme_override_font_sizes/font_size = 50
+text = "abc"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

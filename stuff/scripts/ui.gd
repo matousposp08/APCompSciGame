@@ -12,6 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#$Label.text = "Score: " + str(get_parent().get_parent().score[get_parent().name])
 	if Input.is_action_just_pressed("magic") or Input.is_action_just_pressed("melee"):
 		x = 10
 	if x > 0:

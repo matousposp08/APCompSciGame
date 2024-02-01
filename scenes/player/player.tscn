@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwiu8nsyij4gn"]
+[gd_scene load_steps=19 format=3 uid="uid://cwiu8nsyij4gn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_u1w3t"]
 [ext_resource type="PackedScene" uid="uid://dvgwqpnepwrot" path="res://scenes/crowbar.glb" id="2_jdq2p"]
 [ext_resource type="PackedScene" uid="uid://cadh5ixr1pkwi" path="res://scenes/ui.tscn" id="4_ekf4m"]
+[ext_resource type="PackedScene" uid="uid://yfdqrpnnyf1y" path="res://scenes/game_options.tscn" id="5_2ixlp"]
 [ext_resource type="Texture2D" uid="uid://c121wtswlrqas" path="res://stuff/aimer things/crosshair-icon-2048x2048-2clp4atl.png" id="5_cym7m"]
 
 [sub_resource type="Animation" id="Animation_bpp8w"]
@@ -231,11 +232,21 @@ offset_top = -327.0
 offset_right = -581.0
 offset_bottom = -327.0
 
+[node name="damageNum" parent="UI" index="4"]
+visible = false
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ltt8p")
 
 [node name="Username" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+
+[node name="GameOptions" parent="." instance=ExtResource("5_2ixlp")]
+visible = false
+offset_left = 275.0
+offset_top = -325.0
+offset_right = 275.0
+offset_bottom = -325.0
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 

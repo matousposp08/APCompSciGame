@@ -5,6 +5,12 @@ extends Node
 
 var ps = 1
 var areas = {}
+var game = false
+var pause = false
+var grav =  9.8
+
+var players = []
+var score = {}
 
 const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
@@ -13,15 +19,34 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _ready() -> void:
 	$PMenu.hide()
 
+func add_score(attacker, dead, method):
+	score[attacker] += 1
+	if method == "fireball":
+		print(get_node(attacker+"/Username").text + " burned "+get_node(dead+"/Username").text)
+
+func game_start(mode, timer):
+	game = true
+	if timer:
+		pass
+	if mode == 0:
+		grav = 9.8
+	if mode == 1:
+		pass
+	if mode == 2:
+		grav = 2
+	for x in players:
+		get_node(x).start()
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("game_pause"):
+		pause = not(pause)
 		if $PMenu.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			$PMenu.hide()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			$PMenu.show()
-	
+
 func add_player(peer_id):
 	$Label.text = str(ps)
 	var player = Player.instantiate()
@@ -33,7 +58,6 @@ func add_player(peer_id):
 	add_child(player)
 	player.add_to_group($Label.text)
 	#print(str(ps) + " " + player.from + " " + $Label.text + str(player.is_multiplayer_authority()))
-	print("Peer ID:" + str(peer_id))
 	if not player.is_multiplayer_authority(): return
 	player.get_node('Area3D').add_to_group($Label.text)
 	player.get_node('head/crowbar').add_to_group($Label.text)
@@ -61,6 +85,9 @@ func _on_host_button_pressed():
 	ps = 1
 	var player_id = multiplayer.get_unique_id()
 	add_player(multiplayer.get_unique_id())
+	players.append(str(player_id))
+	score[str(player_id)] = 0
+	print(score)
 	print("host joined")
 	set_player_initial_position(player_id)
 	
@@ -80,6 +107,9 @@ func _on_join_button_pressed():
 	var player_id = multiplayer.get_unique_id()
 	print(player_id)
 	add_player(player_id)
+	players.append(str(player_id))
+	score[str(player_id)] = 0
+	print(score)
 	set_player_initial_position(player_id)
 
 func set_player_initial_position(player_id):
