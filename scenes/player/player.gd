@@ -360,7 +360,7 @@ func lightning() -> void:
 		#var rotation = randf()
 		spawn_lightning(position, bas, rotation)
 		mana -= 40
-	
+
 func _on_area_3d_area_entered(area):
 	if iframes > 0:
 		return
@@ -368,13 +368,12 @@ func _on_area_3d_area_entered(area):
 		return
 	else:
 		if area.is_in_group("crowbar"):
-			attacker = str(get_parent().areas.get(area))
+			var oppressor = area.get_parent().get_parent().get_parent()
+			oppressor.attacker = $Username.text
 			print("hit")
-			var x = position - area.get_parent().position
-			applyDamage(20)
+			oppressor.applyDamage(20)
 			print(health)
-			velocity = 10*(x/x.length())
-			iframes = 20
+			oppressor.iframes = 20
 	print(str(get_parent().areas.get(area)) + " " + $Username.text)
 	print(not(str(get_parent().areas.get(area)) == $Username.text))
 	#attacker = str(get_parent().areas.get(area))
