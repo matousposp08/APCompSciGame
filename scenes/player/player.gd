@@ -364,14 +364,24 @@ func lightning() -> void:
 func _on_area_3d_area_entered(area):
 	if iframes > 0:
 		return
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): 
+		return
+	else:
+		if area.is_in_group("crowbar"):
+			attacker = str(get_parent().areas.get(area))
+			print("hit")
+			var x = position - area.get_parent().position
+			applyDamage(20)
+			print(health)
+			velocity = 10*(x/x.length())
+			iframes = 20
 	print(str(get_parent().areas.get(area)) + " " + $Username.text)
 	print(not(str(get_parent().areas.get(area)) == $Username.text))
-	attacker = str(get_parent().areas.get(area))
-	if attacker == "<null>":
-		attacker = str(area.get_parent().get_parent().get_parent().get_node("Username").text)
+	#attacker = str(get_parent().areas.get(area))
+	#attacker = str(area.get_parent().get_parent().get_parent().get_node("Username").text)
 	if not(str(get_parent().areas.get(area)) == $Username.text):
 		if area.is_in_group("fireball"):
+			attacker = str(get_parent().areas.get(area))
 			applyDamage(45)
 			#print(get_parent().get_node(other2+"/head/camera").unproject_position(position))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),45)
@@ -381,23 +391,18 @@ func _on_area_3d_area_entered(area):
 			#area.queue_free()
 			velocity = knockbackDirection * knockbackForce
 		if area.is_in_group("lightning"):
+			attacker = str(get_parent().areas.get(area))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),70)
 			area.queue_free()
 			applyDamage(70)
 			iframes = 20
 		if area.is_in_group("ice"):
+			attacker = str(get_parent().areas.get(area))
 			#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),35)
 			area.queue_free()
 			applyDamage(35)
 			iframes = 20
 		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
-		if area.is_in_group("crowbar"):
-			print("hit")
-			var x = position - area.get_parent().position
-			applyDamage(20)
-			print(health)
-			velocity = 10*(x/x.length())
-			iframes = 20
 
 func spawn_ice(position, basis):
 	var instance = ICE.instantiate()
