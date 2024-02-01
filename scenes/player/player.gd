@@ -144,8 +144,6 @@ func _process(delta: float) -> void:
 	#Shield Regen:
 	shieldCount += 1
 	if shieldCount >= 60:
-		
-		print("loq")
 		if shield < 100:
 			shield += 2
 		shieldCount = 0
@@ -379,6 +377,7 @@ func _on_area_3d_area_entered(area):
 	else:
 		if area.is_in_group("crowbar"):
 			var oppressor = area.get_parent().get_parent().get_parent()
+			print(oppressor.name)
 			oppressor.attacker = $Username.text
 			print("hit")
 			oppressor.applyDamage(20)
