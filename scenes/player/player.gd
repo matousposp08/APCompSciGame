@@ -119,6 +119,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("melee"):
 		magic = false
 	handle_movement_input(delta)
+	handle_controller_camera_movement()
 	update_camera(delta)
 	hit()
 	fireball()
@@ -277,12 +278,29 @@ func move_character(delta: float) -> void:
 func handle_mouse_movement(event: InputEventMouseMotion) -> void:
 	if not is_multiplayer_authority(): return
 	
-	
-	
 	if !world.paused:
 		parts["head"].rotation_degrees.y -= event.relative.x * sensitivity
 		parts["head"].rotation_degrees.x -= event.relative.y * sensitivity
 		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
+
+func handle_controller_camera_movement() -> void:
+	if not is_multiplayer_authority(): return
+	
+	var input_dir: Vector2 = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
+	if input_dir.y < -0.10 and $head.rotation.x < 1.5:
+		$head.rotation.x += abs(input_dir.y)/30
+	if input_dir.y > 0.10 and $head.rotation.x > -1.5:
+		$head.rotation.x -= abs(input_dir.y)/30
+	if input_dir.x < -0.10:
+		$head.rotation.y += abs(input_dir.x)/30
+	if input_dir.x > 0.10:
+		$head.rotation.y -= abs(input_dir.x)/30
+	'''
+	if !world.paused:
+		parts["head"].rotation_degrees.y -= input_dir
+		parts["head"].rotation_degrees.x -= input_dir
+		parts["head"].rotation.x = clamp(parts["head"].rotation.x, deg_to_rad(-90), deg_to_rad(90))
+	'''
 
 func spawn_fireball():
 	var instance = FIREBALL.instantiate()
