@@ -114,7 +114,7 @@ func _process(delta: float) -> void:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		if not(get_parent().pause):
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	iframes -= 1
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart") or health <= 0:
