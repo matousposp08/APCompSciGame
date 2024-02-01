@@ -45,6 +45,15 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Label:visible")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Timer:process_callback")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("results:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("results/Label:text")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [node name="world2" type="Node"]
 script = ExtResource("1_x87ln")
@@ -159,8 +168,10 @@ visible = false
 [node name="PMenu" parent="." instance=ExtResource("3_buys0")]
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 365.0
+offset_top = -230.0
+offset_right = 405.0
+offset_bottom = -167.0
 theme_override_fonts/font = ExtResource("3_ik7bt")
 theme_override_font_sizes/font_size = 50
 
@@ -171,3 +182,5 @@ offset_bottom = 23.0
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="results"]

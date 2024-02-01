@@ -28,7 +28,7 @@ func add_score(attacker, dead, method):
 		print(get_node(attacker+"/Username").text + " burned "+get_node(dead+"/Username").text)
 
 func checkScore(player, score):
-	if score < int($Label2.text):
+	if score < get_node($Label2.text).death:
 		$Label2.text = player
 
 func game_start(mode, timer):
@@ -48,7 +48,8 @@ func game_start(mode, timer):
 
 func game_end():
 	end = true
-	$results/Label.text = get_node($Label2.text+"/Username").text
+	$results/Label.text = "Winner: " + get_node($Label2.text+"/Username").text
+	$Label.visible = false
 	$results.visible = true
 	$results/AudioStreamPlayer.play()
 
