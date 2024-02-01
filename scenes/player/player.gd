@@ -100,6 +100,7 @@ func _ready() -> void:
 	global_transform.origin = spawn_locations.pick_random()
 
 func start():
+	death = 0
 	gravity = get_parent().grav
 	shield = 100
 	mana = 100

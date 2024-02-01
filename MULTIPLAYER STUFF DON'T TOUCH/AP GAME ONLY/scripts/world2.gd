@@ -9,6 +9,7 @@ var game = false
 var end = false
 var pause = false
 var grav =  9.8
+var best
 
 var players = []
 var score = {}
@@ -28,15 +29,19 @@ func add_score(attacker, dead, method):
 		print(get_node(attacker+"/Username").text + " burned "+get_node(dead+"/Username").text)
 
 func checkScore(player, score):
-	if score < get_node($Label2.text).death:
-		$Label2.text = player
+	if not(get_node(best) == null):
+		print(str(score) + " "+player + " " + str(get_node(best).death))
+		if score < get_node(best).death:
+			$Label2.text = player
 
 func game_start(mode, timer):
 	game = true
+	'''
 	if timer:
 		time = true
 		$Timer.wait_time = 10
 		$Timer.start()
+	'''
 	if mode == 0:
 		grav = 9.8
 	if mode == 1:
@@ -54,6 +59,7 @@ func game_end():
 	$results/AudioStreamPlayer.play()
 
 func _process(delta: float) -> void:
+	best = $Label2.text
 	if time:
 		$Label.text = str($Timer.time_left)
 		$Label.visible = true

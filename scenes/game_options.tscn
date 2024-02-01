@@ -30,6 +30,7 @@ text = "GAME OPTIONS"
 horizontal_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 74.0
 offset_top = 68.0
