@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var base_speed: float = 5.0
 @export var sprint_speed: float = 8.0
 @export var jump_velocity: float = 5.5
+@export var max_velocity: float = 35.0
 @export var sensitivity: float = 0.1
 @export var accel: float = 10.0
 @export var crouch_speed: float = 3.0
@@ -140,6 +141,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("record_position"):
 		print(position)
+		
+	if velocity.y > 35:
+		velocity.y = max_velocity
+	print(velocity.y)
 		
 	#Shield Regen:
 	shieldCount += 1
