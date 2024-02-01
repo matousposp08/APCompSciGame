@@ -19,12 +19,17 @@ const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
 func _ready() -> void:
+	$Label2.text = "1"
 	$PMenu.hide()
 
 func add_score(attacker, dead, method):
 	score[attacker] += 1
 	if method == "fireball":
 		print(get_node(attacker+"/Username").text + " burned "+get_node(dead+"/Username").text)
+
+func checkScore(player, score):
+	if score < int($Label2.text):
+		$Label2.text = player
 
 func game_start(mode, timer):
 	game = true
@@ -43,6 +48,7 @@ func game_start(mode, timer):
 
 func game_end():
 	end = true
+	$results/Label.text = get_node($Label2.text+"/Username").text
 	$results.visible = true
 	$results/AudioStreamPlayer.play()
 

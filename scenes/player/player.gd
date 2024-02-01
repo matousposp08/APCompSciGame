@@ -21,6 +21,7 @@ var mana = 100
 var x = 0
 var iframes = 0
 var attacker
+var death = 0
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
@@ -108,6 +109,8 @@ func start():
 	
 
 func _process(delta: float) -> void:
+	if not(is_multiplayer_authority()): return
+	get_parent().checkScore(name, death)
 	if name == "1" and Input.is_action_just_pressed("options"):
 		$GameOptions.visible = not($GameOptions.visible)
 	#if $GameOptions.visible:
@@ -127,6 +130,7 @@ func _process(delta: float) -> void:
 	iframes -= 1
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart") or health <= 0:
+		death += 1
 		shield = 100
 		mana = 100
 		health = 100
@@ -150,7 +154,7 @@ func _process(delta: float) -> void:
 		handle_movement_input(delta)
 		handle_controller_camera_movement()
 		update_camera(delta)
-		hit()
+		#hit()
 		fireball()
 		lightning()
 		ice()
@@ -164,7 +168,7 @@ func _process(delta: float) -> void:
 			isMoving = false
 			$head/camera/camera_animation.stop()
 	if mana < 100:
-		mana += 1
+		mana += 0.08
 	
 	if Input.is_action_just_pressed("record_position"):
 		print(position)
@@ -197,6 +201,7 @@ func _input(event: InputEvent) -> void:
 func handle_movement_input(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if position.y <= -5:
+		death += 1
 		position = spawn_locations.pick_random()
 	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
@@ -408,6 +413,7 @@ func _on_area_3d_area_entered(area):
 		return
 	if not is_multiplayer_authority(): 
 		return
+	'''
 	if area.is_in_group("crowbar"):
 		var oppressor = area.get_parent().get_parent().get_parent()
 		print(oppressor.name + " df")
@@ -416,6 +422,7 @@ func _on_area_3d_area_entered(area):
 		oppressor.applyDamage(20)
 		print(health)
 		oppressor.iframes = 20
+	'''
 	print(str(get_parent().areas.get(area)) + " " + $Username.text)
 	print(not(str(get_parent().areas.get(area)) == $Username.text))
 	#attacker = str(get_parent().areas.get(area))

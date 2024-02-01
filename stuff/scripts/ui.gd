@@ -12,7 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#$Label.text = "Score: " + str(get_parent().get_parent().score[get_parent().name])
+	$Label.text = "Deaths: "+str(get_parent().death)
 	if Input.is_action_just_pressed("magic") or Input.is_action_just_pressed("melee"):
 		x = 10
 	if x > 0:
@@ -23,15 +23,12 @@ func _process(delta):
 	$shield.value = get_parent().shield
 	$health.value = get_parent().health
 	$mana.value=get_parent().mana
-	if not(get_parent().magic):
-		$AnimatedSprite2D.play("crowbar")
-	else:
-		if get_parent().mode == 0:
-			$AnimatedSprite2D.play("lightning")
-		if get_parent().mode == 1:
-			$AnimatedSprite2D.play("fireball")
-		if get_parent().mode == 2:
-			$AnimatedSprite2D.play("ice")
+	if get_parent().mode == 0:
+		$AnimatedSprite2D.play("lightning")
+	if get_parent().mode == 1:
+		$AnimatedSprite2D.play("fireball")
+	if get_parent().mode == 2:
+		$AnimatedSprite2D.play("ice")
 
 #func _on_timer_timeout():
 #	$mana.value+=0.5
