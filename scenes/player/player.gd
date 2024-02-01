@@ -33,6 +33,28 @@ var camera_fov_extents: Array[float] = [75.0, 85.0,40.0]
 var base_player_y_scale: float = 1.0
 var crouch_player_y_scale: float = 0.75
 
+const spawn_locations = [
+	Vector3(4.121731, -1.038562, 12.91191), \
+	Vector3(16.24989, -0.870576, 11.39177), \
+	Vector3(16.42706, -0.878557, -19.82363), \
+	Vector3(16.02861, -0.878562, -26.86526), \
+	Vector3(7.222768, 5.265378, -60.38696), \
+	Vector3(7.222768, 5.265378, -60.38696), \
+	Vector3(-6.01243, 17.14531, -29.05025), \
+	Vector3(-5.615685, 17.14533, -8.284218), \
+	Vector3(-15.0209, 17.145, -14.26368), \
+	Vector3(-22.55212, 17.145, -9.914391), \
+	Vector3(-40.84739, 33.94482, -30.63957), \
+	Vector3(-19.32512, 39.26546, -30.26815), \
+	Vector3(-21.28779, 34.74911, -39.77757), \
+	Vector3(-5.987343, 25.33743, -53.40427), \
+	Vector3(0.590306, 25.33705, -33.05113), \
+	Vector3(-7.198435, 4.449413, -15.32865), \
+	Vector3(-35.40859, 0.761239, 2.176908), \
+	Vector3(-42.76019, -0.262714, -36.18311), \
+	Vector3(-40.32557, 12.22985, -30.78641), \
+	Vector3(-39.14805, 7.321252, -30.83821) \
+]
 
 @onready var parts: Dictionary = {
 	"head": $head,
@@ -70,6 +92,7 @@ func _ready() -> void:
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
 	$Username.billboard = true
+	global_transform.origin = spawn_locations.pick_random()
 
 func _process(delta: float) -> void:
 	iframes -= 1
@@ -78,7 +101,7 @@ func _process(delta: float) -> void:
 		shield = 100
 		mana = 100
 		health = 100
-		global_transform.origin = Vector3(randi_range(-39, 16), 28, randi_range(-59, 14))
+		global_transform.origin = spawn_locations.pick_random()
 		velocity.y = 0
 	#if mo`:
 	#	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
@@ -111,6 +134,9 @@ func _process(delta: float) -> void:
 			$head/camera/camera_animation.stop()
 	if mana < 100:
 		mana += 1
+	
+	if Input.is_action_just_pressed("record_position"):
+		print(position)
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
@@ -129,7 +155,7 @@ func _input(event: InputEvent) -> void:
 func handle_movement_input(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if position.y <= -5:
-		position = Vector3(randi_range(-10, 10),5,randi_range(-10, 10))
+		position = spawn_locations.pick_random()
 	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
 		if !$crouch_roof_detect.is_colliding(): 
