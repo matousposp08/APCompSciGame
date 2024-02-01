@@ -65,7 +65,7 @@ func _ready() -> void:
 		print("no ui")
 		$UI.visible = false
 		return
-	print(from)
+	get_parent().areas[$head/crowbar/Area3D] = $Username.text
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$head/crowbar/Area3D/CollisionShape3D.disabled = false
 	parts["camera"].current = true
@@ -260,6 +260,7 @@ func spawn_fireball():
 	instance.position = $head.global_position
 	instance.transform.basis = $head.global_transform.basis
 	get_parent().add_child(instance)
+	get_parent().areas[instance.get_node("Area3D")] = $Username.text
 	#print(from)
 	instance.get_node("Area3D").add_to_group(from)
 	instance.from = from
@@ -286,6 +287,7 @@ func spawn_lightning(position, basis, rotation):
 	instance.transform.basis = basis
 	instance.rotation.z = rotation.z
 	#print(from)
+	get_parent().areas[instance.get_node("Area3D")] = $Username.text
 	instance.from = from
 	instance.add_to_group(from)
 	instance.position.y -= 0.3
@@ -314,8 +316,8 @@ func lightning() -> void:
 func _on_area_3d_area_entered(area):
 	if iframes > 0:
 		return
-	#if not is_multiplayer_authority(): return
-	print(str(area) + " " + str(get_node("head/crowbar/Area3D")))
+	if not is_multiplayer_authority(): return
+	print($Username.text + " " +str(get_parent().areas.get(area)) + " " + " pluh")
 	var other
 	var other2
 	if not(area.is_in_group('crowbar')):
@@ -327,23 +329,19 @@ func _on_area_3d_area_entered(area):
 		other = str(area.get_parent().get_parent().get_parent().from)
 		other2 = str(area.get_parent().get_parent().get_parent().name)
 	if area.is_in_group("crowbar"):
-		var myName = $Username.text
-		var oName = area.get_parent().get_parent().get_parent().get_node("Username").text
-		print($Username.text + " " + myName + " "+ oName)
-		print(hits)
 		#get_parent().get_node(other2).num(get_parent().get_node(other2+"/head/camera").unproject_position(position),20)
-		if not(hits):
+		if not(str(get_parent().areas.get(area)) == $Username.text):
 			print("hit")
 			var x = position - area.get_parent().position
 			applyDamage(20)
 			print(health)
 			velocity = 10*(x/x.length())
 			iframes = 20
-			return
 	else:
 		print(area.get_parent().name)
 	#print(name + " " + area.get_parent().get_parent().get_parent().name)
-	if not(other == from):
+	print(not(str(get_parent().areas.get(area)) == $Username.text))
+	if not(str(get_parent().areas.get(area)) == $Username.text):
 		if area.is_in_group("fireball") and not(area.is_in_group(from)):
 			applyDamage(45)
 			#print(get_parent().get_node(other2+"/head/camera").unproject_position(position))
@@ -369,7 +367,7 @@ func spawn_ice(position, basis):
 	instance.from = from
 	instance.position = position
 	instance.transform.basis = basis
-	print(from)
+	get_parent().areas[instance.get_node("Area3D")] = $Username.text
 	instance.get_node("Area3D").add_to_group(from)
 	instance.add_to_group(from)
 	get_parent().add_child(instance)

@@ -4,7 +4,7 @@ extends Node
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/LineEdit
 
 var ps = 1
-
+var areas = {}
 
 const Player = preload("res://scenes/player/player.tscn")
 const PORT = 9999
