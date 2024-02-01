@@ -110,12 +110,20 @@ func start():
 func _process(delta: float) -> void:
 	if name == "1" and Input.is_action_just_pressed("options"):
 		$GameOptions.visible = not($GameOptions.visible)
-	if $GameOptions.visible:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#if $GameOptions.visible:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		##Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#else:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#if not(get_parent().pause):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#else:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#
+	if $GameOptions.visible or get_parent().pause:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
-		if not(get_parent().pause):
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	iframes -= 1
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("restart") or health <= 0:
