@@ -136,7 +136,7 @@ func _process(delta: float) -> void:
 		gravity = 9.8
 	if get_parent().get_node("Label").text == "2":
 		gravity = 2
-	get_parent().checkScore(name, death)
+	#get_parent().checkScore(name, death)
 	if name == "1" and Input.is_action_just_pressed("options"):
 		$GameOptions.visible = not($GameOptions.visible)
 	#if $GameOptions.visible:
@@ -197,7 +197,7 @@ func _process(delta: float) -> void:
 			isMoving = false
 			$head/camera/camera_animation.stop()
 	if mana < 100:
-		mana += 0.05
+		mana += 0.06
 	
 	if Input.is_action_just_pressed("record_position"):
 		print(position)
@@ -365,6 +365,13 @@ func build() -> void:
 				elif d < 315 and d > 225:
 					block.position.x += 1.5
 					block.rotation_degrees.y = 90
+			rpc("rpc_spawn_block", block.position, block.rotation)
+
+@rpc func rpc_spawn_block(position,rotation):
+	var block = BLOCK.instantiate()
+	get_tree().current_scene.add_child(block)
+	block.position = position
+	block.rotation = rotation
 
 func move_character(delta: float) -> void:
 	if not is_multiplayer_authority(): return

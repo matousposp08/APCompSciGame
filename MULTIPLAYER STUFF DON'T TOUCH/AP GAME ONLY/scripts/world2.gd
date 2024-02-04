@@ -10,6 +10,7 @@ var end = false
 var pause = false
 var grav =  9.8
 var best
+var nonlocal = false
 
 var players = []
 var score = {}
@@ -20,7 +21,7 @@ const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
 func _ready() -> void:
-	$Label.visible = true
+	$Label.visible = false
 	$Label2.visible = false
 	$PMenu.hide()
 
@@ -116,7 +117,9 @@ func _on_host_button_pressed():
 	print("host joined")
 	set_player_initial_position(player_id)
 	
-	#upnp_setup()
+	$CanvasLayer/CheckButton.visible = false
+	if nonlocal:
+		upnp_setup()
 
 func _on_join_button_pressed(): 
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
@@ -162,3 +165,7 @@ func upnp_setup():
 
 func _on_timer_timeout():
 	game_end()
+
+
+func _on_check_button_toggled(toggled_on):
+	nonlocal = not(nonlocal)

@@ -67,6 +67,15 @@ offset_right = 1174.0
 offset_bottom = 667.0
 color = Color(0.701961, 0.329412, 1, 1)
 
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer"]
+offset_left = 990.0
+offset_top = 569.0
+offset_right = 1125.0
+offset_bottom = 640.0
+theme_override_fonts/font = ExtResource("3_ik7bt")
+theme_override_font_sizes/font_size = 30
+text = "UPNP"
+
 [node name="Oig2" type="Sprite2D" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0901961)
 position = Vector2(598, 498)
@@ -184,6 +193,7 @@ offset_bottom = 23.0
 offset_right = 40.0
 offset_bottom = 23.0
 
+[connection signal="toggled" from="CanvasLayer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
