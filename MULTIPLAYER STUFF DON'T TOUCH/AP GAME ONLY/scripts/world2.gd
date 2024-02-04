@@ -20,7 +20,8 @@ const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
 func _ready() -> void:
-	$Label2.text = "1"
+	$Label.visible = true
+	$Label2.visible = false
 	$PMenu.hide()
 
 func add_score(attacker, dead, method):
@@ -44,10 +45,13 @@ func game_start(mode, timer):
 	'''
 	if mode == 0:
 		grav = 9.8
+		$Label.text = "0"
 	if mode == 1:
 		pass
+		$Label.text = "1"
 	if mode == 2:
 		grav = 2
+		$Label.text = "2"
 	for x in players:
 		get_node(x).start()
 
@@ -60,11 +64,6 @@ func game_end():
 
 func _process(delta: float) -> void:
 	best = $Label2.text
-	if time:
-		$Label.text = str($Timer.time_left)
-		$Label.visible = true
-	else:
-		$Label.visible = false
 	if Input.is_action_just_pressed("game_pause"):
 		pause = not(pause)
 		if $PMenu.visible:
@@ -75,7 +74,6 @@ func _process(delta: float) -> void:
 			$PMenu.show()
 
 func add_player(peer_id):
-	$Label.text = str(ps)
 	var player = Player.instantiate()
 	#print(ps)
 	player.from = $Label.text

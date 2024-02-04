@@ -1,16 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0l5crika7s8c"]
+[gd_scene load_steps=5 format=3 uid="uid://c0l5crika7s8c"]
+
+[ext_resource type="Script" path="res://scenes/player/vertical_block.gd" id="1_vtqhf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5d5tm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_juxt1"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogbad"]
+size = Vector3(3, 3, 0.3)
+
 [node name="verticalBlock" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 1.5, 2.08165e-12)
+script = ExtResource("1_vtqhf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("BoxMesh_5d5tm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 0.3, 0, 0, 0)
+transform = Transform3D(3, -1.04636e-15, 1.04636e-16, 1.04636e-15, 3, -1.04636e-16, -1.04636e-15, 1.04636e-15, 0.3, 0, 0, 0)
 shape = SubResource("BoxShape3D_juxt1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ogbad")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

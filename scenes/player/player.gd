@@ -22,6 +22,8 @@ var x = 0
 var iframes = 0
 var attacker
 var death = 0
+var create = false
+var cycle = 1
 
 var FIREBALL : PackedScene = preload('res://scenes/player/fireball.tscn')
 var LIGHTNING : PackedScene = preload('res://scenes/player/lightning.tscn')
@@ -101,16 +103,39 @@ func _ready() -> void:
 
 func start():
 	death = 0
-	gravity = get_parent().grav
 	shield = 100
 	mana = 100
 	health = 100
 	global_transform.origin = spawn_locations.pick_random()
 	velocity = Vector3(0,0,0)
-	
+
+var end = false
 
 func _process(delta: float) -> void:
-	if not(is_multiplayer_authority()): return
+	if Input.is_action_just_pressed("build"):
+		create = not(create)
+	if Input.is_action_just_pressed("build1"):
+		cycle = 1
+	if Input.is_action_just_pressed("build2"):
+		cycle = 2
+	if Input.is_action_just_pressed("build3"):
+		cycle = 3
+	if Input.is_action_just_pressed("cyclebuild"):
+		cycle += 1
+		if cycle > 3:
+			cycle = 1
+	if get_parent().get_node("results").visible == true and not(end):
+		get_parent().game_end()
+		end = true
+	if not(is_multiplayer_authority()): 
+		$Username.visible = true
+		return
+	else:
+		$Username.visible = false
+	if get_parent().get_node("Label").text == "0":
+		gravity = 9.8
+	if get_parent().get_node("Label").text == "2":
+		gravity = 2
 	get_parent().checkScore(name, death)
 	if name == "1" and Input.is_action_just_pressed("options"):
 		$GameOptions.visible = not($GameOptions.visible)
@@ -142,6 +167,7 @@ func _process(delta: float) -> void:
 	#else:
 	#	pass
 	if Input.is_action_just_pressed("magic"):
+		create = false
 		if not(magic):
 			magic = true
 		else:
@@ -156,10 +182,12 @@ func _process(delta: float) -> void:
 		handle_controller_camera_movement()
 		update_camera(delta)
 		#hit()
-		fireball()
-		lightning()
-		ice()
-	#build()
+		if not(create):
+			fireball()
+			lightning()
+			ice()
+	if create:
+		build()
 	if Input.is_action_pressed("move_forward"):
 		if not isMoving:
 			isMoving = true
@@ -169,7 +197,7 @@ func _process(delta: float) -> void:
 			isMoving = false
 			$head/camera/camera_animation.stop()
 	if mana < 100:
-		mana += 0.08
+		mana += 0.05
 	
 	if Input.is_action_just_pressed("record_position"):
 		print(position)
@@ -288,27 +316,55 @@ func hit() -> void:
 		$head/crowbar/Area3D/CollisionShape3D.disabled = false
 		$head/crowbar/AnimationPlayer.play("hit1")
 		x = 60
-	
-	
 
 func build() -> void:
 	if not is_multiplayer_authority(): return
 	
-	if Input.is_action_just_pressed("build"):
+	if Input.is_action_just_pressed("hit") and create and mana >= 20:
+		var d
+		mana -= 10
+		if $head.rotation_degrees.y < 0:
+			d = 360 + (int($head.rotation_degrees.y) % 360)
+		else:
+			d = abs(int($head.rotation_degrees.y) % 360)
 		if BLOCK:
 			var block = BLOCK.instantiate()
 			get_tree().current_scene.add_child(block)
 			block.global_position = self.global_position
-			if $head.rotation_degrees.y < 45 or $head.rotation_degrees.y > 314:
-				block.position.z -= 5
-			elif $head.rotation_degrees.y < 135 or $head.rotation_degrees.y > 44:
-				block.position.x -= 5
-				block.rotation.y =90
-			elif $head.rotation_degrees.y < 225 or $head.rotation_degrees.y > 134:
-				block.position.z += 5
-			elif $head.rotation_degrees.y < 315 or $head.rotation_degrees.y > 224:
-				block.position.x += 5
-				block.rotation.y =90
+			if cycle == 1:
+				if d <= 45 or d >= 315:
+					block.position.z -= 1.5
+				elif d <= 135 and d > 45:
+					block.position.x -= 1.5
+					block.rotation_degrees.y = 90
+					#block.rotation.y =90
+				elif d <= 225 and d > 135:
+					block.position.z += 1.5
+				elif d < 315 and d > 225:
+					block.position.x += 1.5
+					block.rotation_degrees.y = 90
+			if cycle == 2:
+				block.rotation_degrees.x = 90
+				if $head.rotation_degrees.x <= 0:
+					block.global_position.y -= 1.5
+				if $head.rotation_degrees.x > 0:
+					block.global_position.y += 1.5
+			if cycle == 3:
+				block.rotation_degrees.x = 45
+				print(d)
+				if d <= 45 or d >= 315:
+					block.position.z -= 1.5
+					block.rotation_degrees.y += 180
+				elif d <= 135 and d > 45:
+					block.position.x -= 1.5
+					block.rotation_degrees.y = 90
+					block.rotation_degrees.y += 180
+					#block.rotation.y =90
+				elif d <= 225 and d > 135:
+					block.position.z += 1.5
+				elif d < 315 and d > 225:
+					block.position.x += 1.5
+					block.rotation_degrees.y = 90
 
 func move_character(delta: float) -> void:
 	if not is_multiplayer_authority(): return

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b12h0qn8mjntv" path="res://OIG2.png" id="3_vmalc"]
 [ext_resource type="Texture2D" uid="uid://coac5mmytqx8h" path="res://stuff/tumblr_ney5ngkF8e1rrftcdo3_400.jpg" id="4_qqr6p"]
 [ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="6_eyog1"]
-[ext_resource type="PackedScene" path="res://scenes/results.tscn" id="8_ua884"]
+[ext_resource type="PackedScene" uid="uid://u1hxbwsjrma" path="res://scenes/results.tscn" id="8_ua884"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fap4j"]
 bg_color = Color(0, 0.729412, 0.945098, 0)
@@ -33,25 +33,25 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("dummy:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("Label:text")
+properties/2/path = NodePath("Timer:wait_time")
 properties/2/spawn = true
-properties/2/replication_mode = 2
-properties/3/path = NodePath("Timer:wait_time")
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Label2:text")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("Label2:text")
+properties/4/path = NodePath("Label:visible")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("Label:visible")
+properties/5/path = NodePath("Timer:process_callback")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("Timer:process_callback")
+properties/6/path = NodePath("results:visible")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("results:visible")
+properties/7/path = NodePath("Label:text")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("results/Label:text")
+properties/8/path = NodePath("results/AudioStreamPlayer:playing")
 properties/8/spawn = true
 properties/8/replication_mode = 1
 
@@ -168,7 +168,6 @@ visible = false
 [node name="PMenu" parent="." instance=ExtResource("3_buys0")]
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = 365.0
 offset_top = -230.0
 offset_right = 405.0
