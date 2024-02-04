@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=15 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="Script" path="res://MULTIPLAYER STUFF DON'T TOUCH/AP GAME ONLY/scripts/world2.gd" id="1_x87ln"]
 [ext_resource type="PackedScene" uid="uid://kjea0mrd5e5c" path="res://scenes/dummy.tscn" id="3_6ryqq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://coac5mmytqx8h" path="res://stuff/tumblr_ney5ngkF8e1rrftcdo3_400.jpg" id="4_qqr6p"]
 [ext_resource type="PackedScene" uid="uid://dah7lj1sw451s" path="res://scenes/whomps_fortress.tscn" id="6_eyog1"]
 [ext_resource type="PackedScene" uid="uid://u1hxbwsjrma" path="res://scenes/results.tscn" id="8_ua884"]
+[ext_resource type="PackedScene" uid="uid://c0l5crika7s8c" path="res://scenes/player/vertical_block.tscn" id="9_k51ua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fap4j"]
 bg_color = Color(0, 0.729412, 0.945098, 0)
@@ -192,6 +193,9 @@ offset_bottom = 23.0
 [node name="Label3" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="verticalBlock" parent="." instance=ExtResource("9_k51ua")]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 25.2964, 6.01076, -64.9695)
 
 [connection signal="toggled" from="CanvasLayer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]

@@ -320,7 +320,9 @@ func hit() -> void:
 func build() -> void:
 	if not is_multiplayer_authority(): return
 	
-	if Input.is_action_just_pressed("hit") and create and mana >= 20:
+	print(global_position)
+	print(global_position.x <= 25 and global_position.x >= -50 and global_position.y > -5 and global_position.y <= 55 and global_position.z >= -65 and global_position.z <= 20)
+	if Input.is_action_just_pressed("hit") and create and mana >= 20 and global_position.x <= 30 and global_position.x >= -70 and global_position.y > -5 and global_position.y <= 55 and global_position.z >= -65 and global_position.z <= 30:
 		var d
 		mana -= 10
 		if $head.rotation_degrees.y < 0:
