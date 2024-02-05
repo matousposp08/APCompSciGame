@@ -139,6 +139,7 @@ func _on_join_button_pressed():
 	score[str(player_id)] = 0
 	print(score)
 	set_player_initial_position(player_id)
+	$CanvasLayer/CheckButton.visible = false
 
 func set_player_initial_position(player_id):
 	# Set the initial position to (0, 0, 0) for the player with the given ID

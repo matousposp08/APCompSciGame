@@ -112,7 +112,7 @@ func start():
 var end = false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("build"):
+	if Input.is_action_just_pressed("build") or Input.is_action_just_pressed("melee"):
 		create = not(create)
 	if Input.is_action_just_pressed("build1"):
 		cycle = 1
@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 		cycle = 2
 	if Input.is_action_just_pressed("build3"):
 		cycle = 3
-	if Input.is_action_just_pressed("cyclebuild"):
+	if Input.is_action_just_pressed("cyclebuild") or Input.is_action_just_pressed("melee"):
 		cycle += 1
 		if cycle > 3:
 			cycle = 1
@@ -320,9 +320,7 @@ func hit() -> void:
 func build() -> void:
 	if not is_multiplayer_authority(): return
 	
-	print(global_position)
-	print(global_position.x <= 25 and global_position.x >= -50 and global_position.y > -5 and global_position.y <= 55 and global_position.z >= -65 and global_position.z <= 20)
-	if Input.is_action_just_pressed("hit") and create and mana >= 20 and global_position.x <= 30 and global_position.x >= -70 and global_position.y > -5 and global_position.y <= 55 and global_position.z >= -65 and global_position.z <= 30:
+	if Input.is_action_just_pressed("hit") and create and mana >= 20:
 		var d
 		mana -= 10
 		if $head.rotation_degrees.y < 0:
@@ -353,7 +351,6 @@ func build() -> void:
 					block.global_position.y += 1.5
 			if cycle == 3:
 				block.rotation_degrees.x = 45
-				print(d)
 				if d <= 45 or d >= 315:
 					block.position.z -= 1.5
 					block.rotation_degrees.y += 180

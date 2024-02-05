@@ -22,7 +22,6 @@ func _process(delta):
 		queue_free()
 
 func destroy():
-	SPEED = 0
 	$Area3D/CollisionShape3D.disabled = true
 	mesh.visible = false
 	particles.emitting = true
